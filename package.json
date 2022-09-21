@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/kfcodes/production_api/issues"
   },
-  "homepage": "https://github.com/kfcodes/production_api#readme"
+  "homepage": "https://github.com/kfcodes/production_api#readme",
+  "keywords": [],
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mysql": "^2.18.1"
+  }
 }
