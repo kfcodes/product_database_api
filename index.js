@@ -1,7 +1,16 @@
+// Create Connection to db
 const express = require("express"),
   app = express(),
   cors = require("cors"),
   bodyParser = require("body-parser");
+
+// // setup database
+db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "simpleapi",
+});
 
 // make server object that contain port property and the value for our server.
 var server = {
