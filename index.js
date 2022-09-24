@@ -1,4 +1,4 @@
-// Create Connection to db
+// Create routes for products
 const express = require("express"),
   app = express(),
   cors = require("cors"),
@@ -20,6 +20,16 @@ var server = {
 // use the modules
 app.use(cors());
 app.use(bodyParser.json());
+
+// routers
+const usersRouter = require("./routes/brands");
+const usersRouter = require("./routes/products");
+// use the modules
+app.use(cors());
+app.use(bodyParser.json());
+// use router
+app.use("/brands", brandsRouter);
+app.use("/products", productsRouter);
 
 // starting the server
 app.listen(server.port, () =>
