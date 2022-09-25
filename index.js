@@ -1,15 +1,17 @@
-// Create routes for products
+// Fixed imports and routes
 const express = require("express"),
   app = express(),
+  mysql = require("mysql"), // import mysql module
   cors = require("cors"),
   bodyParser = require("body-parser");
 
 // // setup database
 db = mysql.createConnection({
-  host: "localhost",
+  host: "127.0.0.1",
   user: "root",
+  port: "",
   password: "",
-  database: "simpleapi",
+  database: "test",
 });
 
 // make server object that contain port property and the value for our server.
@@ -22,8 +24,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // routers
-const usersRouter = require("./routes/brands");
-const usersRouter = require("./routes/products");
+const brandsRouter = require("./routes/brands");
+const productsRouter = require("./routes/products");
 // use the modules
 app.use(cors());
 app.use(bodyParser.json());
