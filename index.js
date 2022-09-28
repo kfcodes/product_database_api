@@ -5,7 +5,7 @@ const express = require("express"),
   cors = require("cors"),
   bodyParser = require("body-parser");
 
-// // setup database
+// Database Connection using localhost and test database
 db = mysql.createConnection({
   host: "127.0.0.1",
   user: "root",
