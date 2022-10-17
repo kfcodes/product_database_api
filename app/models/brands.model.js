@@ -51,4 +51,27 @@ Brand.getAll = (result) => {
   });
 };
 
+Brand.updateById = (id, brand, result) => {
+  sql.query(
+    "UPDATE brand SET name = ?, prefix = ? WHERE id = ?",
+    [brand.name, employee.prefix, id],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found brand with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+
+      console.log("updated brand: ", { id: id, ...brand });
+      result(null, { id: id, ...brand });
+    }
+  );
+};
+
 module.exports = Brand;

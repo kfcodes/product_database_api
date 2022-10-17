@@ -12,4 +12,10 @@ module.exports = (app) => {
 
   // Update a brand with brandId
   app.put("/brands/:brandId", brands.update);
+
+  // Delete a brand with brandId
+  app.delete("/brands/:brandId", brands.delete);
+
+  // Delete all brands
+  app.delete("/brands", brands.deleteAll);
 };
