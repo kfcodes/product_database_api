@@ -1,5 +1,24 @@
 const sql = require("./db.js");
 
+// constructor;
+const Brand = function (brand) {
+  this.prefix = brand.prefix;
+  this.name = brand.name;
+};
+
+Brand.create = (newBrand, result) => {
+  sql.query("INSERT INTO brand SET ?", newBrand, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    console.log("created brand: ", { id: res.insertId, ...newBrand });
+    result(null, { id: res.insertId, ...newBrand });
+  });
+};
+
 Brand.findById = (brandId, result) => {
   sql.query(`SELECT * FROM brand WHERE id = ${brandId}`, (err, res) => {
     if (err) {
