@@ -10,3 +10,20 @@ exports.findAll = (req, res) => {
     else res.send(data);
   });
 };
+
+// Find a single brand with a employeeId
+exports.findOne = (req, res) => {
+  Brand.findById(req.params.brandId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res
+          .status(404)
+          .send({ message: `Not found Brand with id ${req.params.brandId}.` });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Brand with id " + req.params.brandId,
+        });
+      }
+    } else res.send(data);
+  });
+};
