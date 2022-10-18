@@ -72,3 +72,32 @@ exports.update = (req, res) => {
     } else res.send(data);
   });
 };
+
+// Delete an brand with the specified employeeId in the request
+exports.delete = (req, res) => {
+  Brand.remove(req.params.brandId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res
+          .status(404)
+          .send({ message: `Not found Brand with id ${req.params.brandId}.` });
+      } else {
+        res.status(500).send({
+          message: "Could not delete Brand with id " + req.params.brandId,
+        });
+      }
+    } else res.send({ message: `Brand was deleted successfully!` });
+  });
+};
+
+// Delete all brands from the database.
+exports.deleteAll = (req, res) => {
+  Brand.removeAll((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while removing all brands.",
+      });
+    else res.send({ message: `All Brands were deleted successfully!` });
+  });
+};

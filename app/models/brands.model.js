@@ -54,7 +54,7 @@ Brand.getAll = (result) => {
 Brand.updateById = (id, brand, result) => {
   sql.query(
     "UPDATE brand SET name = ?, prefix = ? WHERE id = ?",
-    [brand.name, employee.prefix, id],
+    [brand.name, brand.prefix, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -75,3 +75,34 @@ Brand.updateById = (id, brand, result) => {
 };
 
 module.exports = Brand;
+Brand.remove = (id, result) => {
+  sql.query("DELETE FROM brand WHERE id = ?", id, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    if (res.affectedRows == 0) {
+      // not found brand with the id
+      result({ kind: "not_found" }, null);
+      return;
+    }
+
+    console.log("deleted brand with id: ", id);
+    result(null, res);
+  });
+};
+
+Brand.removeAll = (result) => {
+  sql.query("DELETE FROM brand", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log(`deleted ${res.affectedRows} brands`);
+    result(null, res);
+  });
+};
