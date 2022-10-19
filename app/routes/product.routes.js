@@ -1,4 +1,4 @@
-// Get product by Id
+// Update a product
 module.exports = (app) => {
   const products = require("../controllers/product.controller.js");
 
@@ -7,4 +7,7 @@ module.exports = (app) => {
 
   // Retrieve a single product with productId
   app.get("/products/:productId", products.findOne);
+
+  // Update a product with productId
+  app.put("/products/:productId", products.update);
 };

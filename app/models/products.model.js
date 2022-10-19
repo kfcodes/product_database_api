@@ -32,4 +32,27 @@ Product.getAll = (result) => {
   });
 };
 
+Product.updateById = (id, product, result) => {
+  sql.query(
+    "UPDATE product SET designation = ?, doj = ?, name = ?, salary = ? WHERE id = ?",
+    [product.designation, product.doj, product.name, product.salary, id],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found product with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+
+      console.log("updated product: ", { id: id, ...product });
+      result(null, { id: id, ...product });
+    }
+  );
+};
+
 module.exports = Product;

@@ -1,4 +1,4 @@
-// Get single product from the db
+// Update an product in the db
 const Product = require("../models/products.model.js");
 
 // Retrieve all products from the database.
@@ -28,4 +28,30 @@ exports.findOne = (req, res) => {
       }
     } else res.send(data);
   });
+};
+
+// Update an product identified by the productId in the request
+exports.update = (req, res) => {
+  // Validate Request
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+  }
+
+  Product.updateById(
+    req.params.productId,
+    new Product(req.body),
+    (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found Product with id ${req.params.productId}.`,
+          });
+        } else {
+          res.status(500).send({
+            message: "Error updating Product with id " + req.params.productId,
+          });
+        }
+      } else res.send(data);
+    }
+  );
 };
