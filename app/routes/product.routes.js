@@ -1,4 +1,4 @@
-// Update a product
+// Delete products from the db
 module.exports = (app) => {
   const products = require("../controllers/product.controller.js");
 
@@ -10,4 +10,10 @@ module.exports = (app) => {
 
   // Update a product with productId
   app.put("/products/:productId", products.update);
+
+  // Delete a product with productId
+  app.delete("/products/:productId", products.delete);
+
+  // Delete all products from the db
+  app.delete("/products", products.deleteAll);
 };
