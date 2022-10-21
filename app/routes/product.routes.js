@@ -1,4 +1,4 @@
-// Create a product in the db
+// Get all the products from a specific Brand
 module.exports = (app) => {
   const products = require("../controllers/product.controller.js");
 
@@ -7,6 +7,9 @@ module.exports = (app) => {
 
   // Retrieve all products
   app.get("/products", products.findAll);
+
+  // Retrieve all products from specific brand
+  app.get("/products/products_from_brand/:brandId", products.findByBrand);
 
   // Retrieve a single product with productId
   app.get("/products/:productId", products.findOne);

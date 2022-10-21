@@ -34,6 +34,19 @@ Product.getAll = (result) => {
   });
 };
 
+Product.findByBrand = (brandId, result) => {
+  sql.query(`SELECT * FROM product WHERE id LIKE ${brandId}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("products: ", res);
+    result(null, res);
+  });
+};
+
 Product.findById = (productId, result) => {
   sql.query(`SELECT * FROM product WHERE id = ${productId}`, (err, res) => {
     if (err) {

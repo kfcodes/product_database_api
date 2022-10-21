@@ -1,4 +1,4 @@
-// Create Products in the db
+// Select Products based on brand
 const Product = require("../models/products.model.js");
 
 // Create and Save a new product
@@ -14,6 +14,7 @@ exports.create = (req, res) => {
     product_description: req.body.product_description,
     commodity_code: req.body.commodity_code,
     stock: req.body.stock,
+    prefix: req.body.prefix,
   });
 
   // Save Product in the database
@@ -36,6 +37,24 @@ exports.findAll = (req, res) => {
           err.message || "Some error occurred while retrieving products.",
       });
     else res.send(data);
+  });
+};
+
+// Find a single product with a productId
+exports.findByBrand = (req, res) => {
+  Product.findByBrand(req.params.brandId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Products with brand id ${req.params.brandId}.`,
+        });
+      } else {
+        res.status(500).send({
+          message:
+            "Error retrieving Products with brand id " + req.params.brandId,
+        });
+      }
+    } else res.send(data);
   });
 };
 
@@ -110,3 +129,10 @@ exports.deleteAll = (req, res) => {
     else res.send({ message: `All Products were deleted successfully!` });
   });
 };
+// Create a Product
+const product = new Product({
+  product_id: req.body.product_id,
+  product_description: req.body.product_description,
+  commodity_code: req.body.commodity_code,
+  stock: req.body.stock,
+});
