@@ -36,7 +36,7 @@ Product.getAll = (result) => {
 
 Product.findByBrand = (brandId, result) => {
   sql.query(
-    `SELECT * FROM product_database WHERE id LIKE ${brandId}`,
+    `SELECT * FROM product_database WHERE product_id LIKE ${brandId}`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);

@@ -1,21 +1,23 @@
-module.exports = (app) => {
-  const brands = require("../controllers/employee.controller.js");
+const express = require("express");
+const router = express.Router();
+const brands = require("../controllers/brand.controller.js");
 
-  // Create a new brand
-  app.post("/brands", brands.create);
+// Create a new brand
+router.app.post("/", brands.create);
 
-  // Retrieve all brands
-  app.get("/brands", brands.findAll);
+// Retrieve all brands
+router.app.get("/", brands.findAll);
 
-  // Retrieve a single brand with brandId
-  app.get("/brands/:brandId", brands.findOne);
+// Retrieve a single brand with brandId
+router.app.get("/:brandId", brands.findOne);
 
-  // Update a brand with brandId
-  app.put("/brands/:brandId", brands.update);
+// Update a brand with brandId
+router.app.put("/brandId", brands.update);
 
-  // Delete a brand with brandId
-  app.delete("/brands/:brandId", brands.delete);
+// Delete a brand with brandId
+router.app.delete("/brandId", brands.delete);
 
-  // Delete all brands
-  app.delete("/brands", brands.deleteAll);
-};
+// Delete all brands
+router.app.delete("/", brands.deleteAll);
+
+module.exports = router;
