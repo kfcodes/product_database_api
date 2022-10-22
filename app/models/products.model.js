@@ -22,7 +22,7 @@ Product.create = (newProduct, result) => {
 };
 
 Product.getAll = (result) => {
-  sql.query("SELECT * FROM product", (err, res) => {
+  sql.query("SELECT * FROM product_database", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -35,35 +35,41 @@ Product.getAll = (result) => {
 };
 
 Product.findByBrand = (brandId, result) => {
-  sql.query(`SELECT * FROM product WHERE id LIKE ${brandId}`, (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
+  sql.query(
+    `SELECT * FROM product_database WHERE id LIKE ${brandId}`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
 
-    console.log("products: ", res);
-    result(null, res);
-  });
+      console.log("products: ", res);
+      result(null, res);
+    }
+  );
 };
 
 Product.findById = (productId, result) => {
-  sql.query(`SELECT * FROM product WHERE id = ${productId}`, (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(err, null);
-      return;
-    }
+  sql.query(
+    `SELECT * FROM product_database WHERE id = ${productId}`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
 
-    if (res.length) {
-      console.log("found product: ", res[0]);
-      result(null, res[0]);
-      return;
-    }
+      if (res.length) {
+        console.log("found product: ", res[0]);
+        result(null, res[0]);
+        return;
+      }
 
-    // not found product with the id
-    result({ kind: "not_found" }, null);
-  });
+      // not found product with the id
+      result({ kind: "not_found" }, null);
+    }
+  );
 };
 
 Product.updateById = (id, product, result) => {
@@ -90,7 +96,7 @@ Product.updateById = (id, product, result) => {
 };
 
 Product.remove = (id, result) => {
-  sql.query("DELETE FROM product WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM product_database WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -109,7 +115,7 @@ Product.remove = (id, result) => {
 };
 
 Product.removeAll = (result) => {
-  sql.query("DELETE FROM product", (err, res) => {
+  sql.query("DELETE FROM product_database", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
