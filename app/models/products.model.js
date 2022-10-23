@@ -9,7 +9,7 @@ const Product = function (product) {
 };
 
 Product.create = (newProduct, result) => {
-  sql.query("INSERT INTO product SET ?", newProduct, (err, res) => {
+  sql.query("INSERT INTO product_database SET ?", newProduct, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
