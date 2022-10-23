@@ -123,10 +123,3 @@ exports.deleteAll = (req, res) => {
     else res.send({ message: `All Products were deleted successfully!` });
   });
 };
-// Create a Product
-const product = new Product({
-  product_id: req.body.product_id,
-  product_description: req.body.product_description,
-  commodity_code: req.body.commodity_code,
-  stock: req.body.stock,
-});
