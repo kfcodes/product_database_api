@@ -3,21 +3,21 @@ const router = express.Router();
 const brands = require("../controllers/brand.controller.js");
 
 // Create a new brand
-router.post("/", brands.create);
+router.post("/brands", brands.create);
 
 // Retrieve all brands
-router.get("/", brands.findAll);
+router.get("/brands", brands.findAll);
 
 // Retrieve a single brand with brandId
-router.get("/:brandId", brands.findOne);
+router.get("/brands/:brandId", brands.findOne);
 
 // Update a brand with brandId
-router.put("/brandId", brands.update);
+router.put("/brands/brandId", brands.update);
 
 // Delete a brand with brandId
-router.delete("/brandId", brands.delete);
+router.delete("/brands/brandId", brands.delete);
 
 // Delete all brands
-router.delete("/", brands.deleteAll);
+router.delete("/brands", brands.deleteAll);
 
 module.exports = router;
