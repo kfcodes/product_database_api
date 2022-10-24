@@ -41,18 +41,6 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single product with a productId
-exports.findByBrand = (req, res) => {
-  Product.findByBrand(req.params.brandId, (err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving products.",
-      });
-    else res.send(data);
-  });
-};
-
-// Find a single product with a productId
 exports.findOne = (req, res) => {
   Product.findById(req.params.productId, (err, data) => {
     if (err) {
