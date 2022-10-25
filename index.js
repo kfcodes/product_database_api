@@ -5,15 +5,6 @@ const express = require("express"),
   cors = require("cors"),
   bodyParser = require("body-parser");
 
-// Database Connection using localhost and test database
-db = mysql.createConnection({
-  host: "127.0.0.1",
-  user: "root",
-  port: "",
-  password: "",
-  database: "test",
-});
-
 // make server object that contain port property and the value for our server.
 var server = {
   port: 4040,
@@ -22,16 +13,16 @@ var server = {
 // use the modules
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // routers
-const brandsRouter = require("./routes/brands");
-const productsRouter = require("./routes/products");
-// use the modules
-app.use(cors());
-app.use(bodyParser.json());
+const brandsRouter = require("./app/routes/brand.routes.js");
+const productsRouter = require("./app/routes/product.routes.js");
+const productsFromBrandRouter = require("./app/routes/products_from_brand.routes.js");
 // use router
-app.use("/brands", brandsRouter);
-app.use("/products", productsRouter);
+app.use("/", brandsRouter);
+app.use("/", productsRouter);
+app.use("/", productsFromBrandRouter);
 
 // starting the server
 app.listen(server.port, () =>
