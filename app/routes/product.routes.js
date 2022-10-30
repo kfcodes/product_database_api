@@ -8,6 +8,9 @@ router.post("/products", products.create);
 // Retrieve all products
 router.get("/products", products.findAll);
 
+// Retrieve all products from specific brand
+router.get("/products/products_from_brand/:brandId", products.findByBrand);
+
 // Retrieve a single product with productId
 router.get("/products/:productId", products.findOne);
 
