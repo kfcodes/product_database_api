@@ -61,13 +61,11 @@ Brand.updateById = (id, brand, result) => {
         result(null, err);
         return;
       }
-
       if (res.affectedRows == 0) {
         // not found brand with the id
         result({ kind: "not_found" }, null);
         return;
       }
-
       console.log("updated brand: ", { id: id, ...brand });
       result(null, { id: id, ...brand });
     }

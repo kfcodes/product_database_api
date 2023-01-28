@@ -57,7 +57,6 @@ exports.update = (req, res) => {
   if (!req.body) {
     res.status(400).send({ message: "Content can not be empty!" });
   }
-
   Brand.updateById(req.params.brandId, new Brand(req.body), (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
