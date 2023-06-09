@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Ignore zip files
+*.zip
+
+# Ignore uploads filder
+/uploads/*
+# exception to the rule
+!uploads/.gitkeep
