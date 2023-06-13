@@ -1,0 +1,107 @@
+<style type="text/css">
+  h1 {text-align: center; font-weight: bold; font-size: large; } 
+
+  body{ font-family: 'Helvetica Neue', Helvitica, Ariel, sans-serif; font-weight:bold;  font-size:11px; } 
+  
+  table { width: 100%; } 
+
+  th {
+font-weight: bold; 
+  text-align: center; 
+  font-size: 11px;
+  }
+
+  table tr td { padding: 2px;
+  text-align: center; 
+  border-top: 1px solid black;
+  font-size: 11px;
+  } 
+
+  tr:nth-child(even)
+  {background-color: #e0dede ;} 
+
+  .details { padding-left: 20px; text-align: left; font-size: 12px; font-weight: bold; } 
+
+  .quantity { font-weight: bold; } 
+
+  .palletdetails { font-size: 10px;}
+
+</style>
+<html>
+  <body>
+    <h1>{{companyName}}</h1>
+
+     <table>
+      <tr>
+        <th>
+          ID
+        </th>
+        <th>
+          PALLET
+        </th>
+        <th>
+          DESCRIPTION
+        </th>
+        <th>
+          LOT
+        </th>
+        <th>
+          BATCH
+        </th>
+        <th>
+          QTY
+        </th>
+        <th>
+         - 
+        </th>
+        <th>
+         - 
+        </th>
+      </tr>
+      {{#each pallets as |pallet|}}
+        {{#each pallet}}
+          <tr>
+            <td>
+              {{#if HEIGHT}}
+                {{PALLET}}
+              {{/if}}
+            </td>
+            <td class="palletdetails">
+              {{#if HEIGHT}}
+                {{LETTER}}
+                -
+                {{HEIGHT}}cm - {{WEIGHT}}kg
+              {{/if}}
+            </td>
+            <td class="details">
+              {{DESCRIPTION}}
+            </td>
+            <td>
+              {{LOT_BBE}}
+            </td>
+            <td>
+              {{BATCH}}
+            </td>
+            <td>
+              {{QTY}}
+            </td>
+            {{#if HEIGHT}}
+            <td>
+                <input
+                  type="checkbox"
+                  value="Bike"
+                />
+              </td>
+            <td>
+                <input
+                  type="checkbox"
+                  value="Bike"
+                />
+              </td>
+            {{/if}}
+          </tr>
+        {{/each}}
+      {{/each}}
+    </table>
+  </body>
+</html>
