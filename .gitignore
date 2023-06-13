@@ -110,3 +110,7 @@ dist
 /uploads/*
 # exception to the rule
 !uploads/.gitkeep
+
+# Ignore .txt and .json files
+*.txt
+*.json
