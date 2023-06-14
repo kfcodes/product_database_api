@@ -114,3 +114,7 @@ dist
 # Ignore .txt and .json files
 *.txt
 *.json
+old*
+employee*
+
+
