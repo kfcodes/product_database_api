@@ -9,6 +9,8 @@ const connection = mysql.createConnection({
   database: dbConfig.DB,
 });
 
+console.log(dbConfig.USER);
+
 // open the MySQL connection
 connection.connect((error) => {
   if (error) throw error;
