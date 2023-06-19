@@ -1,10 +1,10 @@
 const fs = require('fs');
 
-let startNumber = ;
-let finishNumber = ;
+let startNumber = 1;
+let finishNumber = 100;
 
 // create a stream
-const stream = fs.createWriteStream('empty_label.zpl', { flags: 'a' })
+const stream = fs.createWriteStream('temp_label.zpl', { flags: 'a' })
 
 for (let number = startNumber; number < finishNumber+1; number++) {
   stream.write(`^XA
