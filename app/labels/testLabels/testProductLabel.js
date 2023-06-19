@@ -3,11 +3,10 @@ const fs = require("fs");
 function newLoop() {
   fs.writeFile("testproduct.zpl", "", function () {
     console.log("Empty File created");
-  })
-    
+  }).then(
       writeToLabel("outline").then(
       writeToLabel("data").then(
-      writeToLabel("end")))
+      writeToLabel("end"))))
   .catch(err => console.log(err))
 }
 
