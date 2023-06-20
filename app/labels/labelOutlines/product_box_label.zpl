@@ -3,10 +3,8 @@
 ^FWR
 ^LH2,20
 
-^FX The Sku code of the product
-^FO650,110^A0,40^FDSKU:^FS
-
 ^FX The product details that will be stored in the DB
+^FO650,110^A0,40^FDSKU:^FS
 ^FO600,20^A0,40^FDPRODUCT:^FS
 ^FO550,20^A0,40^FDFLAVOUR:^FS
 ^FO500,110^A0,40^FDQTY:^FS
