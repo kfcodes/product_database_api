@@ -5,10 +5,12 @@ let productData = (`
 ^XA^CFD
 ^FWR
 ^LH2,20
-^FO380,200^A0,350^FDTEST^FS
-^FO290,20^A0,85^FDTEST^FS
-^FO190,20^A0,85^FDTEST^FS
-^FO90,20^A0,85^FDTEST^FS
+
+^FO380,200^A0,350^FD${results.productCode}^FS
+^FO290,20^A0,85^FD${results.line1}^FS
+^FO190,20^A0,85^FD${results.line2}^FS
+^FO90,20^A0,85^FD${results.line3}^FS
+
 ^XZ
 `)
 
