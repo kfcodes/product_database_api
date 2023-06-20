@@ -32,7 +32,6 @@ function newLoop() {
 
 module.exports.CreateLabel = async function () {
    newLoop()
-  // printLabel();
 };
 
 function writeToLabel(pallet) {
