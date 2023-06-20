@@ -1,7 +1,6 @@
 ^XA^CFD
 ^FWR
 ^LH2,20
-^PQ2,10,1,Y
 
 ^FX Box for the weight of the pallet with the label above the box
 ^FO670,420^A0,40^FDPallet Weight (Kg)^FS
