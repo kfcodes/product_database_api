@@ -111,3 +111,14 @@ exports.deleteAll = (req, res) => {
     else res.send({ message: `All Products were deleted successfully!` });
   });
 };
+
+// Retrieve all brands from the database.
+exports.findAllBrands = (req, res) => {
+  Product.getAllBrands((err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving brands.",
+      });
+    else res.send(data);
+  });
+};

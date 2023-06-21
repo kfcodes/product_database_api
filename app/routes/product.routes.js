@@ -14,7 +14,6 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-
 // Multer Filter
 // const multerFilter = (req, file, cb) => {
 //   if (file.mimetype.split("/")[1] === "pdf") {
@@ -49,5 +48,8 @@ router.delete("/products/:productId", products.delete);
 
 // Delete all products from the db
 router.delete("/products", products.deleteAll);
+
+// Retrieve all brands
+router.get("/brands", products.findAllBrands);
 
 module.exports = router;

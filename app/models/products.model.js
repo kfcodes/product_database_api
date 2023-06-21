@@ -111,4 +111,17 @@ Product.removeAll = (result) => {
   });
 };
 
+Product.getAllBrands = (result) => {
+  sql.query("SELECT * FROM brand", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    // console.log("brands: ", res);
+    console.log("Have brands: ", res);
+    result(null, res);
+  });
+};
+
 module.exports = Product;
