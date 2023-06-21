@@ -1,6 +1,5 @@
-const fs = require("fs");
 
-function hazardsLabel(data) {
+module.exports.HazardsData = async (data) => {
 `
 ^FX HAZARDS LIST
 ^FO293,20^A0,25^FD${processs.env.HAZARD_1}^FS
@@ -29,29 +28,4 @@ function hazardsLabel(data) {
 ^FO525,325^A0,30^FD${data.bbe}^FS
 ^FO475,325^A0,30^FD${data.date}^FS
   `;
-}
-
-function newLoop() {
-  fs.writeFile("testHazards.zpl", "", function () {
-    console.log("Empty File created");
-  })
-    .then(
-      writeToLabel("outline").then(
-        writeToLabel("data").then(writeToLabel("end"))
-      )
-    )
-    .catch((err) => console.log(err));
-}
-
-module.exports.CreateLabel = async function (data) {
-hazardsLabel(data);
 };
-
-function writeToLabel(pallet) {
-  fs.appendFile("hazards.zpl", hazards, (err) => {
-    if (err) console.log(err);
-    else {
-      console.log("File written successfully\n");
-    }
-  });
-}
