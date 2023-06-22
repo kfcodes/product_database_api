@@ -194,4 +194,18 @@ Product.findPalletById = (palletid, result) => {
     }
   );
 };
+Product.getRecentPallets = (result) => {
+  sql.query(
+    "SELECT * FROM test_view_2 ORDER by pallet_id Desc LIMIT 20",
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      console.log("These are the pallets in the db: ", res);
+      result(null, res);
+    }
+  );
+};
 module.exports = Product;
