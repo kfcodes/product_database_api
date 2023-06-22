@@ -121,4 +121,28 @@ exports.findAllBrands = (req, res) => {
       });
     else res.send(data);
   });
+
+};
+
+// Find All products from a single brand
+exports.productsFromBrand = (req, res) => {
+  Product.productsFromBrand(req.params.brandId, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving products.",
+      });
+    else res.send(data);
+  });
+};
+// Retrieve all products from the database.
+exports.findFinishedProducts = (req, res) => {
+  Product.getAllFinishedProducts((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving products.",
+      });
+    else res.send(data);
+  });
 };

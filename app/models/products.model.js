@@ -124,4 +124,34 @@ Product.getAllBrands = (result) => {
   });
 };
 
+Product.productsFromBrand = (brandId, result) => {
+  sql.query(
+    `SELECT * FROM product_database WHERE product_id LIKE "${brandId}%"`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      console.log("products: ", res);
+      result(null, res);
+    }
+  );
+};
+
+Product.getAllFinishedProducts = (result) => {
+  sql.query(
+    "SELECT product_id, product_description FROM product_database where product_id rlike '^[a-z]'  AND product_description NOT LIKE 'do not use%';",
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      console.log("products: ", res);
+      result(null, res);
+    }
+  );
+};
+
 module.exports = Product;

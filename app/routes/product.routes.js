@@ -52,4 +52,10 @@ router.delete("/products", products.deleteAll);
 // Retrieve all brands
 router.get("/brands", products.findAllBrands);
 
+// Retrieve all products from specific brand
+router.get("/products_from_brand/:brandId", products.productsFromBrand);
+
+// Retrieve all products
+router.get("/finished_products", products.findFinishedProducts);
+
 module.exports = router;
