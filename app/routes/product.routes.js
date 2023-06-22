@@ -61,4 +61,7 @@ router.get("/finished_products", products.findFinishedProducts);
 // Retrieve a single product with productId
 router.get("/bom/:productId", products.findBom);
 
+// Retrieve a single product with productId
+router.get("/pallet/:palletid", products.findPallet);
+
 module.exports = router;

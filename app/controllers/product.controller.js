@@ -162,3 +162,19 @@ exports.findBom = (req, res) => {
     } else res.send(data);
   });
 };
+// Find a single Pallet with Palletid
+exports.findPallet = (req, res) => {
+  Product.findPalletById(req.params.palletid, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Can't find Pallet with id ${req.params.palletid}, if the pallet has no items on it it will not show up here`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Pallet with id " + req.params.palletid,
+        });
+      }
+    } else res.send(data);
+  });
+};

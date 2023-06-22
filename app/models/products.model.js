@@ -174,4 +174,24 @@ Product.findBomById = (productId, result) => {
     }
   );
 };
+Product.findPalletById = (palletid, result) => {
+  sql.query(
+    "SELECT * FROM pallet_info WHERE pallet_id= ?",
+    [palletid],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        console.log("found pallet details: ", res);
+        result(null, res);
+        return;
+      }
+      // not found product with the id
+      result({ kind: "not_found" }, null);
+    }
+  );
+};
 module.exports = Product;
