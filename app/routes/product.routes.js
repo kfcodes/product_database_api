@@ -58,4 +58,7 @@ router.get("/products_from_brand/:brandId", products.productsFromBrand);
 // Retrieve all products
 router.get("/finished_products", products.findFinishedProducts);
 
+// Retrieve a single product with productId
+router.get("/bom/:productId", products.findBom);
+
 module.exports = router;

@@ -146,3 +146,19 @@ exports.findFinishedProducts = (req, res) => {
     else res.send(data);
   });
 };
+// Find a single BOM for a productId
+exports.findBom = (req, res) => {
+  Product.findBomById(req.params.productId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Product with id ${req.params.productId}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Product with id " + req.params.productId,
+        });
+      }
+    } else res.send(data);
+  });
+};

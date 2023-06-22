@@ -154,4 +154,24 @@ Product.getAllFinishedProducts = (result) => {
   );
 };
 
+Product.findBomById = (productId, result) => {
+  sql.query(
+    "SELECT * FROM bom_component_data WHERE bom_product_id= ?",
+    [productId],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        console.log("found components: ", res);
+        result(null, res);
+        return;
+      }
+      // not found product with the id
+      result({ kind: "not_found" }, null);
+    }
+  );
+};
 module.exports = Product;
