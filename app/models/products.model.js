@@ -208,7 +208,6 @@ Product.getRecentPallets = (result) => {
     }
   );
 };
-module.exports = Product;
 Product.getRecentPallets = (result) => {
   sql.query(
     "SELECT * FROM test_view_2 ORDER by pallet_id Desc LIMIT 20",
@@ -223,3 +222,18 @@ Product.getRecentPallets = (result) => {
     }
   );
 };
+Product.getAllPallets = (result) => {
+  // sql.query("SELECT * FROM full_pallet_info", (err, res) => {
+  // sql.query("select * from packing_list_view", (err, res) => {
+  sql.query("select * from test_view_2", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    // console.log("brands: ", res);
+    console.log("These are the pallets in the db: ", res);
+    result(null, res);
+  });
+};
+module.exports = Product;
