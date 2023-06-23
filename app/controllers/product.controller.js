@@ -211,3 +211,32 @@ exports.findAllPallets = (req, res) => {
     else res.send(data);
   });
 };
+// Retrieve all products from the database.
+exports.findPalletData = (req, res) => {
+  Product.getPackingListData((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving products.",
+      });
+    else myFunction(data);
+    function myFunction(data) {
+      let previousPallet = 0;
+      data.forEach((item) => {
+        if (item.PALLET == previousPallet) {
+          item.WEIGHT = null;
+          item.DIMENSIONS = null;
+          item.PALLET = null;
+        } else {
+          previousPallet = item.PALLET;
+        }
+        if (item.ID == "YFOOD4011") {
+          item.COMPANY = "MultiPack";
+        } else {
+          console.log("no Company");
+        }
+      });
+    }
+    res.send(data);
+  });
+};
