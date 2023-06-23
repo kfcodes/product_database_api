@@ -240,3 +240,14 @@ exports.findPalletData = (req, res) => {
     res.send(data);
   });
 };
+// Retrieve all products from the database.
+exports.findAllPalletItems = (req, res) => {
+  Product.getAllPalletItems((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving products.",
+      });
+    else res.send(data);
+  });
+};

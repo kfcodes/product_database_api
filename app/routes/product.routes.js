@@ -71,6 +71,8 @@ router.get("/pallets", products.findRecentPallets);
 router.get("/pallets", products.findRecentPallets);
 // Get All pallets
 router.get("/all_pallets", products.findAllPallets);
-module.exports = router;
 // Get All pallets
 router.get("/pallet_data", products.findPalletData);
+// Get All pallets
+router.get("/pallet_items", products.findAllPalletItems);
+module.exports = router;

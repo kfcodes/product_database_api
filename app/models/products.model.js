@@ -251,4 +251,15 @@ Product.getPackingListData = (result) => {
   );
 };
 
+Product.getAllPalletItems = (result) => {
+  sql.query("SELECT * FROM test_view", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    console.log("These are the pallet itemes in the db: ", res);
+    result(null, res);
+  });
+};
 module.exports = Product;
