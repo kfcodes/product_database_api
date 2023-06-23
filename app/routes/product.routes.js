@@ -68,3 +68,5 @@ router.get("/pallet/:palletid", products.findPallet);
 router.get("/pallets", products.findRecentPallets);
 
 module.exports = router;
+// Get All pallets
+router.get("/pallets", products.findRecentPallets);

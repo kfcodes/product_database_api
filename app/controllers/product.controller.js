@@ -189,3 +189,14 @@ exports.findRecentPallets = (req, res) => {
     else res.send(data);
   });
 };
+// Retrieve all products from the database.
+exports.findRecentPallets = (req, res) => {
+  Product.getRecentPallets((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving products.",
+      });
+    else res.send(data);
+  });
+};
