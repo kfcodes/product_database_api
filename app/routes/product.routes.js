@@ -76,3 +76,5 @@ router.get("/pallet_data", products.findPalletData);
 // Get All pallets
 router.get("/pallet_items", products.findAllPalletItems);
 module.exports = router;
+// Get All pallet items for a pallet 
+router.get("/pallet_items/:palletid", products.findPalletItemsForPallet);

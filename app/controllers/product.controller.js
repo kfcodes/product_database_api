@@ -251,3 +251,14 @@ exports.findAllPalletItems = (req, res) => {
     else res.send(data);
   });
 };
+// Find All pallet items for a single pallet
+exports.findPalletItemsForPallet = (req, res) => {
+  Product.getPalletsForPallet(req.params.palletid, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving products.",
+      });
+    else res.send(data);
+  });
+};

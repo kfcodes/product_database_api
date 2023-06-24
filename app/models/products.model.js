@@ -263,3 +263,18 @@ Product.getAllPalletItems = (result) => {
   });
 };
 module.exports = Product;
+Product.getPalletsForPallet = (palletid, result) => {
+  sql.query(
+    // `SELECT * FROM pallet_item where pallet_item_pallet_id="${palletid}"`,
+    `SELECT * FROM test_view where pallet_item_pallet_id="${palletid}"`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      console.log("Products on the pallet: ", res);
+      result(null, res);
+    }
+  );
+};
