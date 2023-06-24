@@ -84,3 +84,5 @@ router.get("/pallets/:brand_prefix", products.findAllPalletsfromBrand);
 router.post("/pallet", products.createPallet);
 // Update a pallet with pallet id
 router.put("/pallet/:palletid", products.update);
+// Create a new pallet item
+router.post("/pallet_item/:palletid", products.createPalletItem);

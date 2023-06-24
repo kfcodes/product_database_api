@@ -341,3 +341,14 @@ Pallet.updatePalletById = (id, pallet, date, result) => {
     }
   );
 };
+PalletItem.createNewPalletItem = (newPalletItem, result) => {
+  sql.query("INSERT INTO pallet_item SET ?", newPalletItem, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    console.log("created pallet item: ", { ...newPalletItem });
+    result(null, { ...newPalletItem });
+  });
+};

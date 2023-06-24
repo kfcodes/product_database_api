@@ -322,3 +322,20 @@ exports.update = (req, res) => {
     }
   );
 };
+// Create and Save a new pallet item
+exports.createPalletItem = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+  }
+  const palletItem = new PalletItem({
+    pallet_item_pallet_id: req.body.pallet_item_pallet_id,
+  });
+  PalletItem.createNewPalletItem(palletItem, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the pallet Item.",
+      });
+    else res.send(data);
+  });
+};
