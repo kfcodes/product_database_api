@@ -296,3 +296,29 @@ exports.createPallet = (req, res) => {
     console.log(data);
   });
 };
+// Update a pallet identified by the pallet in the request
+exports.update = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+  }
+  console.log(req.body);
+  let date = new Date().toISOString();
+  Pallet.updatePalletById(
+    req.params.palletid,
+    new Pallet(req.body),
+    date,
+    (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found Pallet with id ${req.params.palletid}.`,
+          });
+        } else {
+          res.status(500).send({
+            message: "Error updating Pallet with id " + req.params.palletid,
+          });
+        }
+      } else res.send(data);
+    }
+  );
+};

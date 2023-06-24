@@ -314,3 +314,30 @@ Pallet.createNewPallet = (newPallet, result) => {
     }
   );
 };
+// production_date=${new Date().toISOString()},
+Pallet.updatePalletById = (id, pallet, date, result) => {
+  sql.query(
+    `UPDATE pallet_info SET 
+    empty_weight=${pallet.empty_weight},  
+    weight=${pallet.weight},  
+    height=${pallet.height}, 
+    pallet_type=${pallet.pallet_type},  
+    packing_list="${pallet.packing_list}", 
+    production_date="${date}"
+    WHERE pallet_id=${id}`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      if (res.affectedRows == 0) {
+        // not found brand with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+      console.log("updated Pallet: ", { id: id, ...pallet });
+      result(null, { id: id, ...pallet });
+    }
+  );
+};

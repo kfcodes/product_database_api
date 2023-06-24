@@ -82,3 +82,5 @@ router.get("/pallet_items/:palletid", products.findPalletItemsForPallet);
 router.get("/pallets/:brand_prefix", products.findAllPalletsfromBrand);
 // Create a new pallet
 router.post("/pallet", products.createPallet);
+// Update a pallet with pallet id
+router.put("/pallet/:palletid", products.update);
