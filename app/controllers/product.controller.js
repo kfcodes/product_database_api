@@ -273,3 +273,26 @@ exports.findAllPalletsfromBrand = (req, res) => {
     else res.send(data);
   });
 };
+// Create and Save a new brand
+exports.createPallet = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+  }
+  // Create a Palelt
+  const pallet = new Pallet({
+    empty_weight: req.body.empty_weight,
+    weight: req.body.weight,
+    height: req.body.height,
+    pallet_type: req.body.pallet_type,
+    packing_list: req.body.packing_list,
+  });
+  // Save Pallet in the database
+  Pallet.createNewPallet(pallet, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || "Some error occurred while creating the Brand.",
+      });
+    else res.send(data);
+    console.log(data);
+  });
+};

@@ -292,3 +292,25 @@ Product.getPalletsFromBrand = (brand_prefix, result) => {
     }
   );
 };
+Pallet.createNewPallet = (newPallet, result) => {
+  // sql.query("INSERT INTO pallet_info SET ?", newPallet, (err, res) => {
+  // sql.query("INSERT INTO pallet_info(empty_weight) VALUES(0)", (err, res) => {
+  sql.query(
+    "INSERT INTO pallet_info(pallet_type, packing_list) VALUES(1, 1)",
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      sql.query("SELECT LAST_INSERT_ID()", (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+        }
+        result(null, { ...res[0] });
+      });
+    }
+  );
+};
