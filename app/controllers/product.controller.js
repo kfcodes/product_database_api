@@ -262,3 +262,14 @@ exports.findPalletItemsForPallet = (req, res) => {
     else res.send(data);
   });
 };
+// Find All pallets from a single brand
+exports.findAllPalletsfromBrand = (req, res) => {
+  Product.getPalletsFromBrand(req.params.brand_prefix, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving products.",
+      });
+    else res.send(data);
+  });
+};

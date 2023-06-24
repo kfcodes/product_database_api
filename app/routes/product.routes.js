@@ -78,3 +78,5 @@ router.get("/pallet_items", products.findAllPalletItems);
 module.exports = router;
 // Get All pallet items for a pallet 
 router.get("/pallet_items/:palletid", products.findPalletItemsForPallet);
+// Retrieve a single product with productId
+router.get("/pallets/:brand_prefix", products.findAllPalletsfromBrand);

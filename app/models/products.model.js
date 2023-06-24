@@ -278,3 +278,17 @@ Product.getPalletsForPallet = (palletid, result) => {
     }
   );
 };
+Product.getPalletsFromBrand = (brand_prefix, result) => {
+  sql.query(
+    `SELECT * FROM full_pallet_info WHERE pallet_item_product_id LIKE "${brand_prefix}%"`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      console.log("products: ", res);
+      result(null, res);
+    }
+  );
+};
