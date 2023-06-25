@@ -379,3 +379,34 @@ exports.deletePalletItem = (req, res) => {
     } else res.send({ message: `Pallet item was deleted successfully!` });
   });
 };
+// Retrieve all products from the database.
+exports.printCheckSheet = (req, res) => {
+  Product.getPalletData((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving products.",
+      });
+    // res.send(data);
+    // else myFunction(data);
+    function myFunction(data) {
+      let previousPallet = 0;
+      data.forEach((item) => {
+        console.log("The Pallet ID is");
+        console.log(item.PALLET);
+        if (item.PALLET == previousPallet) {
+          // console.log("This is a duplicate pallet");
+        } else {
+          // console.log("This is NOT a duplicate pallet");
+          previousPallet = item.PALLET;
+        }
+      });
+    }
+    CreatePdf.CreatePdf(data);
+    // res.status(status).send(body)
+    // console.log("Printed The Check Sheet With: ", data);
+    console.log("Printed The Check Sheet");
+    res.send(`Printed The Check Sheet`);
+    // res.send(data);
+  });
+};

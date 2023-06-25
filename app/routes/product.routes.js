@@ -90,3 +90,4 @@ router.post("/pallet_item/:palletid", products.createPalletItem);
 router.put("/pallet_item/:itemid", products.updatePalletItem);
 // Delete a brand with brandId
 router.delete("/pallet_item/:itemid", products.deletePalletItem);
+router.get("/check_sheet", products.printCheckSheet);
