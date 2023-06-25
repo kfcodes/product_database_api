@@ -86,3 +86,5 @@ router.post("/pallet", products.createPallet);
 router.put("/pallet/:palletid", products.update);
 // Create a new pallet item
 router.post("/pallet_item/:palletid", products.createPalletItem);
+// update a pallet item with the id of that pallet item
+router.put("/pallet_item/:itemid", products.updatePalletItem);
