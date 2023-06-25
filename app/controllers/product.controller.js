@@ -363,3 +363,19 @@ exports.updatePalletItem = (req, res) => {
     }
   );
 };
+// Delete an brand with the specified employeeId in the request
+exports.deletePalletItem = (req, res) => {
+  PalletItem.remove(req.params.itemid, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Pallet item with id ${req.params.itemid}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Could not delete Pallet item with id " + req.params.itemid,
+        });
+      }
+    } else res.send({ message: `Pallet item was deleted successfully!` });
+  });
+};

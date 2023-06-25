@@ -371,3 +371,18 @@ PalletItem.updatePalletItemById = (id, pallet_item, result) => {
     }
   );
 };
+PalletItem.remove = (itemid, result) => {
+  sql.query("DELETE FROM pallet_item WHERE item_id = ?", itemid, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    if (res.affectedRows == 0) {
+      result({ kind: "not_found" }, null);
+      return;
+    }
+    console.log("deleted Pallet item with id: ", itemid);
+    result(null, res);
+  });
+};
