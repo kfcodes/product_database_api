@@ -429,3 +429,25 @@ exports.printPalletLabel = (req, res) => {
     res.send(data);
   });
 };
+// Find a single Pallet with Palletid
+exports.printBoxLabel = (req, res) => {
+  Product.printBoxLabel(req.params.eolid, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Can't find eol with id ${req.params.eolid}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving eol with id " + req.params.eolid,
+        });
+      }
+    }
+    // res.send(data);
+    // console.log("This is the data from Controller:");
+    // console.log(data);
+    // console.log("This is the data from Controller:");
+    else boxLabel.boxLabel(data, req.body.batch, req.body.label_quantity);
+    // console.log(data, req.body.batch, req.body.label_quantity);
+  });
+};

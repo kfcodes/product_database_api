@@ -93,3 +93,5 @@ router.delete("/pallet_item/:itemid", products.deletePalletItem);
 router.get("/check_sheet", products.printCheckSheet);
 // Print the label for a single pallet
 router.get("/label/:palletid", products.printPalletLabel);
+// Print the label for a single pallet
+router.post("/box_label/:eolid", products.printBoxLabel);

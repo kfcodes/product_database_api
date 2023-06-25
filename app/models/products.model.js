@@ -428,3 +428,23 @@ Product.printPalletLabel = (palletid, result) => {
     }
   );
 };
+
+Product.printBoxLabel = (eolid, result) => {
+  sql.query(
+    "SELECT * FROM production_labels WHERE eol_id= ?",
+    [eolid],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        // console.log("found pallet details: ", res);
+        result(null, res);
+        return;
+      }
+      result({ kind: "not_found" }, null);
+    }
+  );
+};
