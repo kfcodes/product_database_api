@@ -405,3 +405,26 @@ Product.getPalletData = (result) => {
     }
   );
 };
+Product.printPalletLabel = (palletid, result) => {
+  console.log(`Printed with: ${palletid}`);
+  sql.query(
+    "SELECT * FROM full_pallet_info WHERE pallet_id= ? AND pallet_item_product_id IS NOT null;",
+    [palletid],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        console.log("found pallet details: ", res);
+        result(null, res);
+        return;
+      }
+      console.log("IT was this");
+      // result({ kind: "not_found" }, null);
+      result(null);
+      return;
+    }
+  );
+};

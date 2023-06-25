@@ -410,3 +410,22 @@ exports.printCheckSheet = (req, res) => {
     // res.send(data);
   });
 };
+// Find a single Pallet with Palletid
+exports.printPalletLabel = (req, res) => {
+  Product.printPalletLabel(req.params.palletid, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Can't find Pallet with id ${req.params.palletid}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Pallet with id " + req.params.palletid,
+        });
+      }
+    } else labels.CreateLabel(data);
+    // console.log(data);
+    // console.log("Printed the data");
+    res.send(data);
+  });
+};

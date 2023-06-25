@@ -91,3 +91,5 @@ router.put("/pallet_item/:itemid", products.updatePalletItem);
 // Delete a brand with brandId
 router.delete("/pallet_item/:itemid", products.deletePalletItem);
 router.get("/check_sheet", products.printCheckSheet);
+// Print the label for a single pallet
+router.get("/label/:palletid", products.printPalletLabel);
