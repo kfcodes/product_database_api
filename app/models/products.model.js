@@ -448,3 +448,17 @@ Product.printBoxLabel = (eolid, result) => {
     }
   );
 };
+Product.getCurrentProduction = (result) => {
+  sql.query(
+    "SELECT * FROM production_overview2 where pallet_total IS NOT NULL ORDER by mps_id Desc LIMIT 20",
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      console.log("These are Products being produced: ", res);
+      result(null, res);
+    }
+  );
+};

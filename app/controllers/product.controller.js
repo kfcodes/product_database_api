@@ -451,3 +451,15 @@ exports.printBoxLabel = (req, res) => {
     // console.log(data, req.body.batch, req.body.label_quantity);
   });
 };
+// Retrieve all production data
+exports.findCurrentProduction = (req, res) => {
+  Product.getCurrentProduction((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message ||
+          "Some error occurred while retrieving production data.",
+      });
+    else res.send(data);
+  });
+};

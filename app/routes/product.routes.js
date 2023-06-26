@@ -95,3 +95,5 @@ router.get("/check_sheet", products.printCheckSheet);
 router.get("/label/:palletid", products.printPalletLabel);
 // Print the label for a single pallet
 router.post("/box_label/:eolid", products.printBoxLabel);
+// Get current Production
+router.get("/mps", products.findCurrentProduction);
