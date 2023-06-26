@@ -475,3 +475,32 @@ exports.findAllProduction = (req, res) => {
     else res.send(data);
   });
 };
+// Create an Eol
+exports.createEol = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+  }
+  // console.log("This is the request.body");
+  // console.log(req.body);
+  // console.log(req.body.po);
+  // Create a Eol
+  // const eol = new Eol({
+  //   eol_po: req.body.po,
+  //   eol_product_id: req.body.productId,
+  //   eol_lot: req.body.lot,
+  //   eol_bbe: req.body.bbe,
+  //   eol_quantity: 0
+  // });
+  // console.log("This is the Eol data from the controller function:");
+  // console.log(eol);
+  // Save Eol in the database
+  // Eol.createNewEol(eol, (err, data) => {
+  Eol.createNewEol(req.body, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || "Some error occurred while creating the Brand.",
+      });
+    else res.send(data);
+    console.log(data);
+  });
+};

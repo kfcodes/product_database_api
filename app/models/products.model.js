@@ -473,3 +473,11 @@ Product.getAllProduction = (result) => {
     result(null, res);
   });
 };
+Eol.createNewEol = (newEol, result) => {
+  // console.log(newEol);
+  sql.query("INSERT INTO eol SET ?", newEol, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }

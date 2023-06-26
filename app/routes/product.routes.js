@@ -99,3 +99,5 @@ router.post("/box_label/:eolid", products.printBoxLabel);
 router.get("/mps", products.findCurrentProduction);
 // Get All Production
 router.get("/full_mps", products.findAllProduction);
+// Create EOL data
+router.post("/eol", products.createEol);
