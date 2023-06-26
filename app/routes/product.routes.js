@@ -101,3 +101,5 @@ router.get("/mps", products.findCurrentProduction);
 router.get("/full_mps", products.findAllProduction);
 // Create EOL data
 router.post("/eol", products.createEol);
+// Get single EOL data
+router.get("/eol/:eolid", products.findEol);

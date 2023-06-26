@@ -481,3 +481,23 @@ Eol.createNewEol = (newEol, result) => {
       result(err, null);
       return;
     }
+Eol.findEolById = (eolid, result) => {
+  sql.query(
+    // "SELECT * FROM full_pallet_info WHERE pallet_id= ?",
+    "SELECT * FROM eol WHERE eol_id= ?",
+    [eolid],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        console.log("found Eol details: ", res);
+        result(null, res);
+        return;
+      }
+      result({ kind: "not_found" }, null);
+    }
+  );
+};

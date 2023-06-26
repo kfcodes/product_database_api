@@ -504,3 +504,19 @@ exports.createEol = (req, res) => {
     console.log(data);
   });
 };
+// Find a single eol with eolid
+exports.findEol = (req, res) => {
+  Eol.findEolById(req.params.eolid, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Can't find eol with id ${req.params.eolid}`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving eol with id " + req.params.eolid,
+        });
+      }
+    } else res.send(data);
+  });
+};
