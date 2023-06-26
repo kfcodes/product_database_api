@@ -97,3 +97,5 @@ router.get("/label/:palletid", products.printPalletLabel);
 router.post("/box_label/:eolid", products.printBoxLabel);
 // Get current Production
 router.get("/mps", products.findCurrentProduction);
+// Get All Production
+router.get("/full_mps", products.findAllProduction);

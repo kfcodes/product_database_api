@@ -463,3 +463,15 @@ exports.findCurrentProduction = (req, res) => {
     else res.send(data);
   });
 };
+// Retrieve all production data
+exports.findAllProduction = (req, res) => {
+  Product.getAllProduction((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message ||
+          "Some error occurred while retrieving production data.",
+      });
+    else res.send(data);
+  });
+};

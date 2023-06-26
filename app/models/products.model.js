@@ -462,3 +462,14 @@ Product.getCurrentProduction = (result) => {
     }
   );
 };
+Product.getAllProduction = (result) => {
+  sql.query("SELECT * FROM production_overview", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    console.log("These are Products being produced: ", res);
+    result(null, res);
+  });
+};
