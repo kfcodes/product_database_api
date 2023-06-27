@@ -580,3 +580,19 @@ exports.updateEol = (req, res) => {
     } else res.send(data);
   });
 };
+// Find a single Pallet with Palletid
+exports.dumpSqlData = (req, res) => {
+  Product.dumpSqlData(req.params.palletId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Can't find pallets with id ${req.params.palletId}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving pallets with id " + req.params.palletId,
+        });
+      }
+    } else res.send(data);
+  });
+};

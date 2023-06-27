@@ -567,3 +567,22 @@ Eol.updateEolById = (id, eol, result) => {
     }
   );
 };
+Product.dumpSqlData = (palletId, result) => {
+  sql.query(
+    "SELECT * FROM full_pallet_info WHERE pallet_id > ?",
+    [palletId],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        console.log("found pallet details: ", res);
+        result(null, res);
+        return;
+      }
+      result({ kind: "not_found" }, null);
+    }
+  );
+};

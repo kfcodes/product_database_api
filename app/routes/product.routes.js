@@ -110,3 +110,5 @@ router.delete("/pallet_item/:itemid", products.deletePalletItem);
 router.get("/check_sheet", products.printCheckSheet);
 // Update Eol by ID
 router.put("/eol/:eolid", products.updateEol);
+// Dump Sql Pallet data
+router.post("/dump/:palletId", products.dumpSqlData);
