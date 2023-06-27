@@ -615,3 +615,19 @@ exports.createPo = (req, res) => {
     console.log(data);
   });
 };
+exports.uploadPdf = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    console.log("There is no Request body");
+  }
+  allFilesData = [];
+  req.files.forEach((file) => {
+    const fileData = { path: file.path, name: file.filename };
+    allFilesData.push(fileData);
+  });
+  res.send(allFilesData);
+  // console.log("The File was uploaded to the server");
+  // console.log(req.files);
+  console.log(allFilesData);
+  // });
+};
