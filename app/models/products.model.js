@@ -586,3 +586,12 @@ Product.dumpSqlData = (palletId, result) => {
     }
   );
 };
+Po.createNewPo = async (newPo, result) => {
+  sql.query("INSERT INTO po SET ?", newPo, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+  });
+};

@@ -596,3 +596,22 @@ exports.dumpSqlData = (req, res) => {
     } else res.send(data);
   });
 };
+// Create and Save a new brand
+exports.createPo = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+  }
+  const po = new Po({
+    po_id: req.body.po,
+    customer_po_id: req.body.customerCode,
+  });
+  // Save Pallet in the database
+  Po.createNewPo(po, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || "Some error occurred while creating the Brand.",
+      });
+    else res.send(data);
+    console.log(data);
+  });
+};

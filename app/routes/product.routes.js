@@ -112,3 +112,5 @@ router.get("/check_sheet", products.printCheckSheet);
 router.put("/eol/:eolid", products.updateEol);
 // Dump Sql Pallet data
 router.post("/dump/:palletId", products.dumpSqlData);
+// Create a new pallet
+router.post("/po", products.createPo);
