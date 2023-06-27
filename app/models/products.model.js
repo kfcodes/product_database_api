@@ -542,3 +542,28 @@ PalletItem.remove = (itemid, result) => {
     result(null, res);
   });
 };
+Eol.updateEolById = (id, eol, result) => {
+  sql.query(
+    `UPDATE eol SET 
+    eol_product_id="${eol.product_id}",
+    eol_po=${eol.po},
+    eol_lot="${eol.lot}",
+    eol_bbe="${eol.bbe}",
+    eol_quantity=${eol.quantity}
+    WHERE eol_id=${id}`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      if (res.affectedRows == 0) {
+        // not found brand with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+      console.log("updated eol: ", { id: id, ...eol });
+      result(null, { id: id, ...eol });
+    }
+  );
+};

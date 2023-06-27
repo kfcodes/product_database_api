@@ -107,3 +107,6 @@ router.get("/eol/:eolid", products.findEol);
 router.put("/pallet_item/:itemid", products.updatePalletItem);
 // Delete a brand with brandId
 router.delete("/pallet_item/:itemid", products.deletePalletItem);
+router.get("/check_sheet", products.printCheckSheet);
+// Update Eol by ID
+router.put("/eol/:eolid", products.updateEol);

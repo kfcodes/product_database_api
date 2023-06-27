@@ -560,3 +560,23 @@ exports.deletePalletItem = (req, res) => {
     } else res.send({ message: `Pallet item was deleted successfully!` });
   });
 };
+// // Update a pallet identified by the pallet in the request
+exports.updateEol = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+  }
+  console.log(req.body);
+  Eol.updateEolById(req.params.eolid, new Eol(req.body), (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res
+          .status(404)
+          .send({ message: `Not found Eol with id ${req.params.eolid}.` });
+      } else {
+        res.status(500).send({
+          message: "Error updating Eol with id " + req.params.eolid,
+        });
+      }
+    } else res.send(data);
+  });
+};
