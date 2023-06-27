@@ -103,3 +103,5 @@ router.get("/full_mps", products.findAllProduction);
 router.post("/eol", products.createEol);
 // Get single EOL data
 router.get("/eol/:eolid", products.findEol);
+// update a pallet item with the id of that pallet item
+router.put("/pallet_item/:itemid", products.updatePalletItem);

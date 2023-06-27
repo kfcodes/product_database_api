@@ -501,3 +501,29 @@ Eol.findEolById = (eolid, result) => {
     }
   );
 };
+PalletItem.updatePalletItemById = (id, pallet_item, result) => {
+  sql.query(
+    `UPDATE pallet_item SET 
+    item_id=${pallet_item.item_id},
+    pallet_item_pallet_id=${pallet_item.pallet_item_pallet_id},
+    pallet_item_product_id="${pallet_item.pallet_item_product_id}",
+    lot="${pallet_item.lot}",
+    bbe="${pallet_item.bbe}",
+    batch="${pallet_item.batch}",
+    quantity=${pallet_item.quantity}
+    WHERE item_id=${id}`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      if (res.affectedRows == 0) {
+        result({ kind: "not_found" }, null);
+        return;
+      }
+      console.log("updated pallet Item: ", { id: id, ...pallet_item });
+      result(null, { id: id, ...pallet_item });
+    }
+  );
+};

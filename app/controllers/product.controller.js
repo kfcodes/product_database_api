@@ -520,3 +520,27 @@ exports.findEol = (req, res) => {
     } else res.send(data);
   });
 };
+exports.updatePalletItem = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+  }
+  console.log(req.body);
+  console.log(req.params.itemid);
+  PalletItem.updatePalletItemById(
+    req.params.itemid,
+    new PalletItem(req.body),
+    (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found Pallet item with id ${req.params.itemid}.`,
+          });
+        } else {
+          res.status(500).send({
+            message: "Error updating Pallet with id " + req.params.itemid,
+          });
+        }
+      } else res.send(data);
+    }
+  );
+};
