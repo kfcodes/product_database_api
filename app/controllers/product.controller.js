@@ -631,3 +631,170 @@ exports.uploadPdf = (req, res) => {
   console.log(allFilesData);
   // });
 };
+const forLuup = (pallets) => {
+  return new Promise((resolve, reject) => {
+    const pallets_array = [];
+    for (let i = 0; i < pallets.length; i++) {
+      getProducts(pallets[i], pallets[i].pallet_id)
+        .then((p) => {
+          pallets_array.push(p);
+          // console.log(pallets_array);
+        })
+        .then(() => {
+          if (i == pallets.length - 1) 
+            // console.log(pallets_array);
+          resolve(pallets_array);
+        });
+    }
+  });
+};
+
+exports.latestPalletData = async (req, res) => {
+  // Get array of pallets
+  // const pallets_array = [];
+  latestPallets()
+    .then((pallets) => {
+      // const pallets_array = [];
+      // For loop gets the products for each pallet
+
+      forLuup(pallets)
+    .then((pal) => {
+      // console.log(pal);
+      // console.log(pallets_array);
+      // res.send(pallets_array);
+      res.send(pal);
+    });
+
+
+      // for (let i = 0; i < pallets.length; i++) {
+      //   getProducts(pallets[i], pallets[i].pallet_id)
+      //     .then((p) => {
+      //       // console.log(p);
+      //       // res.send(p);
+      //       pallets_array.push(p);
+      //       // console.log(pallets_array);
+      //     })
+      // }
+    })
+    // .then((p) => {
+    //   // console.log(p);
+    //   // console.log(pallets_array);
+    //   // res.send(pallets_array);
+    //   res.send(p);
+    // });
+};
+exports.latestPalletData = async (req, res) => {
+  // Get array of pallets
+  // const pallets_array = [];
+  latestPallets()
+    .then((pallets) => {
+      // const pallets_array = [];
+      // For loop gets the products for each pallet
+
+      forLuup(pallets)
+    .then((pal) => {
+      // console.log(pal);
+      // console.log(pallets_array);
+      // res.send(pallets_array);
+      res.send(pal);
+    });
+
+
+      // for (let i = 0; i < pallets.length; i++) {
+      //   getProducts(pallets[i], pallets[i].pallet_id)
+      //     .then((p) => {
+      //       // console.log(p);
+      //       // res.send(p);
+      //       pallets_array.push(p);
+      //       // console.log(pallets_array);
+      //     })
+      // }
+    })
+    // .then((p) => {
+    //   // console.log(p);
+    //   // console.log(pallets_array);
+    //   // res.send(pallets_array);
+    //   res.send(p);
+    // });
+};
+
+// const forPalletsArray = (pallets) => {
+//   return new Promise((resolve, reject) => {
+//       const pallets_array = [];
+//       // For loop gets the products for each pallet
+//       for (let i = 0; i < pallets.length; i++) {
+//         const pallet_data = {
+//           height: pallets[i].height,
+//           weight: pallets[i].weight,
+//           pallet: pallets[i].pallet_id,
+//         };
+//         resolve(
+//             pallets_array.push(pallet))
+//           }
+//           })
+//           }
+
+const getProducts = async (pallet, id) => {
+  return new Promise((resolve, reject) => {
+    // Get Array of pallet items
+    latestPalletProducts(id)
+      .then((products_array) => {
+        const pallet_data = {
+          height: pallet.height,
+          weight: pallet.weight,
+          pallet: pallet.pallet_id,
+          type: pallet.pallet_name,
+        };
+        pallet_data.products = products_array;
+        // console.log(products_array);
+        // console.table(pallet_data);
+        return pallet_data;
+        // Push all the pallet data to the array of pallets
+      })
+      .then((pallet) => {
+        // pallets_array.push(pallet);
+        // console.log(pallet);
+        // return the array of pallets
+        resolve(pallet);
+      });
+    // .then(() => {
+    // console.log(pallets_array);
+    // res.send(pallets_array);
+    // return pallets_array;
+    // });
+    // }
+    // resolve(pallets_array);
+  });
+};
+
+const latestPalletProducts = (id) => {
+  return new Promise((resolve, reject) => {
+    Product.getLatestPalletProducts(id, (err, data) => {
+      const products_array = [];
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving products.",
+        });
+      else
+        for (let j = 0; j < data.length; j++) {
+          const pallet_product = {
+            ID: data[j].pallet_item_product_id,
+            LOT: data[j].lot,
+            BBE: data[j].bbe,
+            BATCH: data[j].batch,
+            QTY: data[j].quantity,
+            DESCRIPTION: data[j].product_description,
+          };
+          products_array.push(pallet_product);
+        }
+      // pallet_data.products = products_array; // console.log(pallet_data);
+      // pallets_array.push(pallet_data);
+      // console.log("Inner Loop");
+      // console.log(pallets_array);
+      // resolve("The");
+      // console.log(products_array);
+      resolve(products_array);
+    });
+  });
+};

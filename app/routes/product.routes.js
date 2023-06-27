@@ -115,3 +115,5 @@ router.post("/dump/:palletId", products.dumpSqlData);
 // Create a new pallet
 router.post("/po", products.createPo);
 router.post("/upload_pdf", upload.array("files", 10), products.uploadPdf);
+// Get All pallets
+router.get("/latest_pallet_data", products.latestPalletData);
