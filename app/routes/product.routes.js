@@ -69,54 +69,83 @@ router.get("/pallets", products.findRecentPallets);
 
 // Get All pallets
 router.get("/pallets", products.findRecentPallets);
+
 // Get All pallets
 router.get("/all_pallets", products.findAllPallets);
+
 // Get All pallets
 router.get("/pallet_data", products.findPalletData);
+
 // Get All pallets
 router.get("/pallet_items", products.findAllPalletItems);
+
 // Get All pallet items for a pallet 
 router.get("/pallet_items/:palletid", products.findPalletItemsForPallet);
+
 // Retrieve a single product with productId
 router.get("/pallets/:brand_prefix", products.findAllPalletsfromBrand);
+
 // Create a new pallet
 router.post("/pallet", products.createPallet);
+
 // Update a pallet with pallet id
 router.put("/pallet/:palletid", products.update);
+
 // Create a new pallet item
 router.post("/pallet_item/:palletid", products.createPalletItem);
+
 // update a pallet item with the id of that pallet item
 router.put("/pallet_item/:itemid", products.updatePalletItem);
+
 // Delete a brand with brandId
 router.delete("/pallet_item/:itemid", products.deletePalletItem);
+
 router.get("/check_sheet", products.printCheckSheet);
+
 // Print the label for a single pallet
 router.get("/label/:palletid", products.printPalletLabel);
+
 // Print the label for a single pallet
 router.post("/box_label/:eolid", products.printBoxLabel);
+
 // Get current Production
 router.get("/mps", products.findCurrentProduction);
+
 // Get All Production
 router.get("/full_mps", products.findAllProduction);
+
 // Create EOL data
 router.post("/eol", products.createEol);
+
 // Get single EOL data
 router.get("/eol/:eolid", products.findEol);
+
 // update a pallet item with the id of that pallet item
 router.put("/pallet_item/:itemid", products.updatePalletItem);
+
 // Delete a brand with brandId
 router.delete("/pallet_item/:itemid", products.deletePalletItem);
+
 router.get("/check_sheet", products.printCheckSheet);
+
 // Update Eol by ID
 router.put("/eol/:eolid", products.updateEol);
+
 // Dump Sql Pallet data
 router.post("/dump/:palletId", products.dumpSqlData);
+
 // Create a new pallet
 router.post("/po", products.createPo);
+
 router.post("/upload_pdf", upload.array("files", 10), products.uploadPdf);
+
 // Get All pallets
 router.get("/latest_pallet_data", products.latestPalletData);
+
 router.post("/upload_data", upload.array("files", 10), products.uploadData);
+
 router.post("/print_pdf/:pdfname", products.printPdf);
-module.exports = router;
+
 router.post("/print_blank_labels", products.printBlankLabels);
+
+module.exports = router;
