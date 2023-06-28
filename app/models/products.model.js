@@ -595,3 +595,4 @@ Po.createNewPo = async (newPo, result) => {
     }
   });
 };
+router.post("/upload_data", upload.array("files", 10), products.uploadData);

@@ -798,3 +798,28 @@ const latestPalletProducts = (id) => {
     });
   });
 };
+exports.uploadData = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    console.log("There is no Request body");
+  }
+  allFilesData = [];
+  req.files.forEach((file) => {
+    const fileData = { path: file.path, name: file.filename };
+    allFilesData.push(fileData);
+  });
+
+  // Po.createNewPo(po, (err, data) => {
+  // if (err)
+  //   res.status(500).send({
+  //     message: err.message || "Some error occurred while creating the Brand.",
+  //   });
+  // else res.send("The File was uploaded to the server");
+  // ({ message: `Pallet item was deleted successfully!` });
+  // res.send({ mesage: "The File was uploaded to the server"});
+  res.send(allFilesData);
+  // console.log("The File was uploaded to the server");
+  // console.log(req.files);
+  console.log(allFilesData);
+  // });
+};
