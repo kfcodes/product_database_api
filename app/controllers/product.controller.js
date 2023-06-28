@@ -842,3 +842,16 @@ exports.printPdf = (req, res) => {
     // console.log("Printed the PDF File");
   });
 };
+exports.printBlankLabels = (req, res) => {
+  PrintBlankLabels((err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Can't Print Labels`,
+        });
+      } else {
+        res.status(500).send({ message: "Error retrieving Labels data" });
+      }
+    } else res.send({ message: `LABELS ARE PRINTING` });
+  });
+};

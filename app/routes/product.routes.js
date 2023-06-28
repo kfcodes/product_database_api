@@ -119,3 +119,4 @@ router.get("/latest_pallet_data", products.latestPalletData);
 router.post("/upload_data", upload.array("files", 10), products.uploadData);
 router.post("/print_pdf/:pdfname", products.printPdf);
 module.exports = router;
+router.post("/print_blank_labels", products.printBlankLabels);
