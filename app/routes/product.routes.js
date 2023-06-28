@@ -75,7 +75,6 @@ router.get("/all_pallets", products.findAllPallets);
 router.get("/pallet_data", products.findPalletData);
 // Get All pallets
 router.get("/pallet_items", products.findAllPalletItems);
-module.exports = router;
 // Get All pallet items for a pallet 
 router.get("/pallet_items/:palletid", products.findPalletItemsForPallet);
 // Retrieve a single product with productId
@@ -118,3 +117,5 @@ router.post("/upload_pdf", upload.array("files", 10), products.uploadPdf);
 // Get All pallets
 router.get("/latest_pallet_data", products.latestPalletData);
 router.post("/upload_data", upload.array("files", 10), products.uploadData);
+router.post("/print_pdf/:pdfname", products.printPdf);
+module.exports = router;

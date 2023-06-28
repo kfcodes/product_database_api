@@ -823,3 +823,22 @@ exports.uploadData = (req, res) => {
   console.log(allFilesData);
   // });
 };
+exports.printPdf = (req, res) => {
+  // console.log("Printed the PDF File");
+  // console.log(req.params.pdfname);
+  // Product.dumpSqlData(req.params.palletId, (err, data) => {
+  printPdf.PrintPdf(req.params.pdfname, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Can't find pallets with id ${req.params.pdfname}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving pallets with id " + req.params.pdfname,
+        });
+      }
+    } else res.send({ message: `${req.params.pdfname} IS PRINTING` });
+    // console.log("Printed the PDF File");
+  });
+};
