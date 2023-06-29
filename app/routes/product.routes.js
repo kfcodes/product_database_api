@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const products = require("../controllers/product.controller.js");
-//const UploadPdf = require("../fileUpload/multerPdf.js");
+const UploadPdf = require("../fileUpload/multerPdf.js");
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -14,6 +14,7 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
+
 // Multer Filter
 // const multerFilter = (req, file, cb) => {
 //   if (file.mimetype.split("/")[1] === "pdf") {
@@ -28,27 +29,6 @@ const upload = multer({
 });
 // fileFilter: multerFilter,
 
-// Create a new product
-router.post("/products", products.create);
-
-// Retrieve all products
-router.get("/products", products.findAll);
-
-// Retrieve all products from specific brand
-router.get("/products/products_from_brand/:brandId", products.findByBrand);
-
-// Retrieve a single product with productId
-router.get("/products/:productId", products.findOne);
-
-// Update a product with productId
-router.put("/products/:productId", products.update);
-
-// Delete a product with productId
-router.delete("/products/:productId", products.delete);
-
-// Delete all products from the db
-router.delete("/products", products.deleteAll);
-
 // Retrieve all brands
 router.get("/brands", products.findAllBrands);
 
@@ -56,7 +36,13 @@ router.get("/brands", products.findAllBrands);
 router.get("/products_from_brand/:brandId", products.productsFromBrand);
 
 // Retrieve all products
+router.get("/products", products.findAll);
+
+// Retrieve all products
 router.get("/finished_products", products.findFinishedProducts);
+
+// Retrieve a single product with productId
+router.get("/products/:productId", products.findOne);
 
 // Retrieve a single product with productId
 router.get("/bom/:productId", products.findBom);
@@ -68,19 +54,21 @@ router.get("/pallet/:palletid", products.findPallet);
 router.get("/pallets", products.findRecentPallets);
 
 // Get All pallets
-router.get("/pallets", products.findRecentPallets);
-
-// Get All pallets
 router.get("/all_pallets", products.findAllPallets);
 
 // Get All pallets
 router.get("/pallet_data", products.findPalletData);
 
+router.get("/check_sheet", products.printCheckSheet);
+
 // Get All pallets
 router.get("/pallet_items", products.findAllPalletItems);
 
-// Get All pallet items for a pallet 
+// Get All pallets
 router.get("/pallet_items/:palletid", products.findPalletItemsForPallet);
+
+// Update the pallet items
+// router.get("/pallet_items/:palletid", products.findPalletItemsForPallet);
 
 // Retrieve a single product with productId
 router.get("/pallets/:brand_prefix", products.findAllPalletsfromBrand);
@@ -100,8 +88,6 @@ router.put("/pallet_item/:itemid", products.updatePalletItem);
 // Delete a brand with brandId
 router.delete("/pallet_item/:itemid", products.deletePalletItem);
 
-router.get("/check_sheet", products.printCheckSheet);
-
 // Print the label for a single pallet
 router.get("/label/:palletid", products.printPalletLabel);
 
@@ -120,14 +106,6 @@ router.post("/eol", products.createEol);
 // Get single EOL data
 router.get("/eol/:eolid", products.findEol);
 
-// update a pallet item with the id of that pallet item
-router.put("/pallet_item/:itemid", products.updatePalletItem);
-
-// Delete a brand with brandId
-router.delete("/pallet_item/:itemid", products.deletePalletItem);
-
-router.get("/check_sheet", products.printCheckSheet);
-
 // Update Eol by ID
 router.put("/eol/:eolid", products.updateEol);
 
@@ -137,15 +115,24 @@ router.post("/dump/:palletId", products.dumpSqlData);
 // Create a new pallet
 router.post("/po", products.createPo);
 
+// router.post("/upload_pdf", UploadPdf.UploadPdf.single("input-file-upload"), products.uploadPdf);
+// router.post("/upload_pdf", UploadPdf.UploadPdf.single("input-file-upload"), products.uploadPdf);
 router.post("/upload_pdf", upload.array("files", 10), products.uploadPdf);
 
-// Get All pallets
-router.get("/latest_pallet_data", products.latestPalletData);
-
 router.post("/upload_data", upload.array("files", 10), products.uploadData);
+
+// var upload = multer({ storage: storage });
+// const upload = multer({ dest: 'uploads/' })
+// router.post('/upload_pdf',upload.array('files', 12),function(req,res, next){
+// console.log(req.body)
+// console.log(req.files)
+// });
 
 router.post("/print_pdf/:pdfname", products.printPdf);
 
 router.post("/print_blank_labels", products.printBlankLabels);
+
+// Get All pallets
+router.get("/latest_pallet_data", products.latestPalletData);
 
 module.exports = router;
