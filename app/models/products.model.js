@@ -1,5 +1,6 @@
 const sql = require("./db.js");
 const palletLabel = require("../labels/actual_pallet_label_with_data.js");
+require('dotenv').config();
 
 // Product Constructor;
 const Product = function (product) {
