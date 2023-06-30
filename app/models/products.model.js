@@ -26,6 +26,17 @@ const Pallet = function (pallet) {
   this.PALLET_6 = pallet.PALLET_6;
 };
 
+//Pallet Item Constructor;
+const PalletItem = function (palletItem) {
+  this.PALLETITEM_1 = palletItem.PALLETITEM_1;
+  this.PALLETITEM_2 = palletItem.PALLETITEM_2;
+  this.PALLETITEM_3 = palletItem.PALLETITEM_3;
+  this.PALLETITEM_4 = palletItem.PALLETITEM_4;
+  this.PALLETITEM_4 = palletItem.PALLETITEM_4;
+  this.PALLETITEM_4 = palletItem.PALLETITEM_4;
+  this.PALLETITEM_4 = palletItem.PALLETITEM_4;
+};
+
 
 Product.getAll = (result) => {
   sql.query(
