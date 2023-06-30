@@ -1,6 +1,14 @@
 const sql = require("./db.js");
 const palletLabel = require("../labels/actual_pallet_label_with_data.js");
 
+// constructor;
+const Product = function (product) {
+  this.process.env.product_1 = product.process.env.product_1;
+  this.process.env.product_2 = product.process.env.product_2;
+  this.process.env.product_3 = product.process.env.product_3;
+  this.process.env.product_4 = product.process.env.product_4;
+};
+
 Product.getAll = (result) => {
   sql.query(
     "SELECT product_id, product_description FROM product_database",
