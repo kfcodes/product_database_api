@@ -37,6 +37,13 @@ const PalletItem = function (palletItem) {
   this.PALLETITEM_4 = palletItem.PALLETITEM_4;
 };
 
+const Eol = function (eol) {
+  this.EOL_1 = eol.EOL_1;
+  this.EOL_2 = eol.EOL_2;
+  this.EOL_3 = eol.EOL_3;
+  this.EOL_4 = eol.EOL_4;
+  this.EOL_5 = eol.EOL_5;
+};
 
 Product.getAll = (result) => {
   sql.query(
