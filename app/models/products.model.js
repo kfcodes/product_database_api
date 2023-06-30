@@ -1,13 +1,20 @@
 const sql = require("./db.js");
 const palletLabel = require("../labels/actual_pallet_label_with_data.js");
 
-// constructor;
+// Product Constructor;
 const Product = function (product) {
-  this.process.env.product_1 = product.process.env.product_1;
-  this.process.env.product_2 = product.process.env.product_2;
-  this.process.env.product_3 = product.process.env.product_3;
-  this.process.env.product_4 = product.process.env.product_4;
+  this.process.env.PRODUCT_1 = product.process.env.PRODUCT_1;
+  this.process.env.PRODUCT_2 = product.process.env.PRODUCT_2;
+  this.process.env.PRODUCT_3 = product.process.env.PRODUCT_3;
+  this.process.env.PRODUCT_4 = product.process.env.PRODUCT_4;
 };
+
+// PO Constructor;
+const Po = function (po) {
+  this.process.env.PO_1 = po.process.env.PO_1;
+  this.process.env.PO_2 = po.process.env.PO_2;
+};
+
 
 Product.getAll = (result) => {
   sql.query(
