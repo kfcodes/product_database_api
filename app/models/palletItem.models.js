@@ -25,4 +25,47 @@ PalletItem.createNewPalletItem = (newItem, result) => {
 };
 
 
+PalletItem.remove = (id, result) => {
+  sql.query(`DELETE FROM ${process.env.PIT} WHERE ${process.env.PALLETITEM_1} = ?`, id, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    if (res.affectedRows == 0) {
+      result({ kind: "not_found" }, null);
+      return;
+    }
+    console.log("deleted Pallet item with id: ", id);
+    result(null, res);
+  });
+};
+
+PalletItem.updatePalletItemById = (id, pallet_item, result) => {
+  sql.query(
+    `UPDATE pallet_item SET 
+    ${process.env.PALLETITEM_1}=${pallet_item.${process.env.PALLETITEM_1}},
+    ${process.env.PALLETITEM_2}=${pallet_item.${process.env.PALLETITEM_2}},
+    ${process.env.PALLETITEM_3}="${pallet_item.${process.env.PALLETITEM_3}}",
+    ${process.env.PALLETITEM_4}="${pallet_item.${process.env.PALLETITEM_4}}",
+    ${process.env.PALLETITEM_5}="${pallet_item.${process.env.PALLETITEM_5}}",
+    ${process.env.PALLETITEM_6}="${pallet_item.${process.env.PALLETITEM_6}}",
+    ${process.env.PALLETITEM_7}=${pallet_item.${process.env.PALLETITEM_7}}
+    WHERE ${process.env.PALLETITEM_1}=${id}`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      if (res.affectedRows == 0) {
+        result({ kind: "not_found" }, null);
+        return;
+      }
+      console.log("updated pallet Item: ", { ...pallet_item });
+      result(null, { ...pallet_item });
+    }
+  );
+};
+
 modules.export = {PalletItem}
