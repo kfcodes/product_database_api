@@ -267,3 +267,18 @@ Product.getPalletsFromBrand = (ubid, result) => {
     }
   );
 };
+
+Product.getPalletData = (pid, result) => {
+  sql.query(
+    `select * from packing_list_view WHERE ID IS NOT NULL AND PALLET>${pid} ORDER BY substring(ID, 1, 2), PALLET, COMPANY, item_id DESC`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      result(null, res);
+    }
+  );
+};
+
