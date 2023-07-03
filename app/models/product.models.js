@@ -282,3 +282,32 @@ Product.getPalletData = (pid, result) => {
   );
 };
 
+Product.getLatestData = (result) => {
+  sql.query(
+    `select ${process.env.1}, ${process.env.2}, ${process.env.4}, ${process.env.5}, ${process.env.6}, ${process.env.12}, ${process.env.13}, ${process.env.8}, ${process.env.9} from packing_list_view WHERE ${process.env.9} IN (select * from latest_pallets) AND ${process.env.2} IS NOT NULL ORDER BY ${process.env.9} DESC`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      result(null, res);
+    }
+  );
+};
+
+Product.getPackingListData = (pid, result) => {
+  sql.query(
+    `select ${process.env.1}, ${process.env.2}, ${process.env.3}, ${process.env.4}, ${process.env.5}, ${process.env.6}, ${process.env.7}, ${process.env.8}, ${process.env.9} from packing_list_view WHERE ${process.env.2} IS NOT NULL AND ${process.env.9}>${pid} ORDER BY substring(${process.env.2}, 1, 2), ${process.env.9}, ${process.env.14}, ${process.env.11} DESC`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      result(null, res);
+    }
+  );
+};
+
+
