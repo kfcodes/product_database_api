@@ -57,3 +57,69 @@ Product.findById = (productId, result) => {
   );
 };
 
+Product.getAllBrands = (result) => {
+  sql.query("SELECT * FROM brand", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    console.log("Have brands: ", res);
+    result(null, res);
+  });
+};
+
+Product.productsFromBrand = (brandId, result) => {
+  sql.query(
+    `SELECT * FROM product_database WHERE product_id LIKE "${brandId}%"`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      console.log("products: ", res);
+      result(null, res);
+    }
+  );
+};
+Product.findBomById = (productId, result) => {
+  sql.query(
+    "SELECT * FROM bom_component_data WHERE bom_product_id= ?",
+    [productId],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        console.log("found components: ", res);
+        result(null, res);
+        return;
+      }
+      // not found product with the id
+      result({ kind: "not_found" }, null);
+    }
+  );
+};
+
+Product.findPalletById = (palletid, result) => {
+  sql.query(
+    "SELECT * FROM pallet_info WHERE pallet_id= ?",
+    [palletid],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        console.log("found pallet details: ", res);
+        result(null, res);
+        return;
+      }
+      result({ kind: "not_found" }, null);
+    }
+  );
+};
