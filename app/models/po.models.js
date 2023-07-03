@@ -7,8 +7,8 @@ const Po = function (po) {
   this.process.env.PO_2 = po.process.env.PO_2;
 };
 
-Po.createNewPo = async (newPo, result) => {
-  sql.query("INSERT INTO po SET ?", newPo, (err, res) => {
+Po.createNewPo = async (po, result) => {
+  sql.query("INSERT INTO po SET ?", po, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
