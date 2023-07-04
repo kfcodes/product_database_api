@@ -44,13 +44,13 @@ PalletItem.remove = (id, result) => {
 PalletItem.updatePalletItemById = (id, pallet_item, result) => {
   sql.query(
     `UPDATE pallet_item SET 
-    ${process.env.PALLETITEM_1}=${pallet_item.${process.env.PALLETITEM_1}},
-    ${process.env.PALLETITEM_2}=${pallet_item.${process.env.PALLETITEM_2}},
-    ${process.env.PALLETITEM_3}="${pallet_item.${process.env.PALLETITEM_3}}",
-    ${process.env.PALLETITEM_4}="${pallet_item.${process.env.PALLETITEM_4}}",
-    ${process.env.PALLETITEM_5}="${pallet_item.${process.env.PALLETITEM_5}}",
-    ${process.env.PALLETITEM_6}="${pallet_item.${process.env.PALLETITEM_6}}",
-    ${process.env.PALLETITEM_7}=${pallet_item.${process.env.PALLETITEM_7}}
+    ${process.env.PALLETITEM_1}=${pallet_item.${process.env.PALLETITEM_1},
+    ${process.env.PALLETITEM_2}=${pallet_item.${process.env.PALLETITEM_2},
+    ${process.env.PALLETITEM_3}="${pallet_item.${process.env.PALLETITEM_3}",
+    ${process.env.PALLETITEM_4}="${pallet_item.${process.env.PALLETITEM_4}",
+    ${process.env.PALLETITEM_5}="${pallet_item.${process.env.PALLETITEM_5}",
+    ${process.env.PALLETITEM_6}="${pallet_item.${process.env.PALLETITEM_6}",
+    ${process.env.PALLETITEM_7}=${pallet_item.${process.env.PALLETITEM_7}
     WHERE ${process.env.PALLETITEM_1}=${id}`,
     (err, res) => {
       if (err) {
@@ -68,4 +68,4 @@ PalletItem.updatePalletItemById = (id, pallet_item, result) => {
   );
 };
 
-modules.export = {PalletItem}
+module.exports = PalletItem;
