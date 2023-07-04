@@ -285,4 +285,47 @@ Product.printBoxLabel = (eolid, result) => {
   );
 };
 
+Product.getAllProduction = (result) => {
+  sql.query(`SELECT * FROM production_overview`, (err, res) => {
+    if (err) {
+      console.log(`error: `, err);
+      result(null, err);
+      return;
+    }
+    console.log(`These are Products being produced: `, res);
+    result(null, res);
+  });
+};
+Product.getCurrentProduction = (result) => {
+  sql.query(
+    `SELECT * FROM production_overview2 where pallet_total IS NOT NULL ORDER by mps_id Desc LIMIT 20`,
+    (err, res) => {
+      if (err) {
+        console.log(`error: `, err);
+        result(null, err);
+        return;
+      }
+      console.log(`These are Products being produced: `, res);
+      result(null, res);
+    }
+  );
+};
+
+
+Product.getAllFinishedProducts = (result) => {
+  sql.query(
+    `SELECT product_id, product_description FROM product_database where product_id rlike '^[a-z]'  AND product_description NOT LIKE 'do not use%';`,
+    (err, res) => {
+      if (err) {
+        console.log(`error: `, err);
+        result(null, err);
+        return;
+      }
+      console.log(`products: `, res);
+      result(null, res);
+    }
+  );
+};
+
+
 module.exports = Product;
