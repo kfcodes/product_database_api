@@ -17,4 +17,4 @@ Po.createNewPo = async (po, result) => {
   });
 };
 
-module.exports = { Po };
+module.exports = Po;
