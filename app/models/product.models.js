@@ -311,6 +311,25 @@ Product.getCurrentProduction = (result) => {
   );
 };
 
+Product.dumpSqlData = (palletId, result) => {
+  sql.query(
+    `SELECT * FROM ${process.env.FPAI} WHERE ${process.env.PALLET_1} > ?`,
+    [palletId],
+    (err, res) => {
+      if (err) {
+        console.log(`error: `, err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        console.log(`found pallet details: `, res);
+        result(null, res);
+        return;
+      }
+      result({ kind: `not_found` }, null);
+    }
+  );
+};
 
 Product.getAllFinishedProducts = (result) => {
   sql.query(
