@@ -64,4 +64,4 @@ Eol.updateEolById = (id, eol, result) => {
   );
 };
 
-module.exports = { Eol };
+module.exports = Eol;
