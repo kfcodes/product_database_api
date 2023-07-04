@@ -181,5 +181,87 @@ Product.getLatestPallets = (result) => {
   });
 };
 
+Product.getLatestPalletProducts = async (palletid, result) => {
+  sql.query(
+    `SELECT * FROM test_view WHERE pallet_item_${process.env.PALLET_1} = ? AND ${process.env.PALLETITEM_3} IS NOT NULL`,
+    [palletid],
+    (err, res) => {
+      if (err) {
+        console.log(`error: `, err);
+        result(null, err);
+        return;
+      }
+      result(null, res);
+    }
+  );
+};
+
+Product.getAllPallets = (result) => {
+  sql.query(`select * from test_view_2`, (err, res) => {
+    if (err) {
+      console.log(`error: `, err);
+      result(null, err);
+      return;
+    }
+    console.log(`These are the pallets in the db: `, res);
+    result(null, res);
+  });
+};
+
+Product.getAllPalletItems = (result) => {
+  sql.query(`SELECT * FROM test_view`, (err, res) => {
+    if (err) {
+      console.log(`error: `, err);
+      result(null, err);
+      return;
+    }
+    console.log(`These are the pallet itemes in the db: `, res);
+    result(null, res);
+  });
+};
+
+Product.getPalletsForPallet = (palletid, result) => {
+  sql.query(
+    `SELECT * FROM test_view where pallet_item_${process.env.PALLET_1}=${palletid}`,
+    (err, res) => {
+      if (err) {
+        console.log(`error: `, err);
+        result(null, err);
+        return;
+      }
+      console.log(`Products on the pallet: `, res);
+      result(null, res);
+    }
+  );
+};
+
+Product.getPalletsFromBrand = (ubid, result) => {
+  sql.query(
+    `SELECT * FROM ${process.env.FPAI} WHERE ${process.env.PALLETITEM_3} LIKE `${ubid}%``,
+    (err, res) => {
+      if (err) {
+        console.log(`error: `, err);
+        result(null, err);
+        return;
+      }
+      console.log(`products: `, res);
+      result(null, res);
+    }
+  );
+};
+
+Product.getPalletData = (pid, result) => {
+  sql.query(
+    `select * from packing_list_view WHERE ID IS NOT NULL AND PALLET>${pid} ORDER BY substring(ID, 1, 2), PALLET, COMPANY, item_id DESC`,
+    (err, res) => {
+      if (err) {
+        console.log(`error: `, err);
+        result(null, err);
+        return;
+      }
+      result(null, res);
+    }
+  );
+};
 
 module.exports = Product;
