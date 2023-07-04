@@ -56,7 +56,7 @@ Product.getAllBrands = (result) => {
 
 Product.productsFromBrand = (bid, result) => {
   sql.query(
-    `SELECT * FROM ${process.env.PD} WHERE ${process.env.1} LIKE "${bid}%`,
+    `SELECT * FROM ${process.env.PD} WHERE ${process.env.1} LIKE "${bid}%"`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -110,7 +110,7 @@ Product.findPalletById = (id, result) => {
 
 Product.findPalletByBrand = (id, result) => {
   sql.query(
-    `SELECT * FROM ${process.env.FPAI} WHERE ${process.env.BID} LIKE "${id}%"`,
+    `SELECT * FROM ${process.env.FPAI} WHERE ${process.env.BID} LIKE ${id}%`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -123,3 +123,63 @@ Product.findPalletByBrand = (id, result) => {
   );
 };
 
+Product.printPalletLabel = (id, result) => {
+  sql.query(
+    `SELECT * FROM ${process.env.FPAI} WHERE ${process.env.PALLET_1}= ${id} AND ${process.env.PALLETITEM_3} IS NOT null;`, (err, res) => {
+      if (err) {
+        console.log(`error: `, err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        result(null, res);
+        return;
+      }
+      result(null);
+      return;
+    }
+  );
+};
+
+Product.getRecentPallets = (result) => {
+  sql.query(
+    `SELECT * FROM test_view_2 ORDER by ${process.env.PALLET_1} Desc LIMIT 20`,
+    (err, res) => {
+      if (err) {
+        console.log(`error: `, err);
+        result(null, err);
+        return;
+      }
+      result(null, res);
+    }
+  );
+};
+
+Product.newGetRecentPallets = (result) => {
+  sql.query(
+    `SELECT * FROM test_view_2 ORDER by ${process.env.PALLET_1} Desc LIMIT 20`,
+    (err, res) => {
+      if (err) {
+        console.log(`error: `, err);
+        result(null, err);
+        return;
+      }
+      result(null, res);
+    }
+  );
+};
+
+Product.getLatestPallets = (result) => {
+  sql.query(`SELECT * FROM ${process.env.MPAI} ORDER BY ${process.env.PALLET_1} DESC LIMIT 20 `, (err, res) => {
+    if (err) {
+      console.log(`error: `, err);
+      result(null, err);
+      return;
+    }
+    result(null, res);
+    return res;
+  });
+};
+
+
+module.exports = Product;
