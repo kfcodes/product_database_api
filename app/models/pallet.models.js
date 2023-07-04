@@ -11,3 +11,4 @@ const Pallet = function (pallet) {
   this.PALLET_6 = pallet.PALLET_6;
 };
 
+module.exports = Pallet;
