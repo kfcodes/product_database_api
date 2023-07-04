@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const products = require("../controllers/product.controller.js");
-const UploadPdf = require("../fileUpload/multerPdf.js");
 const multer = require("multer");
 
 const storage = multer.diskStorage({
