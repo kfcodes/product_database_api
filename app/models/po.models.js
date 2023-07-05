@@ -6,14 +6,12 @@ const Po = function (po) {
 };
 
 Po.createNewPo = async (po, result) => {
-console.log(po);
   sql.query("INSERT INTO po SET ?", po, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
-console.log(po);
   });
 };
 
