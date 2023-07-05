@@ -1,19 +1,19 @@
 const sql = require("./db.js");
-require('dotenv').config();
 
-// PO Constructor;
 const Po = function (po) {
-  this.process.env.PO_1 = po.process.env.PO_1;
-  this.process.env.PO_2 = po.process.env.PO_2;
+  this.po_id = po.po_id;
+  this.customer_po_id = po.customer_po_id;
 };
 
 Po.createNewPo = async (po, result) => {
+console.log(po);
   sql.query("INSERT INTO po SET ?", po, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
+console.log(po);
   });
 };
 
