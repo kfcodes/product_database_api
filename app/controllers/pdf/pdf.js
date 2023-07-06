@@ -1,5 +1,4 @@
-const puppetere = require("puppeteer");
-const comp = require("./compilePdf");
+const c = require("./compilePdf");
 const { default: puppeteer } = require("puppeteer");
 
 const list = {
@@ -12,7 +11,7 @@ async function CreatePdf(data) {
     list.pallets.push(data);
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    const content = await comp.compile("checkSheet", list);
+    const content = await c.compile("checkSheet", list);
     await page.setContent(content);
     await page.emulateMediaType("screen");
     await page.pdf({
