@@ -3,21 +3,12 @@ const fs = require("fs-extra");
 const { default: puppeteer } = require("puppeteer");
 const hbs = require("handlebars");
 const path = require("path");
-// const data = require("./pallet_data.json");
 const { exec } = require("child_process");
 
 const list = {
   companyName: "Pallet Check Sheet",
   pallets: [],
 };
-
-// async function fetchData() {
-//   const response = await fetch('/movies');
-//   // waits until the request completes...
-//   console.log(response);
-// }
-
-// Select Distinct API for each packing list
 
 const compile = async function (templateName, data) {
   const filePath = path.join(
@@ -46,20 +37,13 @@ const printPallets = async function() {
  console.log("The pallet list was Printed");
 }
 
-// (async function () {
-// module.exports.CreatePdf = async function (data) {
-// module.exports.CreatePdf = async function (data) {
 async function CreatePdf(data) {
   try {
     list.pallets.push(data);
-    // const list.pallets = {...list.pallets , ...data};
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     const content = await compile("checkSheet", list);
-
-    // console.log(list.pallets);
-    // console.log(list);
-    // console.log(data);
+    
     await page.setContent(content);
     await page.emulateMediaType("screen");
     await page.pdf({
@@ -74,17 +58,10 @@ async function CreatePdf(data) {
           right: 30,
           }
     });
-      // pageRanges: '1',
     console.log("THE PDF WAS MADE");
     await browser.close();
-    // printPallets();
-    // process.exit();
   } catch (e) {
     console.log("Error: ", e);
   }
 }
-// }();
-// })();
-
-// module.exports.CreateLabel = function (results) {
 module.exports.CreatePdf = CreatePdf;
