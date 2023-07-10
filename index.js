@@ -1,8 +1,8 @@
 // Fixed imports and routes
-(express = require("express")),
-  (app = express()),
-  (cors = require("cors")),
-  (bodyParser = require("body-parser"));
+  express = require("express"),
+  app = express(),
+  cors = require("cors"),
+  bodyParser = require("body-parser");
 
 // make server object that contain port property and the value for our server.
 var server = {
