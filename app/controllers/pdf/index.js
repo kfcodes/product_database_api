@@ -1,4 +1,4 @@
-const { SplitPdf } = require{"./splitPdf.js"}
+const { SplitPdf } = require("./splitPdf.js")
 
 module.exports.PrintPdf = async function (pdfname, result) {
   const splitfile = SplitPdf(pdfname);
