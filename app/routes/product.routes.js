@@ -1,32 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const products = require("../controllers/product.controller.js");
-const multer = require("multer");
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    // cb(null, "test3" + '-' + uniqueSuffix +".pdf")
-    cb(null, file.originalname);
-  },
-});
-
-// Multer Filter
-// const multerFilter = (req, file, cb) => {
-//   if (file.mimetype.split("/")[1] === "pdf") {
-//     cb(null, true);
-//   } else {
-//     cb(new Error("Not a PDF File!!"), false);
-//   }
-// };
-
-const upload = multer({
-  storage: storage,
-});
-// fileFilter: multerFilter,
+const products = require("../controllers/old_product.controller.js");
+const upload = require("../controllers/fileUpload/multerPdf.js");
 
 // Retrieve all brands
 router.get("/brands", products.findAllBrands);
