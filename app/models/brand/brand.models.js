@@ -1,5 +1,4 @@
 const sql = require("./db.js");
-
 const Brand = requre("./brand.constructor");
 
 Brand.create = (newBrand, result) => {
