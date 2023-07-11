@@ -1,10 +1,6 @@
 const sql = require("./db.js");
 
-// constructor;
-const Brand = function (brand) {
-  this.prefix = brand.prefix;
-  this.name = brand.name;
-};
+const Brand = requre("./brand.constructor");
 
 Brand.create = (newBrand, result) => {
   sql.query("INSERT INTO brand SET ?", newBrand, (err, res) => {

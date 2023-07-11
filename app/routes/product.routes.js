@@ -53,8 +53,6 @@ router.post("/eol", products.createEol);
 router.post("/dump/:palletId", products.dumpSqlData);
 // Create a new pallet
 router.post("/po", products.createPo);
-// router.post("/upload_pdf", UploadPdf.UploadPdf.single("input-file-upload"), products.uploadPdf);
-// router.post("/upload_pdf", UploadPdf.UploadPdf.single("input-file-upload"), products.uploadPdf);
 router.post("/upload_pdf", upload.array("files", 10), products.uploadPdf);
 router.post("/upload_data", upload.array("files", 10), products.uploadData);
 router.post("/print_pdf/:pdfname", products.printPdf);
