@@ -6,4 +6,4 @@ const FinishedProduct = function (eol) {
   this.quantity = eol.quantity;
 };
 
-module.exports = FinishedProduct
+module.exports = FinishedProduct;

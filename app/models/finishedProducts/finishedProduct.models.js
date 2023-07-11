@@ -1,8 +1,6 @@
-const sql = require("./db.js");
+const sql = require("../db/dbConnect");
 require('dotenv').config();
 const Eol = require("./finishedProduct.constructor.js")
-
-// const Eol = function (eol) { this.product_id = eol.product_id; this.po = eol.po; this.lot = eol.lot; this.bbe = eol.bbe; this.quantity = eol.quantity; };
 
 Eol.findEolById = (id, result) => {
   sql.query(
