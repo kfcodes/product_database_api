@@ -1,5 +1,5 @@
-const {dbConnect} = require("../db/dbConnect.js");
-const Po = requre("./po.constructor.js")
+const dbConnect = require("../db/dbConnect.js");
+const Po = require("./po.constructor.js")
 
 Po.createNewPo = async (po, result) => {
   dbConnect.query("INSERT INTO po SET ?", po, (err, res) => {
