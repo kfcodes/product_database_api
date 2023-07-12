@@ -1,3 +1,4 @@
+
 const FinishedProduct = function (eol) {
   this.product_id = eol.product_id;
   this.po = eol.po;

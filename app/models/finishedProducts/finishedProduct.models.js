@@ -1,28 +1,9 @@
 const sql = require("../db/dbConnect");
 require('dotenv').config();
-const Eol = require("./finishedProduct.constructor.js")
+const FinishedProduct = require("./finishedProduct.constructor.js")
 
-Eol.findEolById = (id, result) => {
-  sql.query(
-    `SELECT * FROM ${process.env.ET} WHERE ${process.env.EOL_6}= ?`,
-    [id],
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(err, null);
-        return;
-      }
-      if (res.length) {
-        console.log("found Eol details: ", res);
-        result(null, res);
-        return;
-      }
-      result({ kind: "not_found" }, null);
-    }
-  );
-};
 
-Eol.createNewEol = (eol, result) => {
+FinishedProduct.createNewFinishedProduct = (eol, result) => {
   sql.query(`INSERT INTO ${process.env.ET} SET ?`, eol, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -32,7 +13,7 @@ Eol.createNewEol = (eol, result) => {
   });
 };
 
-Eol.updateEolById = (id, eol, result) => {
+FinishedProduct.updateFinishedProductById = (id, eol, result) => {
   sql.query(
     `UPDATE eol SET 
     ${process.env.EOL_7}="${eol.process.env.EOL_1}",
@@ -57,4 +38,24 @@ Eol.updateEolById = (id, eol, result) => {
   );
 };
 
-module.exports = Eol;
+FinishedProduct.findFinishedProductById = (id, result) => {
+  sql.query(
+    `SELECT * FROM ${process.env.ET} WHERE ${process.env.EOL_6}= ?`,
+    [id],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        console.log("found FinishedProduct details: ", res);
+        result(null, res);
+        return;
+      }
+      result({ kind: "not_found" }, null);
+    }
+  );
+};
+
+module.exports = FinishedProduct;
