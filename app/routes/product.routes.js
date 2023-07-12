@@ -37,7 +37,7 @@ router.get("/mps", products.findCurrentProduction);
 // Get All Production
 router.get("/full_mps", products.findAllProduction);
 // Get single EOL data
-router.get("/eol/:eolid", products.findEol);
+router.get("/eol/:eolid", products.findFinishedProduct);
 // Get All pallets
 router.get("/latest_pallet_data", products.latestPalletData);
 
@@ -48,7 +48,7 @@ router.post("/pallet_item/:palletid", products.createPalletItem);
 // Print the label for a single pallet
 router.post("/box_label/:eolid", products.printBoxLabel);
 // Create EOL data
-router.post("/eol", products.createEol);
+router.post("/eol", products.createFinishedProduct);
 // Dump Sql Pallet data
 router.post("/dump/:palletId", products.dumpSqlData);
 // Create a new pallet
@@ -62,8 +62,8 @@ router.post("/print_blank_labels", products.printBlankLabels);
 router.put("/pallet_item/:itemid", products.updatePalletItem);
 // Update a pallet with pallet id
 router.put("/pallet/:palletid", products.update);
-// Update Eol by ID
-router.put("/eol/:eolid", products.updateEol);
+// Update FinishedProduct by ID
+router.put("/eol/:eolid", products.updateFinishedProduct);
 
 // Delete a brand with brandId
 router.delete("/pallet_item/:itemid", products.deletePalletItem);
