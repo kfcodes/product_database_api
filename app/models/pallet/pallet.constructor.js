@@ -1,6 +1,5 @@
 // constructor;
 const Pallet = function (pallet) {
-  this.pallet_id = pallet.pallet_id;
   this.empty_weight = pallet.empty_weight;
   this.weight = pallet.weight;
   this.height = pallet.height;
