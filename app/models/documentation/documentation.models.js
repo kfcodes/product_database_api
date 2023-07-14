@@ -25,3 +25,20 @@ exports.productsFromBrand = (Id, result) => {
   );
 };
 
+exports.getProductComponents = (id, result) => {
+  sql.query(
+    `SELECT * FROM ${process.env.BC} WHERE ${process.env.BI}="${id}"`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        result(null, res);
+        return;
+      }
+      result({ kind: "not_found" }, null);
+    }
+  );
+};
