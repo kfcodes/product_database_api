@@ -21,14 +21,27 @@ exports.palletInfo = (id, result) => {
 
 exports.getPackingListData = (result) => {
   sql.query(
-    `select ${process.env.P33}from ${process.env.PPP} ${process.env.P44}`,
+    `select ${process.env.P33} from ${process.env.PPP} ${process.env.P44}`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
         return;
       }
-      console.log("These are the pallets in the db: ", res);
+      result(null, res);
+    }
+  );
+};
+
+exports.getCompanyPallets = (id, result) => {
+  sql.query(
+    `SELECT * FROM ${process.env.TSXX}"${id}%"`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
       result(null, res);
     }
   );
