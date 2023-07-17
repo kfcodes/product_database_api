@@ -107,3 +107,31 @@ exports.getRecentPallets = (result) => {
     }
   );
 };
+
+exports.getLatestData = (result) => {
+  sql.query(
+    `${process.env.YY}`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      result(null, res);
+    }
+  );
+};
+
+exports.getPalletData = (result) => {
+  sql.query(
+    `${process.env.YY2}`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      result(null, res);
+    }
+  );
+};
