@@ -71,3 +71,25 @@ exports.getLatestPalletProducts = async (id, result) => {
     }
   );
 };
+
+exports.getAllPallets = (result) => {
+  sql.query(`${process.env.TV}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    result(null, res);
+  });
+};
+
+exports.getAllPalletItems = (result) => {
+  sql.query(`${process.env.TV2}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    result(null, res);
+  });
+};
