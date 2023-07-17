@@ -93,3 +93,17 @@ exports.getAllPalletItems = (result) => {
     result(null, res);
   });
 };
+
+exports.getRecentPallets = (result) => {
+  sql.query(
+    `${process.env.HH}`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      result(null, res);
+    }
+  );
+};
