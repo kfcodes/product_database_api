@@ -45,3 +45,29 @@ exports.getCompanyPallets = (id, result) => {
     }
   );
 };
+
+exports.getLatestPallets = (result) => {
+  sql.query(`${process.env.GGH}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    result(null, res);
+    return res;
+  });
+};
+
+exports.getLatestPalletProducts = async (id, result) => {
+  sql.query(
+    `${process.env.DDT1}${id}${process.env.DDT2}`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      result(null, res);
+    }
+  );
+};
