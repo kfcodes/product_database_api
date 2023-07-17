@@ -10,7 +10,6 @@ exports.palletInfo = (id, result) => {
         return;
       }
       if (res.length) {
-        console.log("found pallet details: ", res);
         result(null, res);
         return;
       }
