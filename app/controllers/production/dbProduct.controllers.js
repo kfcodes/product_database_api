@@ -12,3 +12,15 @@ exports.findAll = (req, res) => {
   });
 };
 
+// Retrieve all products from the database.
+exports.findFinishedProducts = (req, res) => {
+  ProductDB.getAllFinishedProducts((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving products.",
+      });
+    else res.send(data);
+  });
+};
+
