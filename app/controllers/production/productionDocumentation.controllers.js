@@ -21,3 +21,19 @@ exports.productsByBrand = (req, res) => {
   });
 };
 
+// Find a single BOM for a productId
+exports.productComponents = (req, res) => {
+  Documentation.getProductComponents(req.params.id, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `No product found with id ${req.params.id}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Product with id " + req.params.id,
+        });
+      }
+    } else res.send(data);
+  });
+};

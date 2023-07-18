@@ -11,7 +11,7 @@ exports.getAllBrands = (result) => {
   });
 };
 
-exports.productsFromBrand = (Id, result) => {
+exports.productsByBrand = (Id, result) => {
   sql.query(
     `SELECT * FROM ${process.env.p} WHERE ${process.env.FP_1} LIKE "${Id}%"`,
     (err, res) => {
