@@ -4,6 +4,7 @@ const products = require("../controllers/old_product.controller.js");
 const upload = require("../controllers/fileUpload/multerPdf.js");
 const ProductDB = require("../controllers/production/dbProduct.controllers");
 const Documentation = require("../controllers/production/productionDocumentation.controllers");
+const Ps = require("../controllers/production/productionSchedule.controllers");
 
 // PRODUCT DB ROUTES
 // Retrieve all product
@@ -22,6 +23,10 @@ router.get("/brandproducts/:id", Documentation.productsByBrand);
 // Retrieve a single product with productId
 router.get("/components/:id", Documentation.productComponents);
 
+// Get current Production
+router.get("/mps", Ps.findCurrentProduction);
+// Get All Production
+router.get("/full_mps", Ps.findAllProduction);
 
 // Retrieve a single product with productId
 router.get("/pallet/:palletid", products.findPallet);
@@ -40,10 +45,6 @@ router.get("/pallet_items/:palletid", products.findPalletItemsForPallet);
 router.get("/pallets/:brand_prefix", products.findAllPalletsfromBrand);
 // Print the label for a single pallet
 router.get("/label/:palletid", products.printPalletLabel);
-// Get current Production
-router.get("/mps", products.findCurrentProduction);
-// Get All Production
-router.get("/full_mps", products.findAllProduction);
 // Get single EOL data
 router.get("/eol/:eolid", products.findFinishedProduct);
 // Get All pallets
