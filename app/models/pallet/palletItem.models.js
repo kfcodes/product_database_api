@@ -48,4 +48,29 @@ PalletItem.updatePalletItemById = (id, pallet_item, result) => {
   );
 };
 
+PalletItem.getAllPalletItems = (result) => {
+  sql.query(`${process.env.TV2}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    result(null, res);
+  });
+};
+
+PalletItem.getProductsForPallet = (id, result) => {
+  sql.query(
+    `${process.env.TYU}"${id}"`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      result(null, res);
+    }
+  );
+};
+
 module.exports = PalletItem;

@@ -83,17 +83,6 @@ exports.getAllPallets = (result) => {
   });
 };
 
-exports.getAllPalletItems = (result) => {
-  sql.query(`${process.env.TV2}`, (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-    result(null, res);
-  });
-};
-
 exports.getRecentPallets = (result) => {
   sql.query(
     `${process.env.HH}`,
@@ -125,20 +114,6 @@ exports.getLatestData = (result) => {
 exports.getPalletData = (result) => {
   sql.query(
     `${process.env.YY2}`,
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-      result(null, res);
-    }
-  );
-};
-
-exports.getProductsForPallet = (id, result) => {
-  sql.query(
-    `${process.env.TYU}"${id}"`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);

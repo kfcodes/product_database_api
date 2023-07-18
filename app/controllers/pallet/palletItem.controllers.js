@@ -1,8 +1,9 @@
+const PalletItem = require("../../models/pallet/palletItem.models.js");
 const PalletList= require("../../models/palletList/palletList.models");
 
 // Retrieve all products from the database.
 exports.findAllPalletItems = (req, res) => {
-  PalletList.getAllPalletItems((err, data) => {
+  PalletItem.getAllPalletItems((err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -14,7 +15,7 @@ exports.findAllPalletItems = (req, res) => {
 
 // Find All pallet items on a pallet
 exports.findPalletItemsForPallet = (req, res) => {
-  PalletList.getProductsForPallet(req.params.id, (err, data) => {
+  PalletItem.getProductsForPallet(req.params.id, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -23,3 +24,20 @@ exports.findPalletItemsForPallet = (req, res) => {
     else res.send(data);
   });
 };
+
+exports.deletePalletItem = (req, res) => {
+  PalletItem.remove(req.params.id, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Pallet item with id ${req.params.id} Not found`,
+        });
+      } else {
+        res.status(500).send({
+          message: `Could not delete Pallet item with id  ${req.params.id}`
+        });
+      }
+    } else res.send({ message: `Pallet item was deleted successfully!` });
+  });
+};
+
