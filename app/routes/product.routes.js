@@ -2,19 +2,27 @@ const express = require("express");
 const router = express.Router();
 const products = require("../controllers/old_product.controller.js");
 const upload = require("../controllers/fileUpload/multerPdf.js");
+const ProductDB = require("../controllers/production/dbProduct.controllers");
+const Documentation = require("../controllers/production/productionDocumentation.controllers");
 
+// PRODUCT DB ROUTES
+// Retrieve all product
+router.get("/products", ProductDB.findAll);
+// Retrieve all products
+router.get("/finished_products", ProductDB.findFinishedProducts);
+// Retrieve a single product with productId
+router.get("/products/:productId", ProductDB.findOne);
+
+
+// PRODUCTION DOCUMENTATION ROUTES
 // Retrieve all brands
-router.get("/brands", products.findAllBrands);
+router.get("/brands", Documentation.findAllBrands);
 // Retrieve all products from specific brand
-router.get("/products_from_brand/:brandId", products.productsFromBrand);
-// Retrieve all products
-router.get("/products", products.findAll);
-// Retrieve all products
-router.get("/finished_products", products.findFinishedProducts);
+router.get("/brandproducts/:id", Documentation.productsByBrand);
 // Retrieve a single product with productId
-router.get("/products/:productId", products.findOne);
-// Retrieve a single product with productId
-router.get("/components/:Id", products.productComponents);
+router.get("/components/:id", Documentation.productComponents);
+
+
 // Retrieve a single product with productId
 router.get("/pallet/:palletid", products.findPallet);
 // Get All pallets
