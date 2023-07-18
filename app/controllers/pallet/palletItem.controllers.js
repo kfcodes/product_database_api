@@ -1,5 +1,4 @@
 const PalletItem = require("../../models/pallet/palletItem.models.js");
-const PalletList= require("../../models/palletList/palletList.models");
 
 // Retrieve all products from the database.
 exports.findAllPalletItems = (req, res) => {
@@ -13,7 +12,6 @@ exports.findAllPalletItems = (req, res) => {
   });
 };
 
-// Find All pallet items on a pallet
 exports.findPalletItemsForPallet = (req, res) => {
   PalletItem.getProductsForPallet(req.params.id, (err, data) => {
     if (err)
@@ -38,6 +36,25 @@ exports.deletePalletItem = (req, res) => {
         });
       }
     } else res.send({ message: `Pallet item was deleted successfully!` });
+  });
+};
+
+// Create and Save a new pallet item
+exports.createPalletItem = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+  }
+  console.log(req);
+  const pid = new PalletItem({
+    pallet_item_pallet_id: req.params.id,
+  });
+  PalletItem.createNewPalletItem(pid, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Error occurred creating pallet item",
+      });
+    else res.send(data);
   });
 };
 
