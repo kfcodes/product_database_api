@@ -24,3 +24,19 @@ exports.findFinishedProducts = (req, res) => {
   });
 };
 
+// Find a single product using ID
+exports.findOne = (req, res) => {
+  ProductDB.findById(req.params.productId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `No Product with id of ${req.params.productId}`,
+        });
+      } else {
+        res.status(500).send({
+          message: `Error retrieving Product ${req.params.productId}`,
+        });
+      }
+    } else res.send(data);
+  });
+};
