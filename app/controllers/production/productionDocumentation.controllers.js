@@ -10,3 +10,14 @@ exports.findAllBrands = (req, res) => {
   });
 };
 
+exports.productsByBrand = (req, res) => {
+  Documentation.productsByBrand(req.params.id, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving products.",
+      });
+    else res.send(data);
+  });
+};
+
