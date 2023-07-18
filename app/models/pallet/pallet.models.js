@@ -58,4 +58,15 @@ Pallet.findPalletById = (id, result) => {
   );
 };
 
+Pallet.getAllPallets = (result) => {
+  sql.query(`${process.env.TV}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    result(null, res);
+  });
+};
+
 module.exports = Pallet;

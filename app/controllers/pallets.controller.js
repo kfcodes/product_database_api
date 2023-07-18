@@ -1,3 +1,5 @@
+
+
 // Find a single Pallet with Palletid
 exports.findPallet = (req, res) => {
   Product.findPalletById(req.params.palletid, (err, data) => {
