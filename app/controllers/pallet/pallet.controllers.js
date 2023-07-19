@@ -12,3 +12,19 @@ exports.findAllPallets = (req, res) => {
   });
 };
 
+// Find a single Pallet with Palletid
+exports.findPallet = (req, res) => {
+  Pallet.findPalletById(req.params.id, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Can't find Pallet ${req.params.palletid}`,
+        });
+      } else {
+        res.status(500).send({
+          message: `Error retrieving Pallet ${req.params.palletid}`,
+        });
+      }
+    } else res.send(data);
+  });
+};
