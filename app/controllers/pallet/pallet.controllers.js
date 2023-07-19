@@ -39,7 +39,29 @@ exports.createPallet = (req, res) => {
         message: err.message || "Some error occurred while creating the Brand.",
       });
     else res.send(data);
-    console.log(data);
   });
 };
 
+exports.update = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+  }
+  // let date = new Date().toISOString();
+  Pallet.updatePalletById(
+    req.params.id,
+    new Pallet(req.body),
+    (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `No Pallet with id ${req.params.palletid}.`,
+          });
+        } else {
+          res.status(500).send({
+            message: `Error updating Pallet ${req.params.palletid}`,
+          });
+        }
+      } else res.send(data);
+    }
+  );
+};
