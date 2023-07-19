@@ -1,6 +1,5 @@
 const Pallet = require("../../models/pallet/pallet.models");
 
-// Retrieve all products from the database.
 exports.findAllPallets = (req, res) => {
   Pallet.getAllPallets((err, data) => {
     if (err)
@@ -12,7 +11,6 @@ exports.findAllPallets = (req, res) => {
   });
 };
 
-// Find a single Pallet with Palletid
 exports.findPallet = (req, res) => {
   Pallet.findPalletById(req.params.id, (err, data) => {
     if (err) {
@@ -28,3 +26,20 @@ exports.findPallet = (req, res) => {
     } else res.send(data);
   });
 };
+
+exports.createPallet = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+  }
+  Pallet.createNewPallet(
+    new Pallet(req.body),
+    (err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || "Some error occurred while creating the Brand.",
+      });
+    else res.send(data);
+    console.log(data);
+  });
+};
+
