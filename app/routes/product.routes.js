@@ -6,6 +6,8 @@ const ProductDB = require("../controllers/production/dbProduct.controllers");
 const Documentation = require("../controllers/production/productionDocumentation.controllers");
 const Ps = require("../controllers/production/productionSchedule.controllers");
 const PalletItem = require("../controllers/pallet/palletItem.controllers");
+const Po = require("../controllers/po/po.controllers");
+const Pallet = require("../controllers/pallet/pallet.controllers");
 
 // PRODUCT DB ROUTES
 // RETRIEVE ALL PRODUCT
@@ -41,13 +43,23 @@ router.put("/pallet_item/:id", PalletItem.updatePalletItem);
 // DELETE A PALLET ITEM
 router.delete("/pallet_item/:id", PalletItem.deletePalletItem);
 
+// CREATE A PO
+router.post("/po", Po.createPo);
 
-// Retrieve a single product with productId
-router.get("/pallet/:palletid", products.findPallet);
+// PALLET ROUTES
+// CREATE A NEW PALLET
+router.post("/pallet", Pallet.createPallet);
+// GET ALL PALLETS
+router.get("/all_pallets", Pallet.findAllPallets);
+// RETRIEVE INDIVIDUAL PALLET DETAILS
+router.get("/pallet/:id", Pallet.findPallet);
+// UPDATE PALLET
+router.put("/pallet/:id", Pallet.update);
+// DELETE A PALLET
+// router.delete("/pallet/:id", Pallet.deletePallet);
+
 // Get All pallets
 router.get("/pallets", products.findRecentPallets);
-// Get All pallets
-router.get("/all_pallets", products.findAllPallets);
 // Get All pallets
 router.get("/pallet_data", products.findPalletData);
 router.get("/check_sheet", products.printCheckSheet);
@@ -60,23 +72,17 @@ router.get("/eol/:eolid", products.findFinishedProduct);
 // Get All pallets
 router.get("/latest_pallet_data", products.latestPalletData);
 
-// Create a new pallet
-router.post("/pallet", products.createPallet);
 // Print the label for a single pallet
 router.post("/box_label/:eolid", products.printBoxLabel);
 // Create EOL data
 router.post("/eol", products.createFinishedProduct);
 // Dump Sql Pallet data
 router.post("/dump/:palletId", products.dumpSqlData);
-// Create a new pallet
-router.post("/po", products.createPo);
 router.post("/upload_pdf", upload.array("files", 10), products.uploadPdf);
 router.post("/upload_data", upload.array("files", 10), products.uploadData);
 router.post("/print_pdf/:pdfname", products.printPdf);
 router.post("/print_blank_labels", products.printBlankLabels);
 
-// Update a pallet with pallet id
-router.put("/pallet/:palletid", products.update);
 // Update FinishedProduct by ID
 router.put("/eol/:eolid", products.updateFinishedProduct);
 
