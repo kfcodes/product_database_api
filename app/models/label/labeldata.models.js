@@ -18,7 +18,7 @@ exports.getPalletLabelData = (id, result) => {
   );
 };
 
-exports.printBoxLabel = (id, result) => {
+exports.boxLabel = (id, result) => {
   sql.query(
     `SELECT * FROM ${process.env.Z_4} WHERE ${process.env.Z_5}= ${id}`,
     (err, res) => {
