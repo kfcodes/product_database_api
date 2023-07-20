@@ -1,6 +1,6 @@
 const sql = require("../db/dbConnect.js");
 
-exports.palletInfo = (id, result) => {
+exports.getInfo = (id, result) => {
   sql.query(
     `SELECT * FROM ${process.env.T_1} WHERE ${process.env.T_2} > ${id}`,
     (err, res) => {
