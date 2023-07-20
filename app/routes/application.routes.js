@@ -14,6 +14,9 @@ const Checksheet = require("../controllers/checksheet/checksheet.controllers");
 const FileUpload = require("../controllers/fileUpload/fileUpload.controllers")
 const PdfLabel = require("../controllers/label/pdfLabel.controllers")
 const BlankLabel = require("../controllers/label/blankLabel.controllers")
+const FinishedProduct = require("../controllers/production/finishedProduct.controllers")
+const Dump = require("../controllers/pallet/palletDump.controllers")
+const RecentPallets = require("../controllers/pallet/recentPallets.controllers")
 
 // const { boxLabel } = require("../controllers/label/oldlabels/box_label.js");
 
@@ -65,6 +68,8 @@ router.get("/pallet/:id", Pallet.findPallet);
 router.put("/pallet/:id", Pallet.update);
 // DELETE A PALLET
 // router.delete("/pallet/:id", Pallet.deletePallet);
+// RETRIEVE PALLEST WITH SIMILAR PRODUCTS
+router.get("/pallets/:id", Pallet.palletsById);
 
 // LABEL ROUTES
 // PRINT PALLET LABEL
@@ -82,23 +87,17 @@ router.get("/check_sheet", Checksheet.printCheckSheet);
 router.post("/upload_pdf", upload.array("files", 10), FileUpload.uploadPdf);
 router.post("/upload_data", upload.array("files", 10), FileUpload.uploadData);
 
-// Get All pallets
-router.get("/pallets", products.findRecentPallets);
-// Get All pallets
-router.get("/pallet_data", products.findPalletData);
-// Retrieve a single product with productId
-router.get("/pallets/:brand", products.findAllPalletsfromBrand);
-// Get single EOL data
-router.get("/eol/:eolid", products.findFinishedProduct);
-// Get All pallets
+// GET PALLET DATA
+router.post("/data/:id", Dump.dumpSqlData);
+
+// PALLET LISTS ROUTES
+router.get("/pallets", RecentPallets.findRecentPallets);
+router.get("/pallet_data", RecentPallets.findPalletData);
 router.get("/latest_pallet_data", products.latestPalletData);
 
-// Create EOL data
-router.post("/eol", products.createFinishedProduct);
-// Dump Sql Pallet data
-router.post("/dump/:palletId", products.dumpSqlData);
-
-// Update FinishedProduct by ID
-router.put("/eol/:eolid", products.updateFinishedProduct);
+// FINISHED PRODUCT ROUTES
+router.get("/finished_product/:id", FinishedProduct.findFinishedProduct);
+router.post("/finished_product", FinishedProduct.createFinishedProduct);
+router.put("/finished_product/:id", FinishedProduct.updateFinishedProduct);
 
 module.exports = router;
