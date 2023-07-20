@@ -39,8 +39,7 @@ FinishedProduct.updateFinishedProductById = (id, finishedProduct, result) => {
 
 FinishedProduct.findFinishedProductById = (id, result) => {
   sql.query(
-    `SELECT * FROM ${process.env.ET} WHERE ${process.env.FP_6}= ?`,
-    [id],
+    `SELECT * FROM ${process.env.ET} WHERE ${process.env.FP_6}="${id}"`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -48,7 +47,6 @@ FinishedProduct.findFinishedProductById = (id, result) => {
         return;
       }
       if (res.length) {
-        console.log("found Finished Product with details: ", res);
         result(null, res);
         return;
       }
