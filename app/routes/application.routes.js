@@ -99,6 +99,6 @@ router.get("/latest_pallet_data", products.latestPalletData);
 // FINISHED PRODUCT ROUTES
 router.get("/finished_product/:id", FinishedProduct.findFinishedProduct);
 router.post("/finished_product", FinishedProduct.createFinishedProduct);
-router.put("/finished_product/:id", FinishedProduct.updateFinishedProduct);
+// router.put("/finished_product/:id", FinishedProduct.updateFinishedProduct);
 
 module.exports = router;
