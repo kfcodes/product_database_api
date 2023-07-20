@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // routers
-const productsRouter = require("./app/routes/product.routes.js");
+const productsRouter = require("./app/routes/application.routes.js");
 // use router
 app.use("/", productsRouter);
 
