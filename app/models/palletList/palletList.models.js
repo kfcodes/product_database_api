@@ -32,20 +32,6 @@ exports.getPackingListData = (result) => {
   );
 };
 
-exports.getCompanyPallets = (id, result) => {
-  sql.query(
-    `SELECT * FROM ${process.env.TSXX}"${id}%"`,
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-      result(null, res);
-    }
-  );
-};
-
 exports.getLatestPallets = (result) => {
   sql.query(`${process.env.GGH}`, (err, res) => {
     if (err) {

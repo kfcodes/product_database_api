@@ -65,3 +65,14 @@ exports.update = (req, res) => {
     }
   );
 };
+
+exports.palletsById = (req, res) => {
+  Pallet.getPalletsWithId(req.params.id, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving pallets",
+      });
+    else res.send(data);
+  });
+};

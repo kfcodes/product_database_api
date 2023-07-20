@@ -69,4 +69,18 @@ Pallet.getAllPallets = (result) => {
   });
 };
 
+Pallet.getPalletsWithId = (id, result) => {
+  sql.query(
+    `SELECT * FROM ${process.env.TSXX}"${id}%"`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      result(null, res);
+    }
+  );
+};
+
 module.exports = Pallet;
