@@ -16,7 +16,7 @@ const FileUpload = require("../controllers/fileUpload/fileUpload.controllers")
 const PdfLabel = require("../controllers/label/pdfLabel.controllers")
 const BlankLabel = require("../controllers/label/blankLabel.controllers")
 const FinishedProduct = require("../controllers/production/finishedProduct.controllers")
-const Dump = require("../controllers/pallet/palletDump.controllers")
+const Data = require("../controllers/pallet/palletDump.controllers")
 const RecentPallets = require("../controllers/pallet/recentPallets.controllers")
 
 // const { boxLabel } = require("../controllers/label/oldlabels/box_label.js");
@@ -89,7 +89,7 @@ router.post("/upload_pdf", upload.array("files", 10), FileUpload.uploadPdf);
 router.post("/upload_data", upload.array("files", 10), FileUpload.uploadData);
 
 // GET PALLET DATA
-router.post("/data/:id", Dump.dumpSqlData);
+router.post("/data/:id", Data.getData);
 
 // PALLET LISTS ROUTES
 router.get("/pallets", RecentPallets.findRecentPallets);
