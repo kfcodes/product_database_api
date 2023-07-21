@@ -1,4 +1,4 @@
-const c = require("./compilePdf");
+const compile = require("./compilePdf");
 const { default: puppeteer } = require("puppeteer");
 
 const list = {
@@ -11,11 +11,11 @@ async function CreatePdf(data) {
     list.pallets.push(data);
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    const content = await c.compile("checkSheet", list);
+    const content = await compile("checkSheet", list);
     await page.setContent(content);
     await page.emulateMediaType("screen");
     await page.pdf({
-      path: "/home/m/checkSheet.pdf",
+      path: "./checkSheet.pdf",
       format: "a4",
       printBackground: true,
       landscape: true,
