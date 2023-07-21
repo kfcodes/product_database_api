@@ -1,8 +1,11 @@
 const { exec } = require("child_process");
+require('dotenv').config()
+
+const blankLabel = require("../label/labelStructure/blank_label.zpl")
 
 module.exports.PrintBlankLabel = async function () {
   exec(
-    `lpr -P ${printer} -o raw blankLabel.zpl`,
+    `lpr -P ${process.env.LargeLabelPrinter} -o raw ${blankLabel}`,
     (error, stdout, stderr) => {
       if (error) {
         console.log(`error: ${error.message}`);
