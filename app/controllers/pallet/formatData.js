@@ -10,7 +10,7 @@ const RemoveDuplicatValues = (pallets) => {
         previousPallet = item.PALLET;
       }
     });
-    resolve(data);
+    resolve(pallets);
   });
 };
 
