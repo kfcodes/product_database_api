@@ -1,4 +1,5 @@
-const PalletList = require("../../models/palletList/palletList.models")
+const PalletList = require("../../models/palletList/palletList.models");
+const FormatData = require("./formatData.js");
 
 exports.findRecentPallets = (req, res) => {
   PalletList.getRecentPallets((err, data) => {
@@ -11,14 +12,23 @@ exports.findRecentPallets = (req, res) => {
   });
 };
 
-exports.findPalletData = async(req, res) => {
-  PalletList.getPalletListData((err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving products.",
-      });
-    else 
-    res.send(data);
+exports.findPalletData = async (req, res) => {
+  getPalletData().then((palletdata) => {
+    FormatData(palletdata).then((data) => {
+      res.send(data);
+    });
+  });
+};
+
+const getPalletData = () => {
+  return new Promise((resolve, reject) => {
+    PalletList.getPalletListData((err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "An error occurred while retrieving pallet data",
+        });
+      resolve(data);
+    });
   });
 };
