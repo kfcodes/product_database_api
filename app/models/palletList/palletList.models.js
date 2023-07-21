@@ -86,7 +86,7 @@ exports.getLatestData = (result) => {
   );
 };
 
-exports.getPalletData = (result) => {
+exports.getCheckSheetData = (result) => {
   sql.query(
     `${process.env.YY2}`,
     (err, res) => {
