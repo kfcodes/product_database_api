@@ -18,7 +18,7 @@ exports.getInfo = (id, result) => {
   );
 };
 
-exports.getPackingListData = (result) => {
+exports.getPalletListData = async(result) => {
   sql.query(
     `select ${process.env.P33} from ${process.env.PPP} ${process.env.P44}`,
     (err, res) => {
