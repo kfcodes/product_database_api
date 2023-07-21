@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const products = require("../controllers/old_product.controller.js");
 const upload = require("../controllers/fileUpload/multerPdf.js");
 const ProductDB = require("../controllers/production/dbProduct.controllers");
