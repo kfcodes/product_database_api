@@ -1,18 +1,14 @@
-const { exec } = require("child_process");
+const PrintFunction = require("./printFunction");
 
-module.exports.printLabel = async function (printer,file) {
-  exec(
-    `lpr -P ${printer} -o raw ${file}.zpl`,
-    (error, stdout, stderr) => {
-      if (error) {
-        console.log(`error: ${error.message}`);
-        return;
-      }
-      if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-      }
-    }
-  );
-  console.log("The Label was Printed");
-}
+const printer = process.env.LargeLabelPrinter;
+const settings = process.env.LargeLabelPrinterSettings;
+
+module.exports.printLargeLabel = (file) => {
+  return new Promise((resolve, reject) => {
+    PrintFunction(printer, settings, file).then((res) => {
+      console.log(res);
+      resolve(res);
+    });
+  });
+};
+
