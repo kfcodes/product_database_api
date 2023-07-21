@@ -1,12 +1,10 @@
-const PalletList = require("../../models/palletList/palletList.models")
+const FormatData = require("./formatPalletData");
+const getPalletData = require("./getPalletData");
 
-exports.printCheckSheet = (req, res) => {
-  PalletList.getPalletData((err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "An error occurred while retrieving checksheet data",
-      });
-    res.send(data);
+exports.printCheckSheet = async (req, res) => {
+  getPalletData().then((palletdata) => {
+    FormatData(palletdata).then((checksheetData) => {
+      res.send(checksheetData);
+    });
   });
 };
