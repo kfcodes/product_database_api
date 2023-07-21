@@ -1,20 +1,14 @@
-const { exec } = require("child_process");
-require('dotenv').config()
+const PrintFunction = require("./printFunction");
 
-const blankLabel = require("../label/labelStructure/blank_label.zpl")
+const file = "../label/labelStructure/blank_label.zpl";
+const printer = process.env.LargeLabelPrinter;
+const settings = process.env.LargeLabelPrinterSettings;
 
-module.exports.PrintBlankLabel = async function () {
-  exec(
-    `lpr -P ${process.env.LargeLabelPrinter} -o raw ${blankLabel}`,
-    (error, stdout, stderr) => {
-      if (error) {
-        console.log(`error: ${error.message}`);
-        return;
-      }
-      if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-      }
-    }
-  );
-}
+module.exports.PrintBlankLabel = () => {
+  return new Promise((resolve, reject) => {
+    PrintFunction(printer, settings, file).then((res) => {
+      console.log(res);
+      resolve(res);
+    });
+  });
+};
