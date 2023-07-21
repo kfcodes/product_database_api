@@ -1,4 +1,5 @@
 const Label = require("../../models/label/labeldata.models");
+const labels = require("../../controllers/label/oldlabels/actual_pallet_label_with_data");
 
 exports.printPalletLabel = (req, res) => {
   Label.getPalletLabelData(req.params.id, (err, data) => {
@@ -13,7 +14,7 @@ exports.printPalletLabel = (req, res) => {
         });
       }
     } else 
-      // labels.CreateLabel(data);
+      labels.CreateLabel(data);
     console.log(`Printing label`);
   });
 };
