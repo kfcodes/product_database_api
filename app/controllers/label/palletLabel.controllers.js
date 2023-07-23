@@ -1,4 +1,5 @@
 const LabelData = require("../../models/label/labeldata.models");
+const labels = require("./palletLabel");
 
 exports.printPalletLabel = (req, res) => {
   LabelData.getPalletLabelData(req.params.id, (err, data) => {
