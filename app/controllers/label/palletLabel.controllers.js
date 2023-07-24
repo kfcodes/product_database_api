@@ -1,5 +1,5 @@
 const LabelData = require("../../models/label/labeldata.models");
-const labels = require("./palletLabel");
+const {CreateLabel} = require("./jsFiles/pallet/index");
 
 exports.printPalletLabel = (req, res) => {
   LabelData.getPalletLabelData(req.params.id, (err, data) => {
@@ -14,6 +14,6 @@ exports.printPalletLabel = (req, res) => {
         });
       }
     } else 
-      labels.CreateLabel(data);
+      CreateLabel(data);
   });
 };
