@@ -1,6 +1,7 @@
 const { exec } = require("child_process");
 
-module.exports.SplitPdf = async function (pdf) {
+module.exports.SplitPdf =  function (pdf) {
+  return new Promise((resolve, reject) => {
   exec(
     `mutool poster -x 2 uploads/${pdf} uploads/${pdf}-split.pdf`,
     (error, stdout, stderr) => {
@@ -13,6 +14,8 @@ module.exports.SplitPdf = async function (pdf) {
         return;
       }
     }
-  );
-        return `${pdf}-split`
+  )
+        // return `${pdf}-split`
+      resolve(`${pdf}-split`);
+})
 }
