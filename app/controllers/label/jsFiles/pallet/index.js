@@ -1,12 +1,12 @@
 const newLoop = require("./palletProductsLoop")
+const emptyFile = require("./emptyFile")
+const {printLargeLabel} = require("../../../print/printZplLabel")
 
 module.exports.CreateLabel = async function (results) {
-   newLoop(results);
-   processFile();
-};
-
-function processFile() {
-  // printPalletLabel();
+emptyFile.then(() => {
+   newLoop(results).then(()=>{
+   // printLargeLabel();
   console.log("The label is ready to print");
-}
-
+   })
+   })
+};
