@@ -6,7 +6,6 @@ const settings = process.env.PDFLablelSettings;
 module.exports.printPdfFile = (file) => {
   return new Promise((resolve, reject) => {
     PrintFunction(printer, settings, file).then((res) => {
-      console.log(res);
       resolve(res);
     });
   });
