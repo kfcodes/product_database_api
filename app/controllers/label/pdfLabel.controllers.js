@@ -1,7 +1,7 @@
-const printPdf = require("./pdfSplit");
+const { PrintPdf } = require("../pdf/index");
 
 exports.printPdf = (req, res) => {
-  printPdf.PrintPdf(req.params.id, (err, data) => {
+  PrintPdf(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
