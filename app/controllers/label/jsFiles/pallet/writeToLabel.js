@@ -1,6 +1,6 @@
-const writeToLabel = (pallet) => {
+const writeToLabel = (data) => {
   return new Promise((resolve, reject) => {
-  fs.appendFile("product_pallet.zpl", pallet, (err) => {
+  fs.appendFile(`${process.env.palletFileName}`, data, (err) => {
     if (err) console.log(err);
     else {
       resolve("File written successfully\n");
