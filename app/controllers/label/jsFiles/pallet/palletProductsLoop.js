@@ -1,7 +1,12 @@
-function newLoop(results) {
+const firstProduct = require("./firstProduct")
+
+const newLoop = (results) => {
+  return new Promise((resolve, reject) => {
+
   fs.writeFile("product_pallet.zpl", "", function () {
     console.log("The File was emptied");
   });
+
   results.forEach((element, index, array) => {
     if (index == 0) {
       let data = firstProduct(element);
@@ -31,7 +36,6 @@ function newLoop(results) {
     ) {
       console.log("Fourth location");
       console.log(index);
-      // fourth Location
       let location = 30;
       let data = blankPalletProductData(element, location);
       writeToLabel(data);
@@ -44,7 +48,6 @@ function newLoop(results) {
     ) {
       console.log("Top location");
       console.log(index);
-      // This is the location at the top of the label
       let location = 565;
       let data = blankPalletProductData(element, location);
       writeToLabel(data);
@@ -55,7 +58,6 @@ function newLoop(results) {
       index == 16 ||
       index == 20
     ) {
-      // This is the location for the second product on the label
       let location = 395;
       let data = blankPalletProductData(element, location);
       writeToLabel(data);
@@ -68,6 +70,7 @@ function newLoop(results) {
     if (index == array.length - 1) {
       let data = `^XZ`;
       writeToLabel(data);
+      resolve(console.log(`Appended all data to the label`))
       console.log("Got to the last element in the array");
     } else if (
       index == 2 ||
@@ -83,4 +86,8 @@ function newLoop(results) {
       console.log("Not an end Product");
     }
   });
-}
+  });
+};
+
+module.exports = newLoop;
+
