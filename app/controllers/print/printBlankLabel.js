@@ -7,7 +7,6 @@ const settings = process.env.LargeLabelPrinterSettings;
 module.exports.PrintBlankLabel = () => {
   return new Promise((resolve, reject) => {
     PrintFunction(printer, settings, file).then((res) => {
-      console.log(res);
       resolve(res);
     });
   });
