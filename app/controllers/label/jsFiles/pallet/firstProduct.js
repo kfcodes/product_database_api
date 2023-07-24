@@ -1,3 +1,4 @@
+
 function firstProduct(p) {
   let firstPalletProduct = `
 ^XA^CFD
