@@ -5,7 +5,7 @@ const writeToLabel = (data) => {
     fs.appendFile(`${process.env.palletFileName}`, data, (err) => {
       if (err) console.log(err);
       else {
-        resolve(console.log("File written successfully\n"));
+        resolve(console.log(`Data appended\n`));
       }
     });
   });
