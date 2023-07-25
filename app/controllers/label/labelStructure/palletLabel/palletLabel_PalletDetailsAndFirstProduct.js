@@ -1,4 +1,4 @@
-const structure = () => {
+const GetPalletLabelStructure = () => {
   return new Promise((resolve, reject) => {
   let struct = `
 ^XA^CFD
@@ -27,4 +27,4 @@ const structure = () => {
 });
 };
 
-module.exports = structure;
+module.exports = GetPalletLabelStructure;
