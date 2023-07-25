@@ -3,7 +3,7 @@ const { exec } = require("child_process");
 module.exports.SplitPdf = function (pdf) {
   return new Promise((resolve, reject) => {
     exec(
-      `mutool poster -x 2 uploads/${pdf} uploads/${pdf}-split.pdf`,
+      `${process.env.pdfSplitCommand}${process.env.pdfLocation}${pdf} ${process.env.pdfLocation}${pdf}-split.pdf`,
       (error, stdout, stderr) => {
         if (error) {
           console.log(`error: ${error.message}`);
@@ -15,7 +15,6 @@ module.exports.SplitPdf = function (pdf) {
         }
       }
     );
-    // return `${pdf}-split`
-    resolve(`${pdf}-split`);
+    resolve(`${process.env.pdfLocation}${pdf}-split.pdf`);
   });
 };
