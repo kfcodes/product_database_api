@@ -14,6 +14,6 @@ const firstProduct = (p) => {
 ^FO398,1050^A0,35^FD${p.quantity}^FS
 `;
   return firstPalletProduct;
-}
+};
 
 module.exports = firstProduct;
