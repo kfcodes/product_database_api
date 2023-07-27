@@ -1,5 +1,7 @@
+const {PrintBlankLabel} = require("../../modules/print/printBlankLabel");
+
 exports.printBlankLabels = (req, res) => {
-  PrintBlankLabels((err, data) => {
+  PrintBlankLabel((err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
