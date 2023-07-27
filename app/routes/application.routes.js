@@ -10,7 +10,7 @@ const Po = require("../controllers/po/po.controllers");
 const Pallet = require("../controllers/pallet/pallet.controllers");
 const PalletLabel = require("../controllers/label/palletLabel.controllers");
 const BoxLabel = require("../controllers/label/boxLabel.controllers");
-const Checksheet = require("../controllers/checksheet/checksheet.controllers");
+const {printPickList} = require("../controllers/pickList/pickList.controllers");
 const FileUpload = require("../controllers/upload/fileUpload.controllers")
 const PdfLabel = require("../controllers/label/pdfLabel.controllers")
 const BlankLabel = require("../controllers/label/blankLabel.controllers")
@@ -82,7 +82,7 @@ router.post("/print_blank_labels", BlankLabel.printBlankLabels);
 router.post("/print_pdf/:id", PdfLabel.printPdf);
 
 // PRINT CHECK SHEET
-router.get("/check_sheet", Checksheet.printCheckSheet);
+router.get("/picklist", printPickList);
 
 router.post("/upload_pdf", upload.array("files", 10), FileUpload.uploadPdf);
 router.post("/upload_data", upload.array("files", 10), FileUpload.uploadData);

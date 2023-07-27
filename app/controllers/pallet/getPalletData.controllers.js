@@ -2,7 +2,7 @@ const PalletList = require("../../models/palletList/palletList.models")
 
 const getPalletData = () => {
   return new Promise((resolve, reject) => {
-  PalletList.getCheckSheetData((err, data) => {
+  PalletList.getPickListData((err, data) => {
     if (err)
       res.status(500).send({
         message:

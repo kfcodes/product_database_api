@@ -5,7 +5,7 @@ const path = require("path");
 async function Compile(templateName, data) {
   const filePath = path.join(
     process.cwd(),
-    "./app/controllers/checksheet/templates",
+    "./app/modules/pickList/templates",
     `${templateName}.hbs`
   );
   const html = await fs.readFile(filePath, "utf-8");

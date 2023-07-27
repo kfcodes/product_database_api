@@ -1,34 +1,32 @@
 const compile = require("./compilePdf");
 const { default: puppeteer } = require("puppeteer");
+const { PrintCheckSheet } = require("../print/printCheckSheet");
 
 const list = {
-  companyName: "Pallet Check Sheet",
+  companyName: "test",
   pallets: [],
 };
 
-async function CreatePdf(data) {
+const CreatePdf = async (data) => {
   try {
     list.pallets.push(data);
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    const content = await compile("checkSheet", list);
+    const content = await compile("picklist", list);
     await page.setContent(content);
     await page.emulateMediaType("screen");
     await page.pdf({
-      path: "./checkSheet.pdf",
+      path: `${process.env.PLPATH}`,
       format: "a4",
       printBackground: true,
       landscape: true,
-      margin: {
-          top: 30,
-          bottom: 30,
-          left: 30,
-          right: 30,
-          }
+      margin: { top: 30, bottom: 30, left: 30, right: 30 },
     });
     await browser.close();
+  PrintCheckSheet(`${process.env.PLPATH}`);
   } catch (e) {
     console.log("Error: ", e);
   }
-}
-module.exports.CreatePdf = CreatePdf;
+};
+
+module.exports = CreatePdf;
