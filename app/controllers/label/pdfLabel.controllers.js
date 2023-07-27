@@ -1,4 +1,4 @@
-const { PrintPdf } = require("../pdf/index");
+const { PrintPdf } = require("../../modules/pdf/index");
 
 exports.printPdf = (req, res) => {
   PrintPdf(req.params.id, (err, data) => {
