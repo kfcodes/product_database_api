@@ -1,5 +1,5 @@
 const PalletList = require("../../models/palletList/palletList.models");
-const FormatData = require("../../modules/pallet/formatData");
+const FormatData = require("../../modules/palletData/formatData");
 
 exports.findRecentPallets = (req, res) => {
   PalletList.getRecentPallets((err, data) => {
