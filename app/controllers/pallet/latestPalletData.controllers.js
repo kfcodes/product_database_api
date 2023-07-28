@@ -22,11 +22,19 @@ const getPalletProductsOnPallet = (id) => {
           message:
             err.message || "Some error occurred while retrieving products.",
         });
-      else 
-      formatData.formatPalletProducts(products).then((palletProducts) => {
-      resolve(palletProducts);
-      });
+      else
+        formatData.formatPalletProducts(products).then((palletProducts) => {
+          resolve(palletProducts);
+        });
     });
   });
 };
 
+exports.latestPalletData = async (req, res) => {
+  getLatestPalletsFromDB().then((latestpallets) => {
+    loopPalletsGetProducts(latestpallets).then((pallets) => {
+      res.send(pallets)
+      console.log(pallets);
+    });
+  });
+};
