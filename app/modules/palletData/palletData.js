@@ -16,3 +16,15 @@ exports.formatPalletProducts = (products) => {
   });
 };
 
+exports.formatPalletData = async (pallet, products) => {
+  return new Promise((resolve, reject) => {
+        const pallet_data = {
+          height: pallet.height,
+          weight: pallet.weight,
+          pallet: pallet.pallet_id,
+          type: pallet.pallet_name,
+        };
+        pallet_data.products = products;
+    resolve(pallet_data);
+})
+};
