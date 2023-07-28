@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const products = require("../controllers/old_product.controller.js");
+const ls = require("../controllers/pallet/latestPalletData.controllers");
 const upload = require("../modules/upload/multerPdf.js");
 const ProductDB = require("../controllers/production/dbProduct.controllers");
 const Documentation = require("../controllers/production/productionDocumentation.controllers");
@@ -23,7 +24,7 @@ const RecentPallets = require("../controllers/pallet/recentPallets.controllers")
 // PRODUCT DB ROUTES
 // RETRIEVE ALL PRODUCT
 router.get("/products", ProductDB.findAll);
-// RETRIEVE ALL PRODUCTS
+// RETRIEVE ALL proDUCTS
 router.get("/finished_products", ProductDB.findFinishedProducts);
 // RETRIEVE A SINGLE PRODUCT WITH PRODUCTID
 router.get("/products/:productId", ProductDB.findOne);
@@ -94,6 +95,7 @@ router.post("/data/:id", Data.getData);
 router.get("/pallets", RecentPallets.findRecentPallets);
 router.get("/pallet_data", RecentPallets.findPalletData);
 router.get("/latest_pallet_data", products.latestPalletData);
+router.get("/ls", ls.latestPalletData);
 
 // FINISHED PRODUCT ROUTES
 router.get("/finished_product/:id", FinishedProduct.findFinishedProduct);
