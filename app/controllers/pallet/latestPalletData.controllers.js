@@ -1,5 +1,5 @@
 const PalletList = require("../../models/palletList/palletList.models");
-const FormatPalletProducts = require("../../modules/palletData/palletData");
+const formatData = require("../../modules/palletData/palletData");
 
 const getLatestPalletsFromDB = () => {
   return new Promise((resolve, reject) => {
@@ -14,16 +14,16 @@ const getLatestPalletsFromDB = () => {
   });
 };
 
-const getPalletProducts = (id) => {
+const getPalletProductsOnPallet = (id) => {
   return new Promise((resolve, reject) => {
-    PalletList.getPalletProducts(id, (err, data) => {
+    PalletList.getPalletProducts(id, (err, products) => {
       if (err)
         res.status(500).send({
           message:
             err.message || "Some error occurred while retrieving products.",
         });
       else 
-      FormatPalletProducts(data).then((palletProducts) => {
+      formatData.formatPalletProducts(products).then((palletProducts) => {
       resolve(palletProducts);
       });
     });
