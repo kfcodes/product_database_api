@@ -14,7 +14,7 @@ const getLatestPalletsFromDB = () => {
   });
 };
 
-const getPalletProductsOnPallet = (id) => {
+const getProductsOnPallet = (id) => {
   return new Promise((resolve, reject) => {
     PalletList.getPalletProducts(id, (err, products) => {
       if (err)
@@ -31,10 +31,7 @@ const getPalletProductsOnPallet = (id) => {
 };
 
 exports.latestPalletData = async (req, res) => {
-  getLatestPalletsFromDB().then((latestpallets) => {
-    loopPalletsGetProducts(latestpallets).then((pallets) => {
-      res.send(pallets)
-      console.log(pallets);
-    });
-  });
+const palletDetails = await getLatestPalletsFromDB();
+const palletsWithProducts = await loopPalletsAndGetProducts(palletDetails, pallets_array = [] );
+      res.send(palletsWithProducts)
 };
