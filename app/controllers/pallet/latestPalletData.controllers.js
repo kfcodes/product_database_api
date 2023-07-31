@@ -2,20 +2,20 @@ const PalletList = require("../../models/palletList/palletList.models");
 const formatData = require("../../modules/palletData/palletData");
 
 exports.getLatestPalletsFromDB = () => {
-  return new Promise((resolve, reject) => {
-    PalletList.getLatestPallets((err, response) => {
+  return new Promise((resolve) => {
+    PalletList.getLatestPallets((err, pallets) => {
       if (err)
         res.status(500).send({
           message:
             err.message || "Some error occurred while retrieving products.",
         });
-      resolve(response);
+      else resolve(pallets);
     });
   });
 };
 
 exports.getProductsOnPallet = (id) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     PalletList.getPalletProducts(id, (err, products) => {
       if (err)
         res.status(500).send({
@@ -31,30 +31,7 @@ exports.getProductsOnPallet = (id) => {
 };
 
 exports.latestPalletData = async (req, res) => {
-  const pallets_array = [];
-  const palletDetails = await this.getLatestPalletsFromDB();
-  const palletsWithProducts = loopPalletsAndGetProducts(
-    palletDetails,
-    pallets_array
-  );
-
-  console.log(await palletsWithProducts);
-
-};
-
-const loopPalletsAndGetProducts = async (latestpallets, pallets_array) => {
-  return new Promise((resolve, reject) => {
-    for (let i = 0, p = Promise.resolve(); i < latestpallets.length; i++) {
-      p = p
-        .then(() =>
-          formatData.formatPalletAndProductsData(
-            latestpallets[i].pallet_id,
-            latestpallets[i]
-          )
-        )
-        .then((res) => {
-          pallets_array.push(res);
-        });
-    }
-  }).then(() => {});
+  this.getLatestPalletsFromDB()
+    .then((pallets) => formatData.formatPalletAndProductsData(pallets))
+    .then((latestPalletData) => console.table(latestPalletData));
 };
