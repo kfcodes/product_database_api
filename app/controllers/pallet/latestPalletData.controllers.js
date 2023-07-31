@@ -1,7 +1,7 @@
 const PalletList = require("../../models/palletList/palletList.models");
 const formatData = require("../../modules/palletData/palletData");
 
-const getLatestPalletsFromDB = () => {
+exports.getLatestPalletsFromDB = () => {
   return new Promise((resolve, reject) => {
     PalletList.getLatestPallets((err, response) => {
       if (err)
@@ -14,7 +14,7 @@ const getLatestPalletsFromDB = () => {
   });
 };
 
-const getProductsOnPallet = (id) => {
+exports.getProductsOnPallet = (id) => {
   return new Promise((resolve, reject) => {
     PalletList.getPalletProducts(id, (err, products) => {
       if (err)
@@ -28,10 +28,4 @@ const getProductsOnPallet = (id) => {
         });
     });
   });
-};
-
-exports.latestPalletData = async (req, res) => {
-const palletDetails = await getLatestPalletsFromDB();
-const palletsWithProducts = await loopPalletsAndGetProducts(palletDetails, pallets_array = [] );
-      res.send(palletsWithProducts)
 };
