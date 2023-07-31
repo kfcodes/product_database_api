@@ -44,7 +44,7 @@ exports.getLatestPallets = (result) => {
   });
 };
 
-exports.getLatestPalletProducts = async (id, result) => {
+exports.getPalletProducts = async (id, result) => {
   sql.query(
     `${process.env.DDT1}${id}${process.env.DDT2}`,
     (err, res) => {
