@@ -1,3 +1,7 @@
+const {
+  getProductsOnPallet,
+} = require("../../controllers/pallet/latestPalletData.controllers");
+
 exports.formatPalletProducts = (products) => {
   return new Promise((resolve, reject) => {
     const palletProducts = [];
