@@ -31,14 +31,21 @@ exports.formatPalletData = async (pallet, products) => {
   });
 };
 
-exports.formatPalletAndProductsData = async (id, pallet) => {
+exports.formatPalletAndProductsData = async (latestpallets) => {
   return new Promise((resolve, reject) => {
-    getProductsOnPallet.getProductsOnPallet(id).then((productsOnPallet) => {
-      this.formatPalletData(pallet, productsOnPallet).then(
-        (fullPalletDetails) => {
-          resolve(fullPalletDetails);
-        }
-      );
-    });
+    const pallets_array = [];
+    for (let i = 0; i < latestpallets.length; i++) {
+      getProductsOnPallet
+        .getProductsOnPallet(latestpallets[i].pallet_id)
+        .then((productsOnPallet) => {
+          this.formatPalletData(latestpallets[i], productsOnPallet)
+            .then((fullPalletDetails) => {
+              pallets_array.push(fullPalletDetails);
+            })
+            .then(() => {
+              if (i == latestpallets.length - 1) resolve(pallets_array);
+            });
+        });
+    }
   });
 };
