@@ -33,5 +33,5 @@ exports.getProductsOnPallet = (id) => {
 exports.latestPalletData = async (req, res) => {
   this.getLatestPalletsFromDB()
     .then((pallets) => formatData.formatPalletAndProductsData(pallets))
-    .then((latestPalletData) => console.table(latestPalletData));
+    .then((latestPalletData) => res.send(latestPalletData));
 };

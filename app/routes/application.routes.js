@@ -94,8 +94,7 @@ router.post("/data/:id", Data.getData);
 // PALLET LISTS ROUTES
 router.get("/pallets", RecentPallets.findRecentPallets);
 router.get("/pallet_data", RecentPallets.findPalletData);
-router.get("/latest_pallet_data", products.latestPalletData);
-router.get("/ls", ls.latestPalletData);
+router.get("/latest_pallet_data", ls.latestPalletData);
 
 // FINISHED PRODUCT ROUTES
 router.get("/finished_product/:id", FinishedProduct.findFinishedProduct);
