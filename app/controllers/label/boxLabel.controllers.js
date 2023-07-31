@@ -1,5 +1,4 @@
 const Label = require("../../models/label/labeldata.models");
-const boxLabel = require("./boxLabel");
 
 exports.printBoxLabel = (req, res) => {
   Label.boxLabel(req.params.id, (err, data) => {
