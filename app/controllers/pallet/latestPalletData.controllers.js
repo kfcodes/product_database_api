@@ -33,19 +33,28 @@ exports.getProductsOnPallet = (id) => {
 exports.latestPalletData = async (req, res) => {
   const pallets_array = [];
   const palletDetails = await this.getLatestPalletsFromDB();
+  const palletsWithProducts = loopPalletsAndGetProducts(
+    palletDetails,
+    pallets_array
+  );
+
+  console.log(await palletsWithProducts);
+
 };
 
 const loopPalletsAndGetProducts = async (latestpallets, pallets_array) => {
   return new Promise((resolve, reject) => {
-    for (let i = 0; i < latestpallets.length; i++) {
-      formatData
-        .formatPalletAndProductsData(latestpallets[i].pallet_id,latestpallets[i])
-        .then((FormattedPalletDatta) => {
-          pallets_array.push(FormattedPalletDatta);
-        })
+    for (let i = 0, p = Promise.resolve(); i < latestpallets.length; i++) {
+      p = p
+        .then(() =>
+          formatData.formatPalletAndProductsData(
+            latestpallets[i].pallet_id,
+            latestpallets[i]
+          )
+        )
+        .then((res) => {
+          pallets_array.push(res);
+        });
     }
-  })
-        .then(() => {
-    resolve(pallets_array)
-  })
+  }).then(() => {});
 };
