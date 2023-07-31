@@ -1,6 +1,4 @@
-const {
-  getProductsOnPallet,
-} = require("../../controllers/pallet/latestPalletData.controllers");
+const getProductsOnPallet = require("../../controllers/pallet/latestPalletData.controllers");
 
 exports.formatPalletProducts = (products) => {
   return new Promise((resolve, reject) => {
@@ -30,5 +28,17 @@ exports.formatPalletData = async (pallet, products) => {
     };
     pallet_data.products = products;
     resolve(pallet_data);
+  });
+};
+
+exports.formatPalletAndProductsData = async (id, pallet) => {
+  return new Promise((resolve, reject) => {
+    getProductsOnPallet.getProductsOnPallet(id).then((productsOnPallet) => {
+      this.formatPalletData(pallet, productsOnPallet).then(
+        (fullPalletDetails) => {
+          resolve(fullPalletDetails);
+        }
+      );
+    });
   });
 };
