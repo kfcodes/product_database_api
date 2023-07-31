@@ -29,3 +29,9 @@ exports.getProductsOnPallet = (id) => {
     });
   });
 };
+
+exports.latestPalletData = async (req, res) => {
+  const palletDetails = await this.getLatestPalletsFromDB();
+  console.log(palletDetails);
+};
+
