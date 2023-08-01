@@ -1,8 +1,8 @@
 const AddProducts = require("./palletProductsLoop");
-const CreateEmptyLabelFile = require("./emptyFile");
+const CreateEmptyLabelFile = require("../../../../modules/file/createEmptyFile");
 const {PrintLargeLabel} = require("../../../../modules/print/printZplLabel");
-const writeToLabel = require("./writeToLabel");
-const GetPalletLabelStructure = require("../../labelStructure/palletLabel/palletLabel_PalletDetailsAndFirstProduct");
+const writeToLabel = require("../../../file/writeToLabel");
+const GetPalletLabelStructure = require("../../outline/palletLabel/palletLabel_PalletDetailsAndFirstProduct");
 
 module.exports.CreateLabel = async function (results) {
   CreateEmptyLabelFile().then(() => {

@@ -1,6 +1,6 @@
 const PrintFunction = require("./printFunction");
 
-const file = "../../controllers/label/labelStructure/blankLabels.zpl"
+const file = "../../controllers/label/outline/multiple_internal_labels.zpl"
 const printer = process.env.LargeLabelPrinter;
 const settings = process.env.LargeLabelPrinterSettings;
 
