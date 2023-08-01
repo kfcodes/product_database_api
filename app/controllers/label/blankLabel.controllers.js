@@ -1,4 +1,4 @@
-const {PrintBlankLabel} = require("../../modules/print/printBlankLabel");
+const {PrintBlankLabel} = require("../../modules/print/blanklabel");
 
 exports.printBlankLabels = (req, res) => {
   PrintBlankLabel((err, data) => {

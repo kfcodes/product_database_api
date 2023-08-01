@@ -1,6 +1,6 @@
 const compile = require("./compilePdf");
 const { default: puppeteer } = require("puppeteer");
-const { PrintCheckSheet } = require("../print/printCheckSheet");
+const { PrintPickList } = require("../print/picklist");
 
 const list = {
   companyName: "test",
@@ -23,7 +23,7 @@ const CreatePdf = async (data) => {
       margin: { top: 30, bottom: 30, left: 30, right: 30 },
     });
     await browser.close();
-  PrintCheckSheet(`${process.env.PLPATH}`);
+  PrintPickList(`${process.env.PLPATH}`);
   } catch (e) {
     console.log("Error: ", e);
   }

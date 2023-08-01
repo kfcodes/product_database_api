@@ -1,6 +1,6 @@
 const AddProducts = require("./palletProductsLoop");
 const CreateEmptyLabelFile = require("../../../../modules/file/createEmptyFile");
-const { PrintLargeLabel } = require("../../../../modules/print/printZplLabel");
+const { PrintLargeLabel } = require("../../../../modules/print/printFile");
 const writeToLabel = require("../../../file/writeToLabel");
 const GetPalletLabelStructure = require("../../outline/palletLabel/palletLabel_PalletDetailsAndFirstProduct");
 
