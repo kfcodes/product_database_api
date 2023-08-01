@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const products = require("../controllers/old_product.controller.js");
 const ls = require("../controllers/pallet/latestPalletData.controllers");
 const upload = require("../modules/file/uploadFile.js");
 const ProductDB = require("../controllers/production/dbProduct.controllers");
