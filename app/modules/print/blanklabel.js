@@ -4,7 +4,7 @@ const file = "app/modules/label/outline/multiple_internal_labels.zpl";
 const printer = process.env.LargeLabelPrinter;
 const settings = process.env.LargeLabelPrinterSettings;
 
-module.exports.PrintBlankLabel = () => {
+module.exports.PrintInternalLabels = () => {
   return new Promise((resolve, reject) => {
     PrintFunction(printer, settings, file).then((res) => {
       resolve(res);

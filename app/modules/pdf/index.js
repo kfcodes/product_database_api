@@ -1,11 +1,11 @@
-const { SplitPdf } = require("./splitPdf.js");
+const { modifyPDF } = require("./modifyPdf.js");
 const { printPdfFile } = require("../print/printPdf");
 
-module.exports.PrintPdf = async function (id, result) {
+module.exports.ModifyPrintPdf = async function (file, result) {
   return new Promise((resolve, reject) => {
-    SplitPdf(id).then((file) => {
-      printPdfFile(file).then((res) => {
-        resolve(res);
+    modifyPDF(file).then((modifiedFile) => {
+      printPdfFile(modifiedFile).then((response) => {
+        resolve(response);
       });
     });
   });

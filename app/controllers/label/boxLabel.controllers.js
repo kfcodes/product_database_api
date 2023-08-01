@@ -12,7 +12,6 @@ exports.printBoxLabel = (req, res) => {
           message: `Error retrieving data for ${req.params.id}`,
         });
       }
-    }
-    else boxLabel.boxLabel(data, req.body);
+    } else boxLabel.boxLabel(data, req.body);
   });
 };

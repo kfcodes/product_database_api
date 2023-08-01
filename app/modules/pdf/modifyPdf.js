@@ -1,9 +1,9 @@
 const { exec } = require("child_process");
 
-module.exports.SplitPdf = function (pdf) {
+module.exports.modifyPDF = function (pdf) {
   return new Promise((resolve, reject) => {
     exec(
-      `${process.env.pdfSplitCommand}${process.env.pdfLocation}${pdf} ${process.env.pdfLocation}${pdf}-split.pdf`,
+      `${process.env.pdfSplitCommand}${process.env.pdfLocation}${pdf} ${process.env.pdfLocation}${pdf}-modified.pdf`,
       (error, stdout, stderr) => {
         if (error) {
           console.log(`error: ${error.message}`);
@@ -15,6 +15,6 @@ module.exports.SplitPdf = function (pdf) {
         }
       }
     );
-    resolve(`${process.env.pdfLocation}${pdf}-split.pdf`);
+    resolve(`${process.env.pdfLocation}${pdf}-modified.pdf`);
   });
 };

@@ -1,7 +1,7 @@
-const { PrintPdf } = require("../../modules/pdf/index");
+const { ModifyPrintPdf } = require("../../modules/pdf/index");
 
 exports.printPdf = (req, res) => {
-  PrintPdf(req.params.id, (err, data) => {
+  ModifyPrintPdf(req.params.id, (err) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({

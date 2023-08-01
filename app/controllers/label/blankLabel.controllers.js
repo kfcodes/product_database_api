@@ -1,7 +1,7 @@
-const {PrintBlankLabel} = require("../../modules/print/blanklabel");
+const { PrintInternalLabels } = require("../../modules/print/blanklabel");
 
 exports.printBlankLabels = (req, res) => {
-  PrintBlankLabel((err, data) => {
+  PrintInternalLabels((err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({

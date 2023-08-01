@@ -1,8 +1,10 @@
-const LabelData = require("../../models/label/labeldata.models");
-const {CreateLabel} = require("../../modules/label/jsFiles/pallet/index");
+const { getPalletLabelData } = require("../../models/label/labeldata.models");
+const {
+  PrintPalletLabel,
+} = require("../../modules/label/jsFiles/pallet/index");
 
 exports.printPalletLabel = (req, res) => {
-  LabelData.getPalletLabelData(req.params.id, (err, data) => {
+  getPalletLabelData(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -13,7 +15,6 @@ exports.printPalletLabel = (req, res) => {
           message: `Error finding data for ${req.params.id}`,
         });
       }
-    } else 
-      CreateLabel(data);
+    } else PrintPalletLabel(data);
   });
 };
