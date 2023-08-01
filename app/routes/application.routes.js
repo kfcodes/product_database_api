@@ -7,7 +7,6 @@ const ProductDB = require("../controllers/production/dbProduct.controllers");
 const Documentation = require("../controllers/production/productionDocumentation.controllers");
 const Ps = require("../controllers/production/productionSchedule.controllers");
 const PalletItem = require("../controllers/pallet/palletItem.controllers");
-const Po = require("../controllers/po/po.controllers");
 const Pallet = require("../controllers/pallet/pallet.controllers");
 const PalletLabel = require("../controllers/label/palletLabel.controllers");
 const BoxLabel = require("../controllers/label/boxLabel.controllers");
@@ -54,9 +53,6 @@ router.post("/pallet_item/:id", PalletItem.createPalletItem);
 router.put("/pallet_item/:id", PalletItem.updatePalletItem);
 // DELETE A PALLET ITEM
 router.delete("/pallet_item/:id", PalletItem.deletePalletItem);
-
-// CREATE A PO
-router.post("/po", Po.createPo);
 
 // PALLET ROUTES
 // CREATE A NEW PALLET
