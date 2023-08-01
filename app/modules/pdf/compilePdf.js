@@ -10,6 +10,6 @@ async function Compile(templateName, data) {
   );
   const html = await fs.readFile(filePath, "utf-8");
   return hbs.compile(html)(data);
-};
+}
 
 module.exports = Compile;

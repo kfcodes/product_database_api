@@ -10,4 +10,3 @@ module.exports.PrintLargeLabel = (file) => {
     });
   });
 };
-

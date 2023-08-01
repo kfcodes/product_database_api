@@ -3,7 +3,8 @@ const fs = require("fs");
 module.exports.CreateEmptyFile = async function () {
   fs.writeFile("label.zpl", "", function () {
     console.log("Empty File created");
-  })}
+  });
+};
 
 module.exports.AppendOutline = async function (labelType) {
   fs.appendFile(`label.zpl`, labelType, (err) => {
@@ -12,7 +13,7 @@ module.exports.AppendOutline = async function (labelType) {
       console.log("Outline written successfully\n");
     }
   });
-}
+};
 
 module.exports.AppendData = async function (data) {
   fs.appendFile(`label.zpl`, data, (err) => {
@@ -21,7 +22,7 @@ module.exports.AppendData = async function (data) {
       console.log("Data written successfully\n");
     }
   });
-}
+};
 
 module.exports.EndLabel = async function () {
   fs.appendFile(`label.zpl`, `${end}`, (err) => {
@@ -30,4 +31,4 @@ module.exports.EndLabel = async function () {
       console.log("Label end written\n");
     }
   });
-}
+};
