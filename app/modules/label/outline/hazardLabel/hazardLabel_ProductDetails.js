@@ -1,7 +1,9 @@
+const hazardProductDetails = () => {
+  return new Promise((resolve, reject) => {
+    let struct = `
 ^XA^CFD
 ^FWR
 ^LH20,20
-
 ^FX BOX AND LINES FOR THE PRODUCT INFO
 ^FO460,10^GB320,1170,5^FS
 ^FX LINES FOR PRODUCT INFO
@@ -11,10 +13,15 @@
 ^FO565,10^GB1,1170,1^FS
 ^FO515,10^GB1,1170,1^FS
 ^FO460,300^GB260,5,5^FS
-
 ^FO725,400^A0,30^FDPRODUCT INFORMATION^FS
 ^FO675,25^A0,30^FDPRODUCT CODE^FS
 ^FO625,25^A0,30^FDPRODUCT NAME^FS
 ^FO575,25^A0,30^FDBATCH / LOT CODE^FS
 ^FO525,25^A0,30^FDBBE^FS
 ^FO475,25^A0,30^FDFILL DATE^FS
+`;
+    resolve(struct);
+  });
+};
+
+module.exports = hazardProductDetails;
