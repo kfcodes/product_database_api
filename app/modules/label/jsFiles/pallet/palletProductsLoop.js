@@ -1,6 +1,6 @@
 const firstProduct = require("./firstProduct");
 const item = require("./palletProduct");
-const writeToLabel = require("./writeToLabel");
+const writeToLabel = require("../../../../modules/file/writeToLabel");
 
 const newLoop = (results) => {
   return new Promise((resolve, reject) => {
@@ -65,10 +65,10 @@ const newLoop = (results) => {
       }
       if (index == array.length - 1) {
         let data = `^XZ`;
-        writeToLabel(data).then(()=>{
-        console.log("Got to the last element in the array");
-        resolve(`${process.env.palletFileName}`);
-        })
+        writeToLabel(data).then(() => {
+          console.log("Got to the last element in the array");
+          resolve(`${process.env.palletFileName}`);
+        });
       } else if (
         index == 2 ||
         index == 6 ||
