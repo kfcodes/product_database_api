@@ -1,6 +1,5 @@
 const ProductionSchedule = require("../../models/productionSchedule/productionSchedule.models.js");
 
-// Retrieve All Production Data
 exports.findAllProduction = (req, res) => {
   ProductionSchedule.getAllProduction((err, data) => {
     if (err)
@@ -13,7 +12,6 @@ exports.findAllProduction = (req, res) => {
   });
 };
 
-// Retrieve Current Production Data
 exports.findCurrentProduction = (req, res) => {
   ProductionSchedule.getCurrentProduction((err, data) => {
     if (err)

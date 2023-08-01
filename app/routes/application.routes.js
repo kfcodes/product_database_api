@@ -12,12 +12,10 @@ const BoxLabel = require("../controllers/label/boxLabel.controllers");
 const {printPickList} = require("../controllers/pickList/pickList.controllers");
 const FileUpload = require("../controllers/upload/fileUpload.controllers")
 const PdfLabel = require("../controllers/label/pdfLabel.controllers")
-const BlankLabel = require("../controllers/label/blankLabel.controllers")
+const BlankLabel = require("../controllers/label/internalLabel.controllers")
 const FinishedProduct = require("../controllers/production/finishedProduct.controllers")
 const Data = require("../controllers/pallet/palletDump.controllers")
 const RecentPallets = require("../controllers/pallet/recentPallets.controllers")
-
-// const { boxLabel } = require("../controllers/label/oldlabels/box_label.js");
 
 // PRODUCT DB ROUTES
 // RETRIEVE ALL PRODUCT
@@ -25,15 +23,15 @@ router.get("/products", ProductDB.findAll);
 // RETRIEVE ALL proDUCTS
 router.get("/finished_products", ProductDB.findFinishedProducts);
 // RETRIEVE A SINGLE PRODUCT WITH PRODUCTID
-router.get("/products/:productId", ProductDB.findOne);
+router.get("/products/:id", ProductDB.findOne);
 
 // PRODUCTION DOCUMENTATION ROUTES
 // RETRIEVE ALL BRANDS
 router.get("/brands", Documentation.findAllBrands);
 // RETRIEVE ALL PRODUCTS FROM SPECIFIC BRAND
-router.get("/brandproducts/:id", Documentation.productsByBrand);
+router.get("/brandproducts/:id", Documentation.brandProducts);
 // RETRIEVE A SINGLE PRODUCT WITH PRODUCTID
-router.get("/components/:id", Documentation.productComponents);
+router.get("/components/:id", Documentation.productDocumentation);
 
 // PRODUCTION SCHEDULE
 // CURRENT PRODUCTION
