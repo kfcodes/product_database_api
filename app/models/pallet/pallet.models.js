@@ -1,5 +1,5 @@
 const sql = require("../db/dbConnect.js");
-const Pallet = require("./pallet.constructor.js")
+const Pallet = require("./pallet.constructor.js");
 
 Pallet.createNewPallet = (e, result) => {
   sql.query(
@@ -24,7 +24,9 @@ Pallet.createNewPallet = (e, result) => {
 
 Pallet.updatePalletById = (id, pallet, result) => {
   sql.query(
-    `UPDATE ${process.env.PAI} SET ? WHERE ${process.env.PALLET_1}= "${id}"`, pallet, (err, res) => {
+    `UPDATE ${process.env.PAI} SET ? WHERE ${process.env.PALLET_1}= "${id}"`,
+    pallet,
+    (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
@@ -42,7 +44,8 @@ Pallet.updatePalletById = (id, pallet, result) => {
 
 Pallet.findPalletById = (id, result) => {
   sql.query(
-    `SELECT * FROM ${process.env.FPAI} WHERE ${process.env.PALLET_1}= "${id}"`, (err, res) => {
+    `SELECT * FROM ${process.env.FPAI} WHERE ${process.env.PALLET_1}= "${id}"`,
+    (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -70,17 +73,14 @@ Pallet.getAllPallets = (result) => {
 };
 
 Pallet.getPalletsWithId = (id, result) => {
-  sql.query(
-    `SELECT * FROM ${process.env.TSXX}"${id}%"`,
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-      result(null, res);
+  sql.query(`SELECT * FROM ${process.env.TSXX}"${id}%"`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
     }
-  );
+    result(null, res);
+  });
 };
 
 module.exports = Pallet;

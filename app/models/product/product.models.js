@@ -1,5 +1,7 @@
 const sql = require("../db/dbConnect.js");
 const Product = require("./product.constructor.js");
+require("dotenv").config();
+
 
 Product.getAll = (result) => {
   sql.query(
@@ -18,21 +20,16 @@ Product.getAll = (result) => {
 
 
 Product.findById = (pid, result) => {
-  sql.query(
-    `SELECT * FROM ${process.env.PI} WHERE ${process.env.1} = ?`,
-    [pid],
+  sql.query( 
+    `SELECT * FROM ${process.env.PI} WHERE ${process.env.1}="${pid}"`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
-        result(err, null);
+        result(null, err);
         return;
       }
-      if (res.length) {
-        console.log("found product: ", res[0]);
-        result(null, res[0]);
-        return;
-      }
-      result({ kind: "not_found" }, null);
+      console.log("product: ", res);
+      result(null, res);
     }
   );
 };
@@ -44,7 +41,7 @@ Product.getAllBrands = (result) => {
       result(null, err);
       return;
     }
-    console.log("Have brands: ", res);
+    console.log("BRANDS: ", res);
     result(null, res);
   });
 };
@@ -63,10 +60,10 @@ Product.productsFromBrand = (bid, result) => {
     }
   );
 };
+
 Product.findBomById = (id, result) => {
   sql.query(
-    `SELECT * FROM ${process.env.BCD} WHERE ${Pprocess.env.PRODUCT_5}= ?`,
-    [id],
+    `SELECT * FROM ${process.env.BCD} WHERE ${Pprocess.env.PRODUCT_5}= ${id}`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);

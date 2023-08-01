@@ -1,15 +1,19 @@
 const sql = require("../db/dbConnect");
-require('dotenv').config();
-const FinishedProduct = require("./finishedProduct.constructor.js")
+require("dotenv").config();
+const FinishedProduct = require("./finishedProduct.constructor.js");
 
 FinishedProduct.createNewFinishedProduct = (finishedProduct, result) => {
-  sql.query(`INSERT INTO ${process.env.ET} SET ?`, finishedProduct, (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(err, null);
-      return;
+  sql.query(
+    `INSERT INTO ${process.env.ET} SET ?`,
+    finishedProduct,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
     }
-  });
+  );
 };
 
 FinishedProduct.updateFinishedProductById = (id, finishedProduct, result) => {

@@ -18,7 +18,7 @@ exports.getInfo = (id, result) => {
   );
 };
 
-exports.getPalletListData = async(result) => {
+exports.getPalletListData = async (result) => {
   sql.query(
     `select ${process.env.P33} from ${process.env.PPP} ${process.env.P44}`,
     (err, res) => {
@@ -45,57 +45,45 @@ exports.getLatestPallets = (result) => {
 };
 
 exports.getPalletProducts = async (id, result) => {
-  sql.query(
-    `${process.env.DDT1}${id}${process.env.DDT2}`,
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-      result(null, res);
+  sql.query(`${process.env.DDT1}${id}${process.env.DDT2}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
     }
-  );
+    result(null, res);
+  });
 };
 
 exports.getRecentPallets = (result) => {
-  sql.query(
-    `${process.env.HH}`,
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-      result(null, res);
+  sql.query(`${process.env.HH}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
     }
-  );
+    result(null, res);
+  });
 };
 
 exports.getLatestData = (result) => {
-  sql.query(
-    `${process.env.YY}`,
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-      result(null, res);
+  sql.query(`${process.env.YY}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
     }
-  );
+    result(null, res);
+  });
 };
 
 exports.getPickListData = (result) => {
-  sql.query(
-    `${process.env.YY2}`,
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-      result(null, res);
+  sql.query(`${process.env.YY2}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
     }
-  );
+    result(null, res);
+  });
 };

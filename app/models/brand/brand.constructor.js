@@ -1,4 +1,3 @@
-
 // constructor;
 const Brand = function (brand) {
   this.prefix = brand.prefix;

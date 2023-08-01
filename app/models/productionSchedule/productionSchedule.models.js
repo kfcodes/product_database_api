@@ -24,4 +24,3 @@ exports.getAllProduction = (result) => {
     result(null, res);
   });
 };
-

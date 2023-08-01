@@ -1,5 +1,5 @@
 const sql = require("./db.js");
-const {Brand} = require("./brand.constructor.js");
+const { Brand } = require("./brand.constructor.js");
 
 Brand.create = (newBrand, result) => {
   sql.query("INSERT INTO brand SET ?", newBrand, (err, res) => {
