@@ -1,10 +1,10 @@
 const endLabel = () => {
   return new Promise((resolve, reject) => {
-  let end= `
+    let end = `
 ^XZ
 `;
-  resolve(end);
-});
+    resolve(end);
+  });
 };
 
 module.exports = endLabel;

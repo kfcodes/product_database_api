@@ -1,6 +1,6 @@
 const GetPalletLabelStructure = () => {
   return new Promise((resolve, reject) => {
-  let struct = `
+    let struct = `
 ^XA^CFD
 ^FWR
 ^LH2,20
@@ -23,8 +23,8 @@ const GetPalletLabelStructure = () => {
 ^FO398,520^A0,40^FDBATCH:^FS
 ^FO398,920^A0,40^FDQTY:^FS
 `;
-  resolve(struct);
-});
+    resolve(struct);
+  });
 };
 
 module.exports = GetPalletLabelStructure;

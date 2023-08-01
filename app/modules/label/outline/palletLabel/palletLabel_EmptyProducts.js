@@ -1,6 +1,6 @@
 const emptyProducts = () => {
   return new Promise((resolve, reject) => {
-  let struct = `
+    let struct = `
 ^FO195,10^GB160,1170,5^FS
 ^FO275,10^GB5,1170,5^FS
 ^FO285,20^A0,40^FDPRODUCT:^FS
@@ -16,8 +16,8 @@ const emptyProducts = () => {
 ^FO30,550^A0,40^FDBATCH:^FS
 ^FO30,920^A0,40^FDQTY:^FS
 `;
-  resolve(struct);
-});
+    resolve(struct);
+  });
 };
 
 module.exports = emptyProducts;
