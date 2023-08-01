@@ -31,9 +31,7 @@ exports.createPallet = (req, res) => {
   if (!req.body) {
     res.status(400).send({ message: "Content can not be empty!" });
   }
-  Pallet.createNewPallet(
-    new Pallet(req.body),
-    (err, data) => {
+  Pallet.createNewPallet(new Pallet(req.body), (err, data) => {
     if (err)
       res.status(500).send({
         message: err.message || "Some error occurred while creating the Brand.",
@@ -47,31 +45,26 @@ exports.update = (req, res) => {
     res.status(400).send({ message: "Content can not be empty!" });
   }
   // let date = new Date().toISOString();
-  Pallet.updatePalletById(
-    req.params.id,
-    new Pallet(req.body),
-    (err, data) => {
-      if (err) {
-        if (err.kind === "not_found") {
-          res.status(404).send({
-            message: `No Pallet with id ${req.params.palletid}.`,
-          });
-        } else {
-          res.status(500).send({
-            message: `Error updating Pallet ${req.params.palletid}`,
-          });
-        }
-      } else res.send(data);
-    }
-  );
+  Pallet.updatePalletById(req.params.id, new Pallet(req.body), (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `No Pallet with id ${req.params.palletid}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: `Error updating Pallet ${req.params.palletid}`,
+        });
+      }
+    } else res.send(data);
+  });
 };
 
 exports.palletsById = (req, res) => {
   Pallet.getPalletsWithId(req.params.id, (err, data) => {
     if (err)
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving pallets",
+        message: err.message || "Some error occurred while retrieving pallets",
       });
     else res.send(data);
   });

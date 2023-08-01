@@ -32,7 +32,7 @@ exports.deletePalletItem = (req, res) => {
         });
       } else {
         res.status(500).send({
-          message: `Could not delete Pallet item with id  ${req.params.id}`
+          message: `Could not delete Pallet item with id  ${req.params.id}`,
         });
       }
     } else res.send({ message: `Pallet item was deleted successfully!` });
@@ -51,8 +51,7 @@ exports.createPalletItem = (req, res) => {
   PalletItem.createNewPalletItem(pid, (err, data) => {
     if (err)
       res.status(500).send({
-        message:
-          err.message || "Error occurred creating pallet item",
+        message: err.message || "Error occurred creating pallet item",
       });
     else res.send(data);
   });
