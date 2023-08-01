@@ -1,19 +1,14 @@
-const fs = require('fs');
+const fs = require("fs");
 
 const getRowText = async (text) => {
-	if (text.length < 30){
-console.log(text);
-console.log("text is less than 30");
-	}
+  if (text.length < 30) {
+    console.log(text);
+    console.log("text is less than 30");
+  }
+};
 
-}
-
-
-module.exports.CreateLabel = function(results) {
-
-
-
-let productData = (`
+module.exports.CreateLabel = function (results) {
+  let productData = `
 ^XA^CFD
 ^FWR
 ^LH2,20
@@ -24,5 +19,5 @@ let productData = (`
 ^FO90,20^A0,85^FD${results.textLine3}^FS
 
 ^XZ
-`)
-}
+`;
+};

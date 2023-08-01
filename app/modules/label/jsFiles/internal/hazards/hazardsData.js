@@ -1,6 +1,5 @@
-
 module.exports.HazardsData = async (data) => {
-`
+  `
 ^FX HAZARDS LIST
 ^FO293,20^A0,25^FD${processs.env.HAZARD_1}^FS
 ^FO253,20^A0,25^FD${processs.env.HAZARD_2}^FS
