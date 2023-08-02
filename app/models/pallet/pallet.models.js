@@ -83,4 +83,22 @@ Pallet.getPalletsWithId = (id, result) => {
   });
 };
 
+Pallet.combinePallets = (id, pallets, result) => {
+  sql.query(
+`${process.env.COMBINE1}"${id}"${process.env.COMBINE2}${pallets}`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      if (res.affectedRows == 0) {
+        result({ kind: "not_found" }, null);
+        return;
+      }
+      result(null, { pallets });
+    }
+  );
+};
+
 module.exports = Pallet;
