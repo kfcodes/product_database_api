@@ -96,7 +96,7 @@ Pallet.combinePallets = (id, pallets, result) => {
         result({ kind: "not_found" }, null);
         return;
       }
-      result(null, { pallets });
+      result(null, id);
     }
   );
 };
