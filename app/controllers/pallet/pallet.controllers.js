@@ -71,5 +71,7 @@ exports.palletsById = (req, res) => {
 };
 
 exports.combinePallets = (req, res) => {
-  res.send("Updated");
+  const id = `testID`;
+  const pallets = `("test1", "test2","test3")`;
+    res.send(id - pallets);
 };
