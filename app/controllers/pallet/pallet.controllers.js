@@ -71,7 +71,20 @@ exports.palletsById = (req, res) => {
 };
 
 exports.combinePallets = (req, res) => {
-  const id = `testID`;
-  const pallets = `("test1", "test2","test3")`;
-    res.send(id - pallets);
+  const id = `test`;
+  const pallets = `("test", "test","test")`;
+  Pallet.combinePallets(id, pallets, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `No Pallets that match ${req.params.pallets}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: `Error updating Pallets ${req.params.pallets}`,
+        });
+      }
+    } else console.log(data);
+    res.send(data);
+  });
 };
