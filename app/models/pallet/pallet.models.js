@@ -83,9 +83,9 @@ Pallet.getPalletsWithId = (id, result) => {
   });
 };
 
-Pallet.combinePallets = (id, pallets, result) => {
+Pallet.combinePallets = (id, pallets, height, result) => {
   sql.query(
-`${process.env.COMBINE1}"${id}"${process.env.COMBINE2}${pallets}`,
+`${process.env.COMBINE1}"${id}"${process.env.COMBINE2}"${height}"${process.env.COMBINE3}${pallets}`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
