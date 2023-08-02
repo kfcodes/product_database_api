@@ -65,6 +65,8 @@ router.put("/pallet/:id", Pallet.update);
 // RETRIEVE PALLEST WITH SIMILAR PRODUCTS
 router.get("/pallets/:id", Pallet.palletsById);
 
+router.get("/test", Pallet.combinePallets);
+
 // LABEL ROUTES
 // PRINT PALLET LABEL
 router.get("/label/:id", PalletLabel.printPalletLabel);
