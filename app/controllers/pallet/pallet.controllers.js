@@ -69,3 +69,7 @@ exports.palletsById = (req, res) => {
     else res.send(data);
   });
 };
+
+exports.combinePallets = (req, res) => {
+  res.send("Updated");
+};
