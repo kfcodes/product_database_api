@@ -82,6 +82,7 @@ Pallet.getPalletsWithId = (id, result) => {
 };
 
 Pallet.combinePallets = (data, height, result) => {
+  return new Promise((resolve, reject) => {
   sql.query(
 `${process.env.COMBINE1}"${data.id}"${process.env.COMBINE2}"${height}"${process.env.COMBINE3}${data.pallets}`,
     (err, res) => {
@@ -94,17 +95,22 @@ Pallet.combinePallets = (data, height, result) => {
         result({ kind: "not_found" }, null);
         return;
     }
-    result(null, res);
+    resolve(res)
+  });
   });
 };
 
-Pallet.combinedPalletData = (id, result) => {
+Pallet.combinedPalletWeight = (id, result) => {
+  return new Promise((resolve, reject) => {
+      sql.query(`get gross weight of pallet`, (err, res) => {
         if (err) {
           console.log("error: ", err);
           result(err, null);
           return;
         }
-        result(null, res);
+    resolve(res[0].gross)
+  });
+  });
 };
 
 module.exports = Pallet;
