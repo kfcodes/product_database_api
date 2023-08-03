@@ -1,4 +1,5 @@
 const Pallet = require("../../models/pallet/pallet.models");
+const PalletsList = require("../../modules/pallet/combinePallets");
 
 exports.findAllPallets = (req, res) => {
   Pallet.getAllPallets((err, data) => {
@@ -70,14 +71,14 @@ exports.palletsById = (req, res) => {
   });
 };
 
-exports.combinePallets = (req, res) => {
+exports.combinePallets = async (req, res) => {
   if (!req.body) {
     res.status(400).send({ message: "Content can not be empty!" });
   }
-  const pallets= req.body.pallets
-  const height = req.body.height
-  const id = req.body.id
-  Pallet.combinePallets(id, pallets, height, (err, data) => {
+  const height = req.body.height;
+  const pallets = await req.body.pallets;
+  const palletData = await PalletsList(pallets)
+  Pallet.combinePallets(palletData, height, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -88,7 +89,7 @@ exports.combinePallets = (req, res) => {
           message: `Error updating Pallets ${req.params.pallets}`,
         });
       }
-    } else 
+    } else
       console.log(`${data}: ${pallets} were combined with height of ${height}`);
     res.send(data);
   });
