@@ -1,9 +1,9 @@
 const combinePallets = (pallets) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     let palletString = "";
-    let combinedId = 999999;
+    let combinedId = 0;
     for (let i = 0; i < pallets.length; i++) {
-      if (pallets[i] < combinedId) {
+      if (pallets[i] > combinedId) {
         combinedId = pallets[i];
         if (i == pallets.length - 1) {
           palletString += `"${pallets[i]}"`;
