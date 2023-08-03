@@ -77,7 +77,7 @@ exports.combinePallets = async (req, res) => {
   }
   const height = req.body.height;
   const pallets = await req.body.pallets;
-  const palletData = await PalletsList(pallets)
+  const palletData = await PalletsList(pallets);
   Pallet.combinePallets(palletData, height, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
