@@ -36,7 +36,6 @@ Pallet.updatePalletById = (id, pallet, result) => {
         result({ kind: "not_found" }, null);
         return;
       }
-      console.log("updated Pallet: ", { id: id, ...pallet });
       result(null, { id: id, ...pallet });
     }
   );
@@ -52,7 +51,6 @@ Pallet.findPalletById = (id, result) => {
         return;
       }
       if (res.length) {
-        console.log("found pallet details: ", res);
         result(null, res);
         return;
       }
@@ -83,9 +81,9 @@ Pallet.getPalletsWithId = (id, result) => {
   });
 };
 
-Pallet.combinePallets = (id, pallets, height, result) => {
+Pallet.combinePallets = (data, height, result) => {
   sql.query(
-`${process.env.COMBINE1}"${id}"${process.env.COMBINE2}"${height}"${process.env.COMBINE3}${pallets}`,
+`${process.env.COMBINE1}"${data.id}"${process.env.COMBINE2}"${height}"${process.env.COMBINE3}${data.pallets}`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -95,10 +93,18 @@ Pallet.combinePallets = (id, pallets, height, result) => {
       if (res.affectedRows == 0) {
         result({ kind: "not_found" }, null);
         return;
-      }
-      result(null, id);
     }
-  );
+    result(null, res);
+  });
+};
+
+Pallet.combinedPalletData = (id, result) => {
+        if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+        }
+        result(null, res);
 };
 
 module.exports = Pallet;
