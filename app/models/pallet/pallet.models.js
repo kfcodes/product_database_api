@@ -113,4 +113,15 @@ Pallet.combinedPalletWeight = (id, result) => {
   });
 };
 
+Pallet.getPalletIds = (result) => {
+  sql.query(`${process.env.GETPALLETIDS}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    result(null, res);
+  });
+};
+
 module.exports = Pallet;
