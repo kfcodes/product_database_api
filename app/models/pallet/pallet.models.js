@@ -102,7 +102,7 @@ Pallet.combinePallets = (data, height, result) => {
 
 Pallet.combinedPalletWeight = (id, result) => {
   return new Promise((resolve, reject) => {
-      sql.query(`get gross weight of pallet`, (err, res) => {
+      sql.query(`${process.env.COMBINEDWEIGHT}${id}`, (err, res) => {
         if (err) {
           console.log("error: ", err);
           result(err, null);
