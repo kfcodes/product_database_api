@@ -64,8 +64,9 @@ router.put("/pallet/:id", Pallet.update);
 // router.delete("/pallet/:id", Pallet.deletePallet);
 // RETRIEVE PALLEST WITH SIMILAR PRODUCTS
 router.get("/pallets/:id", Pallet.palletsById);
-
-router.put("/test", Pallet.combinePallets);
+// route to combine pallet data
+router.put("/combine_pallet", Pallet.combinePallets);
+router.get("/palletids", Pallet.palletsById);
 
 // LABEL ROUTES
 // PRINT PALLET LABEL
