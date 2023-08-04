@@ -1,5 +1,8 @@
 const Pallet = require("../../models/pallet/pallet.models");
 const PalletsList = require("../../modules/pallet/combinePallets");
+const {
+  PrintPalletLabel,
+} = require("../../modules/label/jsFiles/pallet/combinedPallet");
 
 exports.findAllPallets = (req, res) => {
   Pallet.getAllPallets((err, data) => {
@@ -75,22 +78,41 @@ exports.combinePallets = async (req, res) => {
   if (!req.body) {
     res.status(400).send({ message: "Content can not be empty!" });
   }
-  const height = req.body.height;
-  const pallets = await req.body.pallets;
-  const palletData = await PalletsList(pallets);
-  Pallet.combinePallets(palletData, height, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `No Pallets that match ${req.params.pallets}.`,
-        });
-      } else {
-        res.status(500).send({
-          message: `Error updating Pallets ${req.params.pallets}`,
-        });
+  PalletsList(req.body.pallets).then((palletList) => {
+    Pallet.combinePallets(palletList, req.body.height, (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `No Pallets that match ${req.params.palleData}.`,
+          });
+        } else {
+          res.status(500).send({
+            message: `Error updating Pallets ${req.params.palleData}`,
+          });
+        }
       }
-    } else
-      console.log(`${data}: ${pallets} were combined with height of ${height}`);
-    res.send(data);
+    }).then(() => {
+      Pallet.combinedPalletWeight(palletList.id, (err, data) => {
+        if (err) {
+          if (err.kind === "not_found") {
+            res.status(404).send({
+              message: `No Pallets that match ${req.params.palleData}.`,
+            });
+          } else {
+            res.status(500).send({
+              message: `Error updating Pallets ${req.params.palleData}`,
+            });
+          }
+        }
+      }).then((grossweigth) => {
+        const palletData = {
+          height: req.body.height,
+          weight: grossweigth,
+          pallets: req.body.pallets,
+        };
+        PrintPalletLabel(palletData);
+        res.send(palletData);
+      });
+    });
   });
 };
