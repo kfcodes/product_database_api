@@ -74,6 +74,17 @@ exports.palletsById = (req, res) => {
   });
 };
 
+exports.palletIds = (req, res) => {
+  Pallet.getPalletIds((err, ids) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving products.",
+      });
+    else res.send(ids);
+  });
+};
+
 exports.combinePallets = async (req, res) => {
   if (!req.body) {
     res.status(400).send({ message: "Content can not be empty!" });
