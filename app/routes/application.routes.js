@@ -67,6 +67,7 @@ router.get("/pallets/:id", Pallet.palletsById);
 // route to combine pallet data
 router.put("/combine_pallets", Pallet.combinePallets);
 router.get("/possible_pallets", Pallet.getPossiblePallets);
+router.get("/pallet_details/:id", Pallet.getPalletDetails);
 
 // LABEL ROUTES
 // PRINT PALLET LABEL

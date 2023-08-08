@@ -70,6 +70,17 @@ Pallet.getAllPallets = (result) => {
   });
 };
 
+Pallet.getPalletDetails = (id, result) => {
+  sql.query(`${process.env.GETPALLETDETAILS}"${id}"`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    result(null, res);
+  });
+};
+
 Pallet.getPalletsWithId = (id, result) => {
   sql.query(`SELECT * FROM ${process.env.TSXX}"${id}%"`, (err, res) => {
     if (err) {
