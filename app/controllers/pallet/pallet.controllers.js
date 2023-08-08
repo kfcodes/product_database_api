@@ -74,14 +74,23 @@ exports.palletsById = (req, res) => {
   });
 };
 
-exports.palletIds = (req, res) => {
-  Pallet.getPalletIds((err, ids) => {
+exports.getPossiblePallets = (req, res) => {
+  Pallet.getPossiblePalletIds((err, ids) => {
     if (err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving products.",
       });
-    else res.send(ids);
+    else {
+      const pallets = [];
+
+      ids.forEach(myFunction);
+
+      function myFunction(item) {
+        pallets.push(item.id);
+      }
+      res.send(pallets);
+    }
   });
 };
 

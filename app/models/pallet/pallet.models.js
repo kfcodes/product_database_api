@@ -113,7 +113,7 @@ Pallet.combinedPalletWeight = (id, result) => {
   });
 };
 
-Pallet.getPalletIds = (result) => {
+Pallet.getPossiblePalletIds = (result) => {
   sql.query(`${process.env.GETPALLETIDS}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
