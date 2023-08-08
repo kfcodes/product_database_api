@@ -15,21 +15,6 @@ exports.findAllPallets = (req, res) => {
   });
 };
 
-exports.getPalletDetails = (req, res) => {
-  Pallet.getPalletDetails(req.params.id, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Can't find Pallet ${req.params.id}`,
-        });
-      } else {
-        res.status(500).send({
-          message: `Error retrieving Pallet ${req.params.id}`,
-        });
-      }
-    } else res.send(data);
-  });
-};
 
 exports.findPallet = (req, res) => {
   Pallet.findPalletById(req.params.id, (err, data) => {
@@ -99,9 +84,7 @@ exports.getPossiblePallets = (req, res) => {
       });
     else {
       const pallets = [];
-
       ids.forEach(myFunction);
-
       function myFunction(item) {
         pallets.push(item.id);
       }
@@ -150,5 +133,21 @@ exports.combinePallets = async (req, res) => {
         res.send(palletData);
       });
     });
+  });
+};
+
+exports.getPalletDetails = (req, res) => {
+  Pallet.getPalletDetails(req.params.id, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Can't find Pallet ${req.params.id}`,
+        });
+      } else {
+        res.status(500).send({
+          message: `Error retrieving Pallet ${req.params.id}`,
+        });
+      }
+    } else res.send(data);
   });
 };
