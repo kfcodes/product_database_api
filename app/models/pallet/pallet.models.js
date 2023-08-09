@@ -94,33 +94,34 @@ Pallet.getPalletsWithId = (id, result) => {
 
 Pallet.combinePallets = (data, height, result) => {
   return new Promise((resolve, reject) => {
-  sql.query(
-`${process.env.COMBINE1}"${data.id}"${process.env.COMBINE2}"${height}"${process.env.COMBINE3}${data.pallets}`,
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
+    sql.query(
+      `${process.env.COMBINE1}"${data.id}"${process.env.COMBINE2}"${height}"${process.env.COMBINE3}${data.pallets}`,
+      (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(null, err);
+          return;
+        }
+        if (res.affectedRows == 0) {
+          result({ kind: "not_found" }, null);
+          return;
+        }
+        resolve(res);
       }
-      if (res.affectedRows == 0) {
-        result({ kind: "not_found" }, null);
-        return;
-    }
-    resolve(res)
-  });
+    );
   });
 };
 
 Pallet.combinedPalletWeight = (id, result) => {
   return new Promise((resolve, reject) => {
-      sql.query(`${process.env.COMBINEDWEIGHT}${id}`, (err, res) => {
-        if (err) {
-          console.log("error: ", err);
-          result(err, null);
-          return;
-        }
-    resolve(res[0].gross)
-  });
+    sql.query(`${process.env.COMBINEDWEIGHT}${id}`, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      resolve(res[0].gross);
+    });
   });
 };
 

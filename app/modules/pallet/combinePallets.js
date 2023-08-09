@@ -12,7 +12,7 @@ const combinePallets = (pallets) => {
         palletString += `"${pallets[i]}", `;
       }
     }
-    resolve({id: combinedId, pallets: `(${palletString})`});
+    resolve({ id: combinedId, pallets: `(${palletString})` });
   });
 };
 

@@ -15,7 +15,6 @@ exports.findAllPallets = (req, res) => {
   });
 };
 
-
 exports.findPallet = (req, res) => {
   Pallet.findPalletById(req.params.id, (err, data) => {
     if (err) {

@@ -9,13 +9,15 @@ const PalletItem = require("../controllers/pallet/palletItem.controllers");
 const Pallet = require("../controllers/pallet/pallet.controllers");
 const PalletLabel = require("../controllers/label/palletLabel.controllers");
 const BoxLabel = require("../controllers/label/boxLabel.controllers");
-const {printPickList} = require("../controllers/pickList/pickList.controllers");
-const FileUpload = require("../controllers/upload/fileUpload.controllers")
-const PdfLabel = require("../controllers/label/pdfLabel.controllers")
-const BlankLabel = require("../controllers/label/internalLabel.controllers")
-const FinishedProduct = require("../controllers/production/finishedProduct.controllers")
-const Data = require("../controllers/pallet/palletDump.controllers")
-const RecentPallets = require("../controllers/pallet/recentPallets.controllers")
+const {
+  printPickList,
+} = require("../controllers/pickList/pickList.controllers");
+const FileUpload = require("../controllers/upload/fileUpload.controllers");
+const PdfLabel = require("../controllers/label/pdfLabel.controllers");
+const BlankLabel = require("../controllers/label/internalLabel.controllers");
+const FinishedProduct = require("../controllers/production/finishedProduct.controllers");
+const Data = require("../controllers/pallet/palletDump.controllers");
+const RecentPallets = require("../controllers/pallet/recentPallets.controllers");
 
 // PRODUCT DB ROUTES
 // RETRIEVE ALL PRODUCT

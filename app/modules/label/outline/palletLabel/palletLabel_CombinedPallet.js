@@ -1,7 +1,6 @@
 const GetCombinedPalletLabelStructure = () => {
   return new Promise((resolve, reject) => {
-    let labelStructure = 
-`^XA^CFD
+    let labelStructure = `^XA^CFD
 ^FWR
 ^LH20,20
 ^FO630,220^A0,100^FDCOMBINED PALLET^FS
