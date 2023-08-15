@@ -3,6 +3,7 @@ const GetCombinedPalletLabelStructure = () => {
     let labelStructure = `^XA^CFD
 ^FWR
 ^LH20,20
+^PQ2,10,1,Y
 ^FO630,220^A0,100^FDCOMBINED PALLET^FS
 
 ^FO520,480^A0,60^FDPALLETS^FS

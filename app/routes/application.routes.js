@@ -92,6 +92,7 @@ router.post("/data/:id", Data.getData);
 
 // PALLET LISTS ROUTES
 router.get("/pallets", RecentPallets.findRecentPallets);
+// Export pallet data
 router.get("/pallet_data", RecentPallets.findPalletData);
 router.get("/latest_pallet_data", ls.latestPalletData);
 
