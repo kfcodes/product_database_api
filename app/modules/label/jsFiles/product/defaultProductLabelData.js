@@ -1,6 +1,6 @@
-module.exports.LabelData = async function (data) {
+module.exports.LabelData = async function (data, qty) {
   `
-^PQ${data.label_qty},10,1,Y
+^PQ${qty},10,1,Y
 ^FO710,200^A0,70^FD${data.company}^FS
 ^FX Product details
 ^FO650,250^AC,40^FD${data.sku}^FS

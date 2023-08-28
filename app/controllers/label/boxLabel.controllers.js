@@ -1,4 +1,5 @@
 const Label = require("../../models/label/labeldata.models");
+const { PrintBoxLabel }  = require("../../modules/label/jsFiles/product/index");
 
 exports.printBoxLabel = (req, res) => {
   Label.boxLabel(req.params.id, (err, data) => {
@@ -12,6 +13,6 @@ exports.printBoxLabel = (req, res) => {
           message: `Error retrieving data for ${req.params.id}`,
         });
       }
-    } else boxLabel.boxLabel(data, req.body);
+    } else PrintBoxLabel(data, req.body.quantity);
   });
 };
