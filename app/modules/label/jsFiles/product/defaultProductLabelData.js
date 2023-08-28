@@ -1,5 +1,5 @@
 module.exports.LabelData = async function (data, qty) {
-  `
+  let label = `
 ^PQ${qty},10,1,Y
 ^FO710,200^A0,70^FD${data.company}^FS
 ^FX Product details
@@ -13,5 +13,7 @@ module.exports.LabelData = async function (data, qty) {
 ^FO300,250^AC,40^FD${data.batch}^FS
 ^BY8
 ^FO120,200^BER,150,Y,N,N,N,N^FD${data.barcode}^FS
-`;
+`
+  return label;
 };
+
