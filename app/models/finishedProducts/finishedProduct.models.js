@@ -12,6 +12,14 @@ FinishedProduct.createNewFinishedProduct = (finishedProduct, result) => {
         result(err, null);
         return;
       }
+      sql.query(`SELECT ${process.env.L}`, (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+        }
+        result(null, { ...res[0] });
+      });
     }
   );
 };

@@ -1,9 +1,9 @@
 const FinishedProduct = function (eol) {
-  this.product_id = eol.product_id;
-  this.po = eol.po;
-  this.lot = eol.lot;
-  this.bbe = eol.bbe;
-  this.quantity = eol.quantity;
+  this.eol_product_id = eol.product_id;
+  this.eol_po = eol.po;
+  this.eol_lot = eol.lot;
+  this.eol_bbe = eol.bbe;
+  this.eol_quantity = eol.quantity;
 };
 
 module.exports = FinishedProduct;

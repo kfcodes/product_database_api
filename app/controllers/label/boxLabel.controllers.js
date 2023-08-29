@@ -13,6 +13,5 @@ exports.printBoxLabel = (req, res) => {
           message: `Error retrieving data for ${req.params.id}`,
         });
       }
-    } else PrintBoxLabel(data, req.body.quantity);
-  });
-};
+    } else PrintBoxLabel(data, req.body.qty).then(res.send({message: "PRINTING THE LABEL"})
+    )})};
