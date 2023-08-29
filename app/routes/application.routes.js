@@ -25,7 +25,7 @@ router.get("/products", ProductDB.findAll);
 // RETRIEVE ALL proDUCTS
 router.get("/finished_products", ProductDB.findFinishedProducts);
 // RETRIEVE A SINGLE PRODUCT WITH PRODUCTID
-router.get("/products/:id", ProductDB.findOne);
+router.get("/product/:id", ProductDB.findOne);
 router.get("/finished_products/:id", ProductDB.findOneFinishedProduct);
 
 // PRODUCTION DOCUMENTATION ROUTES
