@@ -40,7 +40,11 @@ LOT:
 ^FD
 BBE:
 ^FS
-^FO300,60^A0,50^FDBATCH:^FS
+^FO300,60^
+^A@90,50,50,E:ARIALBLB.TTF
+^FD
+BATCH:
+^FS
 `;
     resolve(product);
   });
