@@ -2,22 +2,22 @@ const LabelData = (data, qty) => {
   return new Promise((resolve, reject) => {
   let label = `
 ^FS
-^FO550,250
+^FO550,270
 ^A@90,50,50,E:ARIALB.TTF
 ^FD${data.flavour}^FS
-^FO500,250
+^FO500,270
 ^A@90,50,50,E:ARIALB.TTF
 ^FD${data.quantity_per_box}^FS
-^FO450,250
+^FO450,270
 ^A@90,50,50,E:ARIALB.TTF
 ^FD${data.weight}^FS
-^FO400,250
+^FO400,270
 ^A@90,50,50,E:ARIALB.TTF
 ^FD${data.eol_lot}^FS
-^FO350,250
+^FO350,270
 ^A@90,50,50,E:ARIALB.TTF
 ^FD${data.eol_bbe}^FS
-^FO300,250
+^FO300,270
 ^A@90,50,50,E:ARIALB.TTF
 ^FD${data.eol_batch}^FS
 ^BY8
