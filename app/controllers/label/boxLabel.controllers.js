@@ -2,7 +2,7 @@ const Label = require("../../models/label/labeldata.models");
 const { PrintBoxLabel }  = require("../../modules/label/jsFiles/product/index");
 
 exports.getBoxLabel = (req, res) => {
-  Label.boxLabel(req.params.id, (err, data) => {
+  Label.getProductLabel(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -14,8 +14,9 @@ exports.getBoxLabel = (req, res) => {
         });
       }
     } else 
-      res.send({message: "This is the label data"})
-    })};
+      res.send(data)
+    }
+)};
 
 exports.printBoxLabel = (req, res) => {
   Label.boxLabel(req.params.id, (err, data) => {
