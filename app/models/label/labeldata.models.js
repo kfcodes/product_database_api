@@ -18,6 +18,25 @@ exports.getPalletLabelData = (id, result) => {
   );
 };
 
+exports.getProductLabel = (id, result) => {
+  console.log(`${process.env.Z_6}"${id}"`);
+  sql.query(
+    `${process.env.Z_6}"${id}"`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        result(null, res);
+        return;
+      }
+      result({ kind: "not_found" }, null);
+    }
+  );
+};
+
 exports.boxLabel = (id, result) => {
   sql.query(
     `SELECT * FROM ${process.env.Z_4} WHERE ${process.env.Z_5}="${id}"`,
