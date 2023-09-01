@@ -78,7 +78,7 @@ router.get("/label/:id", PalletLabel.printPalletLabel);
 // GET BOX LABEL INFO
 router.get("/label_info/:id", BoxLabel.getBoxLabel);
 // PRINT PRODUCT LABEL
-router.get("/box_label/:id", BoxLabel.printBoxLabel);
+router.post("/box_label/:id", BoxLabel.printBoxLabel);
 // PRINT BLANK LABELS
 router.post("/print_blank_labels", BlankLabel.printBlankLabels);
 // PRINT LABELS FROM PDF FILES
