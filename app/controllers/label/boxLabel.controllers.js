@@ -1,5 +1,5 @@
 const Label = require("../../models/label/labeldata.models");
-const { PrintBoxLabel }  = require("../../modules/label/jsFiles/product/index");
+const { PrintBoxLabel } = require("../../modules/label/jsFiles/product/index");
 
 exports.getBoxLabel = (req, res) => {
   Label.getProductLabel(req.params.id, (err, data) => {
@@ -13,10 +13,9 @@ exports.getBoxLabel = (req, res) => {
           message: `Error retrieving data for ${req.params.id}`,
         });
       }
-    } else 
-      res.send(data)
-    }
-)};
+    } else res.send(data);
+  });
+};
 
 exports.printBoxLabel = (req, res) => {
   Label.boxLabel(req.params.id, (err, data) => {
@@ -30,5 +29,9 @@ exports.printBoxLabel = (req, res) => {
           message: `Error retrieving data for ${req.params.id}`,
         });
       }
-    } else PrintBoxLabel(data, req.body.qty).then(res.send({message: "PRINTING THE LABEL"})
-    )})};
+    } else
+      PrintBoxLabel(data, req.body.qty).then(
+        res.send({ message: "PRINTING THE LABEL" })
+      );
+  });
+};
