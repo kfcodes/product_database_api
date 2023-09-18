@@ -19,7 +19,6 @@ exports.getPalletLabelData = (id, result) => {
 };
 
 exports.getProductLabel = (id, result) => {
-  console.log(`${process.env.Z_6}"${id}"`);
   sql.query(
     `${process.env.Z_6}"${id}"`,
     (err, res) => {
