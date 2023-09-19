@@ -20,7 +20,7 @@ exports.getInfo = (id, result) => {
 
 exports.getPalletListData = async (result) => {
   sql.query(
-    `select ${process.env.P33} from ${process.env.PPP} ${process.env.P44}`,
+    `SELECT DISTINCT ${process.env.P33} FROM ${process.env.PPP} ${process.env.P44}`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
