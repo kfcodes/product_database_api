@@ -15,7 +15,7 @@ exports.getCurrentProduction = (result) => {
 };
 
 exports.getproductionForId = (id, result) => {
-  sql.query(`${process.env.pv}"%${id}%"`, (err, res) => {
+  sql.query(`${process.env.PV2}"%${id}%"`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -26,7 +26,7 @@ exports.getproductionForId = (id, result) => {
 };
 
 exports.getproductionRecordById = (id, result) => {
-  sql.query(`${process.env.pv}"%${id}%"`, (err, res) => {
+  sql.query(`${process.env.PV3}"%${id}%"`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
