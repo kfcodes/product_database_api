@@ -36,11 +36,10 @@ router.get("/brandproducts/:id", Documentation.brandProducts);
 // RETRIEVE A SINGLE PRODUCT WITH PRODUCTID
 router.get("/components/:id", Documentation.productDocumentation);
 
-// PRODUCTION SCHEDULE
-// CURRENT PRODUCTION
-router.get("/mps", Ps.findCurrentProduction);
-// ALL PRODUCTION
-router.get("/full_mps", Ps.findAllProduction);
+// SHOW CURRENT PRODUCTION
+router.get("/production", Ps.findCurrentProduction);
+// GET PRODUCTION RECORD BY ID
+router.get("/production/:id", Ps.findProductionRecordById);
 
 // PALLET ITEM ROUTES
 // GET ALL PALLET ITEMS IN THE DB
