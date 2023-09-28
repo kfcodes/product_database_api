@@ -1,7 +1,7 @@
 const ProductionSchedule = require("../../models/productionSchedule/productionSchedule.models.js");
 
 exports.findAllProductionById = (req, res) => {
-  ProductionSchedule.getProductionInfoById(req.params.id,(err, data) => {
+  ProductionSchedule.getproductionForId(req.params.id,(err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -13,7 +13,7 @@ exports.findAllProductionById = (req, res) => {
 };
 
 exports.findProductionRecordById = (req, res) => {
-  ProductionSchedule.getCurrentProduction((err, data) => {
+  ProductionSchedule.getproductionRecordById(req.params.id,(err, data) => {
     if (err)
       res.status(500).send({
         message:
