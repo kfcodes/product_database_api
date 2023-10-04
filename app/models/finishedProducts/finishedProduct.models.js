@@ -2,26 +2,28 @@ const sql = require("../db/dbConnect");
 require("dotenv").config();
 const FinishedProduct = require("./finishedProduct.constructor.js");
 
-FinishedProduct.createNewFinishedProduct = (finishedProduct, result) => {
-  sql.query(
-    `INSERT INTO ${process.env.ET} SET ?`,
-    finishedProduct,
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(err, null);
-        return;
-      }
-      sql.query(`SELECT ${process.env.L}`, (err, res) => {
+FinishedProduct.createNewFinishedProduct = (finishedProduct) => {
+  return new Promise((resolve, reject) => {
+    sql.query(
+      `INSERT INTO ${process.env.ET} SET ?`,
+      finishedProduct,
+      (err, res) => {
         if (err) {
           console.log("error: ", err);
           result(err, null);
           return;
         }
-        result(null, { ...res[0] });
-      });
-    }
-  );
+        sql.query(`${process.env.PLLL}`, (err, res) => {
+          if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+          }
+          resolve({ ...res[0] }[process.env.THEAL]);
+        });
+      },
+    );
+  });
 };
 
 FinishedProduct.updateFinishedProductById = (id, finishedProduct, result) => {
@@ -45,7 +47,7 @@ FinishedProduct.updateFinishedProductById = (id, finishedProduct, result) => {
       }
       console.log("Updated Finished Product: ", { id: id, ...finishedProduct });
       result(null, { id: id, ...finishedProduct });
-    }
+    },
   );
 };
 
@@ -63,7 +65,7 @@ FinishedProduct.findFinishedProductById = (id, result) => {
         return;
       }
       result({ kind: "not_found" }, null);
-    }
+    },
   );
 };
 
