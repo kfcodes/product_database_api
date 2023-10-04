@@ -1,4 +1,6 @@
 const FinishedProduct = require("../../models/finishedProducts/finishedProduct.models");
+const { exec } = require("child_process");
+require("dotenv").config();
 
 exports.findFinishedProduct = (req, res) => {
   FinishedProduct.findFinishedProductById(req.params.id, (err, data) => {
@@ -20,11 +22,21 @@ exports.createFinishedProduct = (req, res) => {
   if (!req.body) {
     res.status(400).send({ message: "Content can not be empty!" });
   }
-  FinishedProduct.createNewFinishedProduct(req.body, (err, data) => {
-    if (err)
-      res.status(500).send({
-        message: err.message || "Some error occurred while creating the Brand.",
-      });
-    else res.send(data);
+  FinishedProduct.createNewFinishedProduct(req.body).then((data) => {
+    exec(
+      `cd ../production_scripts/; python3 info.py ${data}`,
+      (error, stdout, stderr) => {
+        if (error) {
+          console.log(`error: ${error.message}`);
+          return;
+        }
+        if (stderr) {
+          console.log(`stderr: ${stderr}`);
+          return;
+        } else 
+          console.log(stdout);
+          res.send({message: "printing Product info" })
+      },
+    );
   });
 };
