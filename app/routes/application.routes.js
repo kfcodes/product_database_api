@@ -19,7 +19,6 @@ const FinishedProduct = require("../controllers/production/finishedProduct.contr
 const Data = require("../controllers/pallet/palletDump.controllers");
 const RecentPallets = require("../controllers/pallet/recentPallets.controllers");
 
-// PRODUCT DB ROUTES
 // RETRIEVE ALL PRODUCT
 router.get("/products", ProductDB.findAll);
 // RETRIEVE ALL proDUCTS
@@ -27,14 +26,6 @@ router.get("/finished_products", ProductDB.findFinishedProducts);
 // RETRIEVE A SINGLE PRODUCT WITH PRODUCTID
 router.get("/product/:id", ProductDB.findOne);
 router.get("/finished_products/:id", ProductDB.findOneFinishedProduct);
-
-// PRODUCTION DOCUMENTATION ROUTES
-// RETRIEVE ALL BRANDS
-router.get("/brands", Documentation.findAllBrands);
-// RETRIEVE ALL PRODUCTS FROM SPECIFIC BRAND
-router.get("/brandproducts/:id", Documentation.brandProducts);
-// RETRIEVE A SINGLE PRODUCT WITH PRODUCTID
-router.get("/components/:id", Documentation.productDocumentation);
 
 // PRODUCTION ROUTES
 // SHOW CURRENT PRODUCTION
@@ -55,7 +46,6 @@ router.post("/pallet_item/:id", PalletItem.createPalletItem);
 router.put("/pallet_item/:id", PalletItem.updatePalletItem);
 // DELETE A PALLET ITEM
 router.delete("/pallet_item/:id", PalletItem.deletePalletItem);
-
 // PALLET ROUTES
 // CREATE A NEW PALLET
 router.post("/pallet", Pallet.createPallet);
@@ -74,6 +64,22 @@ router.put("/combine_pallets", Pallet.combinePallets);
 router.get("/possible_pallets", Pallet.getPossiblePallets);
 router.get("/pallet_details/:id", Pallet.getPalletDetails);
 
+// PALLET LISTS ROUTES
+// router.get("/new_pallets", RecentPallets.findRecentPallets);
+// Export pallet data
+router.get("/pallet_data", RecentPallets.findPalletData);
+router.get("/latest_pallet_data", ls.latestPalletData);
+// PRINT CHECK SHEET
+router.get("/picklist", printPickList);
+// GET PALLET DATA
+router.post("/data/:id", Data.getData);
+
+
+// FINISHED PRODUCT ROUTES
+router.get("/finished_product/:id", FinishedProduct.findFinishedProduct);
+router.post("/finished_product", FinishedProduct.createFinishedProduct);
+// router.put("/finished_product/:id", FinishedProduct.updateFinishedProduct);
+
 // LABEL ROUTES
 // PRINT PALLET LABEL
 router.get("/label/:id", PalletLabel.printPalletLabel);
@@ -86,24 +92,7 @@ router.post("/print_blank_labels", BlankLabel.printBlankLabels);
 // PRINT LABELS FROM PDF FILES
 router.post("/print_pdf/:id", PdfLabel.printPdf);
 
-// PRINT CHECK SHEET
-router.get("/picklist", printPickList);
-
 router.post("/upload_pdf", upload.array("files", 10), FileUpload.uploadPdf);
 router.post("/upload_data", upload.array("files", 10), FileUpload.uploadData);
-
-// GET PALLET DATA
-router.post("/data/:id", Data.getData);
-
-// PALLET LISTS ROUTES
-router.get("/pallets", RecentPallets.findRecentPallets);
-// Export pallet data
-router.get("/pallet_data", RecentPallets.findPalletData);
-router.get("/latest_pallet_data", ls.latestPalletData);
-
-// FINISHED PRODUCT ROUTES
-router.get("/finished_product/:id", FinishedProduct.findFinishedProduct);
-router.post("/finished_product", FinishedProduct.createFinishedProduct);
-// router.put("/finished_product/:id", FinishedProduct.updateFinishedProduct);
 
 module.exports = router;
