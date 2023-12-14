@@ -30,6 +30,7 @@ exports.printBoxLabel = (req, res) => {
         });
       }
     } else
+      print(data)
       PrintBoxLabel(data, req.body.qty).then(
         res.send({ message: "PRINTING THE LABEL" })
       );
