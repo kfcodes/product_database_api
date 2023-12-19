@@ -3,7 +3,6 @@ const router = express.Router();
 const ls = require("../controllers/pallet/latestPalletData.controllers");
 const upload = require("../modules/file/uploadFile.js");
 const ProductDB = require("../controllers/production/dbProduct.controllers");
-const Documentation = require("../controllers/production/productionDocumentation.controllers");
 const Ps = require("../controllers/production/productionSchedule.controllers");
 const PalletItem = require("../controllers/pallet/palletItem.controllers");
 const Pallet = require("../controllers/pallet/pallet.controllers");
@@ -44,20 +43,10 @@ router.put("/pallet_item/:id", PalletItem.updatePalletItem);
 // DELETE A PALLET ITEM
 router.delete("/pallet_item/:id", PalletItem.deletePalletItem);
 
-// PALLET ROUTES
-// CREATE A NEW PALLET
-router.post("/pallet", Pallet.createPallet);
-// GET ALL PALLETS
 router.get("/all_pallets", Pallet.findAllPallets);
-// RETRIEVE INDIVIDUAL PALLET DETAILS
 router.get("/pallet/:id", Pallet.findPallet);
-// UPDATE PALLET
 router.put("/pallet/:id", Pallet.update);
-// DELETE A PALLET
-// router.delete("/pallet/:id", Pallet.deletePallet);
-// RETRIEVE PALLEST WITH SIMILAR PRODUCTS
 router.get("/pallets/:id", Pallet.palletsById);
-// route to combine pallet data
 router.put("/combine_pallets", Pallet.combinePallets);
 router.get("/possible_pallets", Pallet.getPossiblePallets);
 router.get("/pallet_details/:id", Pallet.getPalletDetails);
@@ -74,7 +63,6 @@ router.post("/print_blank_labels", BlankLabel.printBlankLabels);
 // PRINT LABELS FROM PDF FILES
 router.post("/print_pdf/:id", PdfLabel.printPdf);
 
-// PRINT CHECK SHEET
 router.get("/picklist", printPickList);
 
 router.post("/upload_pdf", upload.array("files", 10), FileUpload.uploadPdf);
@@ -85,6 +73,7 @@ router.post("/data/:id", Data.getData);
 
 // PALLET LISTS ROUTES
 router.get("/pallets", RecentPallets.findRecentPallets);
+
 // Export pallet data
 router.get("/pallet_data", RecentPallets.findPalletData);
 router.get("/latest_pallet_data", ls.latestPalletData);
