@@ -19,22 +19,10 @@ const FinishedProduct = require("../controllers/production/finishedProduct.contr
 const Data = require("../controllers/pallet/palletDump.controllers");
 const RecentPallets = require("../controllers/pallet/recentPallets.controllers");
 
-// PRODUCT DB ROUTES
-// RETRIEVE ALL PRODUCT
 router.get("/products", ProductDB.findAll);
-// RETRIEVE ALL proDUCTS
 router.get("/finished_products", ProductDB.findFinishedProducts);
-// RETRIEVE A SINGLE PRODUCT WITH PRODUCTID
 router.get("/product/:id", ProductDB.findOne);
 router.get("/finished_products/:id", ProductDB.findOneFinishedProduct);
-
-// PRODUCTION DOCUMENTATION ROUTES
-// RETRIEVE ALL BRANDS
-router.get("/brands", Documentation.findAllBrands);
-// RETRIEVE ALL PRODUCTS FROM SPECIFIC BRAND
-router.get("/brandproducts/:id", Documentation.brandProducts);
-// RETRIEVE A SINGLE PRODUCT WITH PRODUCTID
-router.get("/components/:id", Documentation.productDocumentation);
 
 // PRODUCTION ROUTES
 // SHOW CURRENT PRODUCTION
