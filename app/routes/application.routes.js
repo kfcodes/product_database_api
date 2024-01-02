@@ -23,24 +23,14 @@ router.get("/finished_products", ProductDB.findFinishedProducts);
 router.get("/product/:id", ProductDB.findOne);
 router.get("/finished_products/:id", ProductDB.findOneFinishedProduct);
 
-// PRODUCTION ROUTES
-// SHOW CURRENT PRODUCTION
 router.get("/production", Ps.findCurrentProduction);
-// ALL PRODUCTION FOR AN ID
 router.get("/all_production/:id", Ps.findAllProductionById);
-// GET PRODUCTION RECORD BY ID
 router.get("/production/:id", Ps.findProductionRecordById);
 
-// PALLET ITEM ROUTES
-// GET ALL PALLET ITEMS IN THE DB
 router.get("/pallet_items", PalletItem.findAllPalletItems);
-// GET ALL PALLET ITEMS FOR A SINGLE PALLET
 router.get("/pallet_items/:id", PalletItem.findPalletItemsForPallet);
-// CREATE A NEW PALLET ITEM
 router.post("/pallet_item/:id", PalletItem.createPalletItem);
-// UPDATE A PALLET ITEM
 router.put("/pallet_item/:id", PalletItem.updatePalletItem);
-// DELETE A PALLET ITEM
 router.delete("/pallet_item/:id", PalletItem.deletePalletItem);
 
 router.get("/all_pallets", Pallet.findAllPallets);
@@ -51,16 +41,10 @@ router.put("/combine_pallets", Pallet.combinePallets);
 router.get("/possible_pallets", Pallet.getPossiblePallets);
 router.get("/pallet_details/:id", Pallet.getPalletDetails);
 
-// LABEL ROUTES
-// PRINT PALLET LABEL
 router.get("/label/:id", PalletLabel.printPalletLabel);
-// GET BOX LABEL INFO
 router.get("/label_info/:id", BoxLabel.getBoxLabel);
-// PRINT PRODUCT LABEL
 router.post("/box_label/:id", BoxLabel.printBoxLabel);
-// PRINT BLANK LABELS
 router.post("/print_blank_labels", BlankLabel.printBlankLabels);
-// PRINT LABELS FROM PDF FILES
 router.post("/print_pdf/:id", PdfLabel.printPdf);
 
 router.get("/picklist", printPickList);
@@ -68,19 +52,14 @@ router.get("/picklist", printPickList);
 router.post("/upload_pdf", upload.array("files", 10), FileUpload.uploadPdf);
 router.post("/upload_data", upload.array("files", 10), FileUpload.uploadData);
 
-// GET PALLET DATA
 router.post("/data/:id", Data.getData);
 
-// PALLET LISTS ROUTES
 router.get("/pallets", RecentPallets.findRecentPallets);
 
-// Export pallet data
 router.get("/pallet_data", RecentPallets.findPalletData);
 router.get("/latest_pallet_data", ls.latestPalletData);
 
-// FINISHED PRODUCT ROUTES
 router.get("/finished_product/:id", FinishedProduct.findFinishedProduct);
 router.post("/finished_product", FinishedProduct.createFinishedProduct);
-// router.put("/finished_product/:id", FinishedProduct.updateFinishedProduct);
 
 module.exports = router;
