@@ -27,21 +27,12 @@ router.get("/production", Ps.findCurrentProduction);
 router.get("/all_production/:id", Ps.findAllProductionById);
 router.get("/production/:id", Ps.findProductionRecordById);
 
-router.get("/pallet_items", PalletItem.findAllPalletItems);
 router.get("/pallet_items/:id", PalletItem.findPalletItemsForPallet);
-router.post("/pallet_item/:id", PalletItem.createPalletItem);
 router.put("/pallet_item/:id", PalletItem.updatePalletItem);
-router.delete("/pallet_item/:id", PalletItem.deletePalletItem);
 
-router.get("/all_pallets", Pallet.findAllPallets);
-router.get("/pallet/:id", Pallet.findPallet);
 router.put("/pallet/:id", Pallet.update);
 router.get("/pallets/:id", Pallet.palletsById);
-router.put("/combine_pallets", Pallet.combinePallets);
-router.get("/possible_pallets", Pallet.getPossiblePallets);
-router.get("/pallet_details/:id", Pallet.getPalletDetails);
 
-router.get("/label/:id", PalletLabel.printPalletLabel);
 router.get("/label_info/:id", BoxLabel.getBoxLabel);
 router.post("/box_label/:id", BoxLabel.printBoxLabel);
 router.post("/print_blank_labels", BlankLabel.printBlankLabels);
@@ -53,8 +44,6 @@ router.post("/upload_pdf", upload.array("files", 10), FileUpload.uploadPdf);
 router.post("/upload_data", upload.array("files", 10), FileUpload.uploadData);
 
 router.post("/data/:id", Data.getData);
-
-router.get("/pallets", RecentPallets.findRecentPallets);
 
 router.get("/pallet_data", RecentPallets.findPalletData);
 router.get("/latest_pallet_data", ls.latestPalletData);
