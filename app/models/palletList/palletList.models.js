@@ -19,6 +19,8 @@ exports.getInfo = (id, result) => {
 };
 
 exports.getPalletListData = async (result) => {
+    console.log(`SELECT DISTINCT ${process.env.P33} FROM ${process.env.PPP} ${process.env.P44}`)
+
   sql.query(
     `SELECT DISTINCT ${process.env.P33} FROM ${process.env.PPP} ${process.env.P44}`,
     (err, res) => {
